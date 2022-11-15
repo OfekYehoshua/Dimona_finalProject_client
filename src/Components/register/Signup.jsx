@@ -14,7 +14,7 @@ function Signup() {
   const [phone, setPhone] = useState();
   const [password, setPassword] = useState();
   const navigate = useNavigate();
-  const [validated, setValidated] = useState(false);
+  // const [validated, setValidated] = useState(false);
 
   const handleSubmit = async (e) => {
 e.preventDefault();

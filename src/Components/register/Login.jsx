@@ -1,7 +1,7 @@
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
-import Toast from "react-bootstrap/Toast";
+// import axios from "axios";
+// import { useNavigate } from "react-router-dom";
+// import { useState } from "react";
+// import Toast from "react-bootstrap/Toast";
 import Card from 'react-bootstrap/Card';
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -9,7 +9,7 @@ import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
 
 const Login = () => {
-  const [phone, setPhone] = useState();
+  // const [phone, setPhone] = useState();
  
   return (
     <Card style={{ width: '100vw', height: '100vh' }} variant="info">
@@ -23,7 +23,7 @@ const Login = () => {
           <Form.Control
             type="tel"
             placeholder="050-0000000"
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) => console.log(e.target.value)}
             required
           />
           <Form.Control.Feedback type="invalid">

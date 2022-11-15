@@ -1,6 +1,6 @@
 import Video from "./newbackground2.mp4";
 import "./homeStyle.css";
-import AlertModal from "../../Components/Modals/alertModal";
+// import AlertModal from "../../Components/Modals/alertModal";
 import Drawer from "../../Components/navigate/drawer";
 
 const Home = () => {
