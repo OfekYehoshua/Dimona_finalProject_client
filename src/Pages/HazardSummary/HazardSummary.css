@@ -1,17 +1,26 @@
 .summary-body {
-  text-align: -webkit-right;
-  padding-right: 5vw;
+  text-align: right;
 }
 
 .summary-top {
-  background-color: royalblue;
-  margin: 0;
-  width: 100vw;
-  padding-top: 1vh;
-  padding-bottom: 3vh;
+  padding-bottom: 1vh;
   text-align: center;
   color: white;
   font-size: large;
+  z-index: 5;
+  position: relative;
+}
+.nav {
+  width: 100vw;
+  padding: 20px 0px;
+  background-color: royalblue;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.icon {
+  margin: 0px 15px;
+  transform: scale(2);
 }
 .back-button {
   background: none;
@@ -19,16 +28,34 @@
   font-size: small;
   display: list-item;
   text-align: end;
+  color: white;
 }
 
 .card-summary {
   display: flex;
-  margin-left: 7vw;
+  height: 50vh;
+  margin: 0vh 5vw 5vh 5vw;
   justify-content: space-between;
   flex-wrap: wrap;
   place-content: center;
+  border: none !important;
 }
 
-.card-img-top {
-  margin-bottom: 2vh;
+.card-summary img {
+  margin: 3vh 2vw;
+  width: 160px !important;
+  height: 125px;
+}
+.summary-bottom-body {
+  margin-right: 2vw;
+  margin-top: 2vh;
+}
+.next {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.next .btn {
+  padding: 1rem 4.5rem !important;
+  color: white !important;
 }
