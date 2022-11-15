@@ -6,8 +6,7 @@ import Row from "react-bootstrap/Row";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Toast from "react-bootstrap/Toast";
-import Card from 'react-bootstrap/Card';
-
+import Card from "react-bootstrap/Card";
 
 function Signup() {
   const [email, setEmail] = useState();
@@ -17,9 +16,9 @@ function Signup() {
   // const [validated, setValidated] = useState(false);
 
   const handleSubmit = async (e) => {
-e.preventDefault();
-if(!email || !phone || !password){
-    <Toast>
+    e.preventDefault();
+    if (!email || !phone || !password) {
+      <Toast>
         <Toast.Header>
           <strong className="me-auto">Error signing up</strong>
           <small>try again later</small>
@@ -27,20 +26,20 @@ if(!email || !phone || !password){
         <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
       </Toast>;
       return;
-}
+    }
     try {
       const data = await axios.post("/", {
         email,
         phone,
-        password
+        password,
       });
       <Toast>
-      <Toast.Header>
-        <strong className="me-auto">Error signing up</strong>
-        <small>try again later</small>
-      </Toast.Header>
-      <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
-    </Toast>;
+        <Toast.Header>
+          <strong className="me-auto">Error signing up</strong>
+          <small>try again later</small>
+        </Toast.Header>
+        <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
+      </Toast>;
       sessionStorage.setItem("userInfo", JSON.stringify(data));
       navigate("/");
     } catch (error) {
@@ -55,10 +54,12 @@ if(!email || !phone || !password){
   };
 
   return (
-    <Card style={{ width: '100vw', height: '100vh' }} variant="info">
-        <Card.Body>
+    <Card style={{ width: "100vw", height: "100vh" }} variant="info">
+      <Card.Body>
         <Card.Title>רישום זריז</Card.Title>
-        <Card.Subtitle className="mb-2 text-muted">אין אפשרות לשלוח את הדיווח ללא רישום</Card.Subtitle>
+        <Card.Subtitle className="mb-2 text-muted">
+          אין אפשרות לשלוח את הדיווח ללא רישום
+        </Card.Subtitle>
         <Form>
           <Form.Group as={Row} className="mb-3">
             <Form.Label>כתובת מייל עדכנית</Form.Label>
@@ -82,7 +83,7 @@ if(!email || !phone || !password){
                 required
               />
               <Form.Control.Feedback type="invalid">
-               חובה להכניס מספר פלאפון
+                חובה להכניס מספר פלאפון
               </Form.Control.Feedback>
             </Col>
             <Form.Group controlId="validationCustom01">
@@ -101,10 +102,12 @@ if(!email || !phone || !password){
               </Col>
             </Form.Group>
           </Form.Group>
-          <Button variant="info" size="lg" onClick={handleSubmit}>שלח</Button>
+          <Button variant="info" size="lg" onClick={handleSubmit}>
+            שלח
+          </Button>
         </Form>
-        </Card.Body>
-        </Card>
+      </Card.Body>
+    </Card>
   );
 }
 

@@ -54,7 +54,7 @@ const Drawer = () => {
                     <NavLink to={"/"}>מבזקים</NavLink>
                   </ListGroup.Item>
                   <ListGroup.Item>
-                    <Nav.Link  href="#">התנתקות</Nav.Link>
+                    <Nav.Link href="#">התנתקות</Nav.Link>
                   </ListGroup.Item>
                 </ListGroup>
                 <Nav className="justify-content-end flex-grow-1 pe-3">

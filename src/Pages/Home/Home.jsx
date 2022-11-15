@@ -18,11 +18,11 @@ const Home = () => {
         >
           <source src={Video} type="video/mp4" />
         </video>
-          <h1 id="hello">ברוך הבא</h1>
-          <button className="button-89">דיווח למוקד העירייה</button>
-          <p className="report-head">מבזקים</p>
-          {/* <AlertModal/> */}
-          <p className="report-head">הדיווחים שלי</p>
+        <h1 id="hello">ברוך הבא</h1>
+        <button className="button-89">דיווח למוקד העירייה</button>
+        <p className="report-head">מבזקים</p>
+        {/* <AlertModal/> */}
+        <p className="report-head">הדיווחים שלי</p>
       </div>
     </div>
   );
