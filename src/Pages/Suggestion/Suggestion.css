@@ -1,7 +1,7 @@
 .suggestion-top {
   text-align: center;
   color: white;
-  z-index: 5;
+  z-index: 10;
   position: relative;
 }
 .suggestion-header {
