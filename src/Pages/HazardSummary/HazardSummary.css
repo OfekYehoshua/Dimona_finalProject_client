@@ -2,26 +2,7 @@
   text-align: right;
 }
 
-.summary-top {
-  padding-bottom: 1vh;
-  text-align: center;
-  color: white;
-  font-size: large;
-  z-index: 5;
-  position: relative;
-}
-.nav {
-  width: 100vw;
-  padding: 20px 0px;
-  background-color: royalblue;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.icon {
-  margin: 0px 15px;
-  transform: scale(2);
-}
+
 .back-button {
   background: none;
   border: none;
@@ -54,8 +35,4 @@
   display: flex;
   align-items: center;
   justify-content: center;
-}
-.next .btn {
-  padding: 1rem 4.5rem !important;
-  color: white !important;
 }

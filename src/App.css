@@ -4,8 +4,8 @@
   padding: 0;
 }
 .btn_accessibility {
-  z-index: 2 !important;
+  z-index: 6 !important;
 }
 body > div.accessibility_component.accessibility_div_wrap {
-  z-index: 2 !important;
+  z-index: 6 !important;
 }

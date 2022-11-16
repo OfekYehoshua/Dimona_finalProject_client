@@ -2,18 +2,28 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { BsFillPencilFill } from "react-icons/bs";
+import SelectComp from "../Select";
+import { useNavigate } from "react-router-dom";
 
 export default function InputModal() {
   const [show, setShow] = useState(false);
-  const [customText, setCustomText] = useState("");
+  const [title, setTitle] = useState("");
+  const [profession, setProfession] = useState("default");
+  const navigate = useNavigate()
 
   const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const handleShow = () => {
+    setTitle("");
+    setShow(true);
+  };
 
   const handleSubmit = () => {
-    sessionStorage.removeItem("hazard");
+    sessionStorage.setItem("hazard", JSON.stringify({ title, profession }));
     handleClose();
+    navigate('/hazard-image')
   };
+
+  console.log();
 
   return (
     <>
@@ -35,26 +45,43 @@ export default function InputModal() {
 
       <Modal style={{ marginTop: "30vh" }} show={show} onHide={handleClose}>
         <Modal.Body>פרטי הדיווח</Modal.Body>
+        <SelectComp setProfession={setProfession} />
         <textarea
           placeholder="אנא כתוב עד 40 תווים"
           type="text"
           autoFocus
           className="modal-input"
-          onChange={(e) => setCustomText(e.target.value)}
+          onChange={(e) => setTitle(e.target.value)}
         />
         <Modal.Footer className="modal-btn">
           <Button variant="info" onClick={handleClose}>
             בטל
           </Button>
           <Button
-            disabled={customText.length > 40}
+            disabled={
+              title.length > 40 ||
+              title.length === 0 ||
+              profession.length === 0 ||
+              profession === "default"
+            }
             variant="info"
             onClick={handleSubmit}
           >
             שלח
           </Button>
         </Modal.Footer>
-          {customText.length > 40 && <div style={{textAlign:"center", color:"red", paddingBottom:5, fontWeight:600}}>יותר מדי מלל! </div>}
+        {title.length > 40 && (
+          <div
+            style={{
+              textAlign: "center",
+              color: "red",
+              paddingBottom: 5,
+              fontWeight: 600,
+            }}
+          >
+            יותר מדי מלל!{" "}
+          </div>
+        )}
       </Modal>
     </>
   );

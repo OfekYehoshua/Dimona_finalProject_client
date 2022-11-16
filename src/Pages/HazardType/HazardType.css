@@ -3,7 +3,7 @@
   align-items: center;
   flex-direction: column;
   position: relative;
-  z-index: 5;
+  z-index: 10;
   background-color: white;
 }
 
@@ -43,6 +43,7 @@
 .input-and-svg {
   width: 290px;
   border-bottom: 1px solid white;
+  padding-top:30px
 }
 .input-and-svg input {
   border-top-style: hidden;

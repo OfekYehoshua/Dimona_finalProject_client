@@ -11,21 +11,36 @@ import tamr from "./HazardImages/tamr.png";
 import lamp from "./HazardImages/lamp.png";
 import car from "./HazardImages/car.png";
 import ma from "./HazardImages/ma.jpg";
+import sewerage from "./HazardImages/sewerage.png";
 import { useNavigate } from "react-router-dom";
 import InputModal from "../../Components/Modals/inputModal";
+import CloseForm from "../../Components/Modals/closeFormModal";
 
 const HazardType = () => {
   const navigate = useNavigate();
 
-  const handleClicked = (info) => {
-    sessionStorage.setItem("hazard", info);
-    navigate("/hazard-summary");
+  const handleClicked = (title, profession) => {
+    sessionStorage.setItem("hazard", JSON.stringify({ title, profession }));
+    navigate("/hazard-image");
   };
 
   return (
     <div className="container">
       <div className="top">
-        <h4 className="top-header">פרטי מפגע</h4>
+        <div
+          className="nav"
+          style={{
+            color: "white",
+            padding: "5px 0px",
+          }}
+        >
+          <h5 style={{ marginBottom: 0, paddingRight: "40vw" }}>
+          
+             סוג הדיווח
+          </h5>
+          <CloseForm />
+        </div>
+
         <InputModal />
       </div>
 
@@ -35,7 +50,7 @@ const HazardType = () => {
         </h5>
         <div className="list-group">
           <button
-            onClick={() => handleClicked("פינוי ערימת גזם")}
+            onClick={() => handleClicked("פינוי ערימת גזם", "clean")}
             className="button-container"
           >
             <b className="button-text"> פינוי ערימת גזם </b>
@@ -43,7 +58,7 @@ const HazardType = () => {
           </button>
           <hr />
           <button
-            onClick={() => handleClicked("פינוי ערימת אשפה")}
+            onClick={() => handleClicked("פינוי ערימת אשפה", "clean")}
             className="button-container"
           >
             <b className="button-text"> פינוי ערימת אשפה</b>
@@ -51,7 +66,7 @@ const HazardType = () => {
           </button>
           <hr />
           <button
-            onClick={() => handleClicked("רחוב לא נקי")}
+            onClick={() => handleClicked("רחוב לא נקי", "clean")}
             className="button-container"
           >
             <b className="button-text">רחוב לא נקי</b>
@@ -59,7 +74,7 @@ const HazardType = () => {
           </button>
           <hr />
           <button
-            onClick={() => handleClicked("צואת כלבים")}
+            onClick={() => handleClicked("צואת כלבים", "animals")}
             className="button-container"
           >
             <b className="button-text">צואת כלבים</b>
@@ -67,7 +82,7 @@ const HazardType = () => {
           </button>
           <hr />
           <button
-            onClick={() => handleClicked("גינה ציבורית מלוכלכת")}
+            onClick={() => handleClicked("גינה ציבורית מלוכלכת", "clean")}
             className="button-container"
           >
             <b className="button-text">גינה ציבורית מלוכלכת</b>
@@ -75,7 +90,7 @@ const HazardType = () => {
           </button>
           <hr />
           <button
-            onClick={() => handleClicked("גומה ריקה על המדרכה")}
+            onClick={() => handleClicked("גומה ריקה על המדרכה", "construction")}
             className="button-container"
           >
             <b className="button-text">גומה ריקה על המדרכה</b>
@@ -83,7 +98,7 @@ const HazardType = () => {
           </button>
           <hr />
           <button
-            onClick={() => handleClicked("הדברה/ יתושים")}
+            onClick={() => handleClicked("הדברה/ יתושים", "animals")}
             className="button-container"
           >
             <b className="button-text">הדברה/ יתושים</b>
@@ -91,7 +106,7 @@ const HazardType = () => {
           </button>
           <hr />
           <button
-            onClick={() => handleClicked("ריצוף מפורק")}
+            onClick={() => handleClicked("ריצוף מפורק", "construction")}
             className="button-container"
           >
             <b className="button-text"> ריצוף מפורק</b>
@@ -99,7 +114,7 @@ const HazardType = () => {
           </button>
           <hr />
           <button
-            onClick={() => handleClicked("פינוי מיכל אשפה ירוק מלא")}
+            onClick={() => handleClicked("פינוי מיכל אשפה ירוק מלא", "clean")}
             className="button-container"
           >
             <b className="button-text"> פינוי מיכל אשפה ירוק מלא</b>
@@ -107,7 +122,15 @@ const HazardType = () => {
           </button>
           <hr />
           <button
-            onClick={() => handleClicked("תמרור/ סימון כביש חסר")}
+            onClick={() => handleClicked("ביוב פתוח", "sewerage")}
+            className="button-container"
+          >
+            <b className="button-text"> ביוב פתוח</b>
+            <img src={sewerage} alt="img" width="35" />
+          </button>
+          <hr />
+          <button
+            onClick={() => handleClicked("תמרור/ סימון כביש חסר", "roads")}
             className="button-container"
           >
             <b className="button-text">תמרור/ סימון כביש חסר</b>
@@ -115,7 +138,7 @@ const HazardType = () => {
           </button>
           <hr />
           <button
-            onClick={() => handleClicked("פנס רחוב לא תקין")}
+            onClick={() => handleClicked("פנס רחוב לא תקין", "electricity")}
             className="button-container"
           >
             <b className="button-text">פנס רחוב לא תקין</b>
@@ -123,7 +146,7 @@ const HazardType = () => {
           </button>
           <hr />
           <button
-            onClick={() => handleClicked("כלי שיתופי חוסם")}
+            onClick={() => handleClicked("כלי שיתופי חוסם", "roads")}
             className="button-container"
           >
             <b className="button-text"> כלי שיתופי חוסם</b>

@@ -16,8 +16,8 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/reports" element={<Report />} />
-        <Route path="/image" element={<UploadImage />} />
-        <Route path="/alerts" element={<Alerts/>} />
+        <Route path="/hazard-image" element={<UploadImage />} />
+        <Route path="/alerts" element={<Alerts />} />
         <Route path="/onealert" element={<OneAlert/>} />
         <Route path="/hazard-type" element={<HazardType />} />
         <Route path="/hazard-summary" element={<HazardSummary />} />

@@ -9,6 +9,7 @@ import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import Navtop from "../../Components/navigate/Navtop";
 
 const UploadImage = () => {
   const [allImages, setAllImages] = useState([]);
@@ -54,6 +55,7 @@ const UploadImage = () => {
 
   return (
     <div id="image-container">
+      <Navtop title="תמונות (אופציונלי)" link="/hazard-type" />
       {allImages.length === 0 ? (
         <>
           <h1>הוסף תמונה</h1>
