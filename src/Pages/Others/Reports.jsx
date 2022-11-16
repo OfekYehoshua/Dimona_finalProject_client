@@ -8,7 +8,7 @@ const Report = () => {
     <div id="report-container">
 <Drawer/>
       <h1 id="report-header">הדיווחים שלי</h1>
-          <ReportModal />       
+      <GetAdress></GetAdress>
     </div>
   );
 };
