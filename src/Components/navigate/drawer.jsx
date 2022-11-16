@@ -61,7 +61,7 @@ const Drawer = () => {
                   <Nav.Link href="#">אתר העירייה</Nav.Link>
                   <Nav.Link href="#action1">אתר העוד משהו</Nav.Link>
                 </Nav>
-                <Button>דיווח חדש</Button>
+                <Button variant="info">דיווח חדש</Button>
               </Offcanvas.Body>
             </Navbar.Offcanvas>
           </Container>

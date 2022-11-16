@@ -1,6 +1,6 @@
 
 import ReportModal from "../../Components/Modals/reportModal";
-import './reportStyles.css'
+import './styles.css'
 import Drawer from '../../Components/navigate/drawer';
 
 const Report = () => {

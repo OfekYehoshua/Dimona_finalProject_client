@@ -6,7 +6,7 @@ import Lottie from "react-lottie-player";
 import ReportAnimation from './report animation.json'
 import axios from 'axios';
 import Card from "react-bootstrap/Card";
-import '../../Pages/Reports/reportStyles.css'
+import '../../Pages/Others/styles.css'
 
 
 const ReportModal = () => {

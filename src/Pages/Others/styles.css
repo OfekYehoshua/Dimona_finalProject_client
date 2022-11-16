@@ -1,0 +1,39 @@
+#report-header{
+    height: 7vh;
+    width: 100vw;
+    background-color: #a8dadc;
+    text-align: center;
+}
+#report-container{
+    
+}
+#animation{
+        display: flex;
+        flex-direction: column;
+}
+#line{
+    text-align: center;
+}
+#image-container{
+    flex-direction: column;
+    text-align: center;
+    margin-top: 8vh;
+}
+
+.mapped-img{
+    margin: 5px;
+}
+.selected{
+    border: 2px dotted  #a8dadc
+}
+.next{
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+}
+
+.previous{
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+}
