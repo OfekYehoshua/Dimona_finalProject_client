@@ -1,0 +1,7 @@
+#animation{
+    display: flex;
+    flex-direction: column;
+}
+#line{
+text-align: center;
+}

@@ -3,10 +3,10 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import ListGroup from 'react-bootstrap/ListGroup';
 import Lottie from "react-lottie-player";
-import ReportAnimation from './report animation.json'
+import ReportAnimation from '../../animations/report animation.json'
 import axios from 'axios';
 import Card from "react-bootstrap/Card";
-import '../../Pages/Others/styles.css'
+import './modalStyles.css'
 
 
 const ReportModal = () => {
@@ -19,7 +19,6 @@ const fetchReports = async ()=>{
             headers: {
               Authorization: `Bearer`,
             }};
-
         const {data} = await axios.get('', config);
         setReport(data)
     } catch (error) {

@@ -4,22 +4,12 @@
     background-color: #a8dadc;
     text-align: center;
 }
-#report-container{
-    
-}
-#animation{
-        display: flex;
-        flex-direction: column;
-}
-#line{
-    text-align: center;
-}
+
 #image-container{
     flex-direction: column;
     text-align: center;
     margin-top: 8vh;
 }
-
 .mapped-img{
     margin: 5px;
 }

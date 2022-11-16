@@ -1,58 +1,50 @@
-import Accordion from "react-bootstrap/Accordion";
-import Card from "react-bootstrap/Card";
-import Stack from 'react-bootstrap/Stack';
-import Placeholder from 'react-bootstrap/Placeholder';
-import axios from "axios";
-import { useState, useEffect } from "react";
-
-
+import { useEffect,useState } from 'react';
+import Lottie from "react-lottie-player";
+import ReportAnimation from '../../animations/report animation.json'
+import axios from 'axios';
+import './modalStyles.css'
 
 const AlertModal = () => {
-  const [alerts, setAlerts] = useState()
-  
-  const fetchAlerts = async ()=>{
-    try {
-      const config = {
-        headers: {
-          Authorization: `Bearer`,
-        },
-      };
-    const {data} = await axios.get('', config);
-    setAlerts(data);
+  const [alert, setAlert]= useState()
 
-  }catch (error) {
-  console.log("error");
-  }
-  }
-  useEffect(()=>{
-    fetchAlerts();
-  },[])
+const fetchAlert = async ()=>{
+ 
+    try {
+        const config = {
+            headers: {
+              Authorization: `Bearer`,
+            }};
+
+        const {data} = await axios.get('', config);
+        setAlert(data)
+    } catch (error) {
+        console.log("error");
+    }
+}
+useEffect(()=>{
+    fetchAlert();
+},[])
 
   return (
-    <Card>
-    {alerts ? (
-      <Stack gap={3}>
-      {alerts.map((alert)=>(
-    <Accordion defaultActiveKey={["0"]} alwaysOpen>
-      <Accordion.Item  eventKey="0">
-        <Accordion.Header>מבזק{alert.title}</Accordion.Header>
-        <Accordion.Body>תוכן מבזק{alert.description}</Accordion.Body>
-      </Accordion.Item>
-      <Accordion.Item eventKey="1">
-        <Accordion.Header>מבזק</Accordion.Header>
-        <Accordion.Body>תוכן מבזק</Accordion.Body>
-      </Accordion.Item>
-    </Accordion>
-      ))}
-      </Stack>
-      ):(
-        <p aria-hidden="true">
-        <Placeholder xs={6} />
-      </p>
-      )}
-</Card>
-    
-  );
-};
+    <>
+    {alert?(<>
+    {alert.map((alert)=>
+    ( 
+    <div className='alert-container'>
+    <h1 className='alert-title'>{alert.title}כותרת</h1>
+    <p className='alert-description'>{alert.description}תיאור</p>
+    <span className='alert date'>{alert.date}תאריך</span>
+  </div>
+  ))}
+    </>):(<>
+      <Lottie
+    loop
+    animationData={ReportAnimation}
+    play
+    style={{ width: 400, height: 600 }}
+  />
+    </>)}
+    </>
+    )}
 
-export default AlertModal;
+export default AlertModal
