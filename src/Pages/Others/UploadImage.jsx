@@ -1,6 +1,6 @@
 import React from "react";
 // import Drawer from "../../Components/navigate/drawer";
-import upload from "../../animations/5705-camera.json";
+import upload from "../../animations/9948-camera-pop-up.json";
 import Lottie from "react-lottie-player";
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
@@ -8,13 +8,15 @@ import Modal from "react-bootstrap/Modal";
 import Form from "react-bootstrap/Form";
 import axios from "axios";
 import { useEffect } from "react";
-import { NavLink } from "react-router-dom";
 import Navtop from "../../Components/navigate/Navtop";
+import BottomNav from "../../Components/navigate/BottomNav";
+import { BsTrash } from "react-icons/bs";
 
 const UploadImage = () => {
   const [allImages, setAllImages] = useState([]);
   const [selectedBig, setSelectedBig] = useState(0);
   const [selectedImg, setSelectedImg] = useState("");
+  const [uploadedImg, setUploadedImg] = useState("");
   const [loading, setLoading] = useState(false);
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
@@ -24,91 +26,44 @@ const UploadImage = () => {
   };
 
   const handleSubmit = () => {
-    setAllImages([...allImages, selectedImg]);
+    setAllImages([...allImages, uploadedImg]);
     handleClose();
   };
 
   useEffect(() => {
     const getSelectedImg = async () => {
-      if (
-        selectedImg.type === "image/jpeg" ||
-        selectedImg.type === "image/png"
-      ) {
-        const formData = new FormData();
-        formData.append("file", selectedImg);
-        formData.append("upload_preset", "dimona-citizen-app");
-        setLoading(true);
-        await axios
-          .post(
-            "https://api.cloudinary.com/v1_1/ofekyehoshua/image/upload",
-            formData
-          )
-          .then((res) => setSelectedImg(res.data.secure_url))
-          .catch((err) => {
-            console.log(err);
-          });
-        setLoading(false);
+      if (selectedImg) {
+        if (
+          selectedImg.type === "image/jpeg" ||
+          selectedImg.type === "image/png"
+        ) {
+          const formData = new FormData();
+          formData.append("file", selectedImg);
+          formData.append("upload_preset", "dimona-citizen-app");
+          setLoading(true);
+          await axios
+            .post(
+              "https://api.cloudinary.com/v1_1/ofekyehoshua/image/upload",
+              formData
+            )
+            .then((res) => setUploadedImg(res.data.secure_url))
+            .catch((err) => {
+              console.log(err);
+            });
+          setLoading(false);
+        }
       }
     };
     getSelectedImg();
   }, [selectedImg]);
 
+  const handleRemove = () => {
+    setAllImages(allImages.splice(selectedBig, 1));
+    console.log(allImages);
+  };
+
   return (
     <div id="image-container">
-      <Navtop title="תמונות (אופציונלי)" link="/hazard-type" />
-      {allImages.length === 0 ? (
-        <>
-          <h1>הוסף תמונה</h1>
-          <Button variant="ghost" onClick={handleShow}>
-            <Lottie
-              loop
-              animationData={upload}
-              play
-              style={{ width: 300, height: 300 }}
-            />
-          </Button>
-        </>
-      ) : (
-        <>
-          <img src={allImages[selectedBig]} alt="" width={300} height={300} />
-          {allImages.map(
-            (img, index) =>
-              index < 4 && (
-                <img
-                  className={
-                    index === selectedBig ? "mapped-img selected" : "mapped-img"
-                  }
-                  key={index}
-                  src={img}
-                  alt=""
-                  onClick={() => setSelectedBig(index)}
-                  width={75}
-                  height={75}
-                />
-              )
-          )}
-          {allImages.length < 4 && (
-            <Button variant="info" onClick={handleShow}>
-              הוסף עוד תמונה
-            </Button>
-          )}
-          {allImages.length > 0 && (
-            <>
-            <div className="next">
-            <NavLink to={"/"}>
-              <Button size="lg" variant="info" >הבא</Button>
-            </NavLink>
-            </div>
-            <div className="previous">
-            <NavLink to={"/"}>
-              <Button size="lg" bgvariant="second" >הקודם</Button>
-            </NavLink>
-            </div>
-            </>
-          )}
-        </>
-      )}
-
       <Modal show={show} onHide={handleClose} centered>
         <Modal.Header>
           <Modal.Title>בחר קובץ</Modal.Title>
@@ -116,10 +71,13 @@ const UploadImage = () => {
         <Modal.Body>
           <Form.Group controlId="formFile" className="mb-3">
             <input
+              hidden={true}
+              id="add-pic"
               type="file"
               accept="application/pdf, image/png"
               onChange={(e) => setSelectedImg(e.target.files[0])}
             />
+            <label htmlFor="add-pic">hi</label>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
@@ -128,13 +86,79 @@ const UploadImage = () => {
           </Button>
           <Button
             variant="info"
-            disabled={loading || selectedImg.length === 0}
+            disabled={loading || uploadedImg.length === 0}
             onClick={handleSubmit}
           >
-            הוסף
+            {loading ? "טוען.." : "הוסף"}
           </Button>
         </Modal.Footer>
       </Modal>
+      <Navtop title="תמונות (אופציונלי)" link="/hazard-type" />
+      {allImages.length === 0 ? (
+        <>
+          <h1>הוסף תמונה</h1>
+          <Button variant="ghost" onClick={handleShow}>
+            <div className="animation-design">
+              <Lottie
+                loop
+                animationData={upload}
+                play
+                style={{ width: 250, height: 250 }}
+              />
+            </div>
+          </Button>
+          <>
+            <BottomNav link="/hazard-location" />
+          </>
+        </>
+      ) : (
+        <>
+          <div
+            style={{
+              fontSize: 15,
+              textAlign: "left",
+              padding: "0px 0px 10px 10px",
+            }}
+          >
+            <BsTrash style={{ fontSize: 35 }} onClick={() => handleRemove()} />
+          </div>
+          <div style={{width:"100vw"}}>
+          <img src={allImages[selectedBig]} alt="" width={350} height={275} />
+          </div>
+          {allImages &&
+            allImages.map(
+              (img, index) =>
+                index < 4 && (
+                  <img
+                    className={
+                      index === selectedBig
+                        ? "mapped-img selected"
+                        : "mapped-img"
+                    }
+                    key={index}
+                    src={img}
+                    alt=""
+                    onClick={() => setSelectedBig(index)}
+                    width={75}
+                    height={75}
+                  />
+                )
+            )}
+          {allImages && allImages.length < 4 && (
+            <span onClick={handleShow}>
+              <img
+                src="https://toppng.com/public/uploads/thumbnail/add-camera-icon-icon-add-11553485583xpjt8pbrke.png"
+                alt="pic"
+                width={70}
+                height={70}
+              />
+            </span>
+          )}
+          <>
+            <BottomNav link="/hazard-location" allImages={allImages} />
+          </>
+        </>
+      )}
     </div>
   );
 };

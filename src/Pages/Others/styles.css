@@ -26,3 +26,7 @@
     bottom: 5%;
     right: 5%;
 }
+.animation-design{
+    background-color: lightblue;
+    border: 3px dashed royalblue;
+}
