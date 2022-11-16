@@ -27,6 +27,7 @@ const UploadImage = () => {
 
   const handleSubmit = () => {
     setAllImages([...allImages, uploadedImg]);
+    allImages.length !== 0 && setSelectedBig(selectedBig + 1);
     handleClose();
   };
 
@@ -58,8 +59,11 @@ const UploadImage = () => {
   }, [selectedImg]);
 
   const handleRemove = () => {
-    setAllImages(allImages.splice(selectedBig, 1));
-    console.log(allImages);
+    const new_arr = [...allImages];
+    new_arr.splice(selectedBig, 1);
+    selectedBig !== 0 && setSelectedBig(selectedBig - 1);
+    console.log(selectedBig);
+    setAllImages(new_arr);
   };
 
   return (
@@ -122,8 +126,8 @@ const UploadImage = () => {
           >
             <BsTrash style={{ fontSize: 35 }} onClick={() => handleRemove()} />
           </div>
-          <div style={{width:"100vw"}}>
-          <img src={allImages[selectedBig]} alt="" width={350} height={275} />
+          <div style={{ width: "100vw" }}>
+            <img src={allImages[selectedBig]} alt="" width={350} height={275} />
           </div>
           {allImages &&
             allImages.map(
