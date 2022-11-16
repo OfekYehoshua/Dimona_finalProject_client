@@ -1,5 +1,5 @@
 import React from "react";
-import Drawer from "../../Components/navigate/drawer";
+// import Drawer from "../../Components/navigate/drawer";
 import upload from "../../animations/5705-camera.json";
 import Lottie from "react-lottie-player";
 import { useState } from "react";
