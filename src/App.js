@@ -8,6 +8,7 @@ import Alerts from './Pages/Others/Alerts';
 import OneAlert from './Pages/Others/OneAlert';
 import HazardType from "./Pages/HazardType/HazardType";
 import HazardSummary from "./Pages/HazardSummary/HazardSummary";
+import Suggestion from "./Pages/Suggestion/Suggestion";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/onealert" element={<OneAlert/>} />
         <Route path="/hazard-type" element={<HazardType />} />
         <Route path="/hazard-summary" element={<HazardSummary />} />
+        <Route path="/suggestion" element={<Suggestion />} />
       </Routes>
     </Router>
   );
