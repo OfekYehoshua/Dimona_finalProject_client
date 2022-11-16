@@ -16,7 +16,7 @@ const Location = () => {
 
   const getAdress = async (a, b) => {
     const nearLocation = await axios.get(
-      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${a},${b}&key=AIzaSyA09eagZpZ4rKfC1V39Au6x79HxXR441Os&language=iw`
+      `https://maps.googleapis.com/maps/api/geocode/json?latlng=${a},${b}&key=${process.env.REACT_APP_GOOGLE}&language=iw`
     );
     console.log(nearLocation.data.results[0].formatted_address);
     setLocation(nearLocation.data.results[0].formatted_address);
