@@ -1,6 +1,4 @@
-import "bootstrap/dist/css/bootstrap.css";
 import "./HazardType.css";
-import { BsFillPencilFill } from "react-icons/bs";
 import dog from "./HazardImages/dog.png";
 import ash from "./HazardImages/ash.png";
 import GEZEM from "./HazardImages/GEZEM.png";

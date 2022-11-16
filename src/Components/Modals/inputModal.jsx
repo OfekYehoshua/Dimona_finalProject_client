@@ -5,6 +5,7 @@ import { BsFillPencilFill } from "react-icons/bs";
 
 export default function InputModal() {
   const [show, setShow] = useState(false);
+  const [customText, setCustomText] = useState("");
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -34,15 +35,26 @@ export default function InputModal() {
 
       <Modal style={{ marginTop: "30vh" }} show={show} onHide={handleClose}>
         <Modal.Body>פרטי הדיווח</Modal.Body>
-        <textarea type="text" autoFocus className="modal-input" />
+        <textarea
+          placeholder="אנא כתוב עד 40 תווים"
+          type="text"
+          autoFocus
+          className="modal-input"
+          onChange={(e) => setCustomText(e.target.value)}
+        />
         <Modal.Footer className="modal-btn">
           <Button variant="info" onClick={handleClose}>
             בטל
           </Button>
-          <Button variant="info" onClick={handleSubmit}>
+          <Button
+            disabled={customText.length > 40}
+            variant="info"
+            onClick={handleSubmit}
+          >
             שלח
           </Button>
         </Modal.Footer>
+          {customText.length > 40 && <div style={{textAlign:"center", color:"red", paddingBottom:5, fontWeight:600}}>יותר מדי מלל! </div>}
       </Modal>
     </>
   );

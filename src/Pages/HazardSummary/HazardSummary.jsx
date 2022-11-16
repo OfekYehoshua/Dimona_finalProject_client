@@ -1,7 +1,7 @@
 import "./HazardSummary.css";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { AiOutlineRight, AiOutlineClose } from "react-icons/ai";
+import { AiOutlineRight } from "react-icons/ai";
 import CloseForm from "../../Components/Modals/closeFormModal";
 
 const HazardSummary = () => {
