@@ -14,6 +14,8 @@ export default function CloseForm() {
   const handleCloseForm = () => {
     navigate("/");
     sessionStorage.removeItem("hazard");
+    sessionStorage.removeItem("hazard-location");
+    sessionStorage.removeItem("hazard-images");
     handleClose();
   };
   return (

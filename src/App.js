@@ -8,6 +8,7 @@ import Alerts from './Pages/Others/Alerts';
 import OneAlert from './Pages/Others/OneAlert';
 import HazardType from "./Pages/HazardType/HazardType";
 import HazardSummary from "./Pages/HazardSummary/HazardSummary";
+import Location from "./Pages/Location/Location";
 import Suggestion from "./Pages/Suggestion/Suggestion";
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/reports" element={<Report />} />
         <Route path="/hazard-image" element={<UploadImage />} />
+        <Route path="/hazard-location" element={<Location />} />
         <Route path="/alerts" element={<Alerts />} />
         <Route path="/onealert" element={<OneAlert/>} />
         <Route path="/hazard-type" element={<HazardType />} />

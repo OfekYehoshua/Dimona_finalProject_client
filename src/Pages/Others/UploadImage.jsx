@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import Navtop from "../../Components/navigate/Navtop";
 import BottomNav from "../../Components/navigate/BottomNav";
 import { BsTrash } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
 const UploadImage = () => {
   const [allImages, setAllImages] = useState([]);
@@ -18,6 +19,7 @@ const UploadImage = () => {
   const [selectedImg, setSelectedImg] = useState("");
   const [uploadedImg, setUploadedImg] = useState("");
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => {
@@ -30,6 +32,10 @@ const UploadImage = () => {
     allImages.length !== 0 && setSelectedBig(selectedBig + 1);
     handleClose();
   };
+
+  useEffect(() => {
+    !sessionStorage.getItem("hazard") && navigate("/hazard-type");
+  }, [navigate]);
 
   useEffect(() => {
     const getSelectedImg = async () => {
@@ -81,7 +87,7 @@ const UploadImage = () => {
               accept="application/pdf, image/png"
               onChange={(e) => setSelectedImg(e.target.files[0])}
             />
-            <label htmlFor="add-pic">hi</label>
+            <label htmlFor="add-pic" className="upload-file">העלה תמונה</label>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
