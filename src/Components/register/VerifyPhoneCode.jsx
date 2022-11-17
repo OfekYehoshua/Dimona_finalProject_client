@@ -19,63 +19,60 @@ const VerifyPhoneCode = () => {
   const userRegister = JSON.parse(sessionStorage.getItem("registerUser"));
   const userLogin = JSON.parse(sessionStorage.getItem("loginUser"));
   useEffect(() => {
-    if(!userLogin&&!userRegister){
-        navigate("/register")
-      }
-  }, [])
-  
+    if (!userLogin && !userRegister) {
+      navigate("/register");
+    }
+  }, [userLogin, userRegister, navigate]);
+
   const verifyCode = async () => {
-    if(userRegister){
+    if (userRegister) {
       const codeTrue = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/phone/verify?phonenumber=+972${userRegister.phone}&code=${phoneCode}`
       );
       if (codeTrue) {
         if (codeTrue.data) {
-            const newUser = await axios.post(
-                `${process.env.REACT_APP_API_URL}/api/user`,
-                {
-                  email: userRegister.email,
-                  firstName: userRegister.firstName,
-                  lastName: userRegister.lastName,
-                  phone: userRegister.phone,
-                }
-              );
+          const newUser = await axios.post(
+            `${process.env.REACT_APP_API_URL}/api/user`,
+            {
+              email: userRegister.email,
+              firstName: userRegister.firstName,
+              lastName: userRegister.lastName,
+              phone: userRegister.phone,
+            }
+          );
           if (newUser) {
             console.log(newUser);
             localStorage.setItem("UserLogged", JSON.stringify(newUser));
-            sessionStorage.removeItem('registerUser')
+            sessionStorage.removeItem("registerUser");
             navigate("/hazard-type");
           }
         }
         console.log(codeTrue);
       }
-  
-  }
-  if(userLogin){
-    const codeTrue = await axios.get(
+    }
+    if (userLogin) {
+      const codeTrue = await axios.get(
         `${process.env.REACT_APP_API_URL}/api/phone/verify?phonenumber=+972${userLogin.phone}&code=${phoneCode}`
       );
       if (codeTrue) {
         if (codeTrue.data) {
-            const newUser = await axios.post(
-                `${process.env.REACT_APP_API_URL}/api/user/login`,
-                {
-                  phone: userLogin.phone
-                }
-              );
+          const newUser = await axios.post(
+            `${process.env.REACT_APP_API_URL}/api/user/login`,
+            {
+              phone: userLogin.phone,
+            }
+          );
           if (newUser) {
             console.log(newUser);
             localStorage.setItem("UserLogged", JSON.stringify(newUser));
-            sessionStorage.removeItem('userLogin')
+            sessionStorage.removeItem("userLogin");
             navigate("/hazard-type");
           }
         }
         console.log(codeTrue);
       }
-
-  }
-}
-
+    }
+  };
 
   const sendAgain = async () => {
     const sendMessage = await axios.get(
@@ -100,8 +97,8 @@ const VerifyPhoneCode = () => {
       <Card.Body>
         <Card.Title> הכנס את הקוד </Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
-         הכנס את הקוד שקיבלתם לנייד
-         0{userRegister?userRegister.phone:userLogin&&userLogin.phone}
+          הכנס את הקוד שקיבלתם לנייד 0
+          {userRegister ? userRegister.phone : userLogin && userLogin.phone}
         </Card.Subtitle>
         <Form>
           <Form.Group as={Row} className="mb-3">

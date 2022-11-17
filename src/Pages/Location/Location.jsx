@@ -36,17 +36,17 @@ const Location = () => {
     );
   };
 
-  function getLocation() {
+        function getLocation() {
     setLoading(true);
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition);
+            } else { 
       console.log("Geolocation is not supported by this browser.");
-    }
-  }
-  function showPosition(position) {
+            }
+          }
+          function showPosition(position) {
     getAddress(position.coords.latitude, position.coords.longitude);
-  }
+          }
   return (
     <div className="location-container">
       <Navtop title="מיקום דיווח" link="/hazard-image" />
@@ -54,7 +54,7 @@ const Location = () => {
         <b>מיקום נוכחי לפי GPS</b>
         <div className="location-wrapper" onClick={getLocation}>
           <Lottie loop animationData={LocationAnimation} play />
-        </div>
+    </div>
         <div className="input-box">
           <input
             className="location-input"
@@ -68,14 +68,14 @@ const Location = () => {
             style={{ marginRight: 10 }}
           >
             בצע
-          </Button>
+        </Button>
         </div>
         {location.length > 40 && (
           <b style={{ color: "red", fontWeight: 700 }}>כתובת עד 40 תווים!</b>
         )}
         {loading && <h1 className="location-text">בטעינה..</h1>}
         {!loading && location && <h1 className="location-text">{location}</h1>}
-      </div>
+    </div>
       {(sessionStorage.getItem("hazard-location") || location) && (
         <BottomNav link="/hazard-summary"></BottomNav>
       )}
@@ -83,4 +83,4 @@ const Location = () => {
   );
 };
 
-export default Location;
+export default Location
