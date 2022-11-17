@@ -2,7 +2,7 @@
     overflow: hidden;
 }
 
-.top {
+.user-page-container .top {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -18,7 +18,7 @@
   flex-direction: column;
 
 }
-.bottom {
+.user-page-container .bottom {
   display: flex;
   align-items: center;
   justify-content: center;
