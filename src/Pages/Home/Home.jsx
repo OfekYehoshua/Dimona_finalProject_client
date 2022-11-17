@@ -1,7 +1,7 @@
 import Video from "./newbackground2.mp4";
 import "./homeStyle.css";
 import AlertModal from "../../Components/Modals/alertModal";
-import Drawer from "../../Components/navigate/drawer";
+import Drawer from "../../Components/navigate/Drawer/Drawer";
 
 const Home = () => {
   return (

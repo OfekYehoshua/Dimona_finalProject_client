@@ -45,12 +45,6 @@ const Location = () => {
     }
   }
   function showPosition(position) {
-    console.log(
-      "Latitude: " +
-        position.coords.latitude +
-        "Longitude: " +
-        position.coords.longitude
-    );
     getAddress(position.coords.latitude, position.coords.longitude);
   }
   return (

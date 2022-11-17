@@ -5,17 +5,6 @@
     position: fixed;
     background-size: cover;
 }
-
-#nav-container{
-display: flex;
-flex-direction: row;
-}
-#drawer-header{
-    margin-right: 30vw;
-}
-#drawer-inside-header{
-    margin-right: 40vw;
-}
 .video-container{
     position: relative;
     
