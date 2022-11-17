@@ -26,6 +26,29 @@
     bottom: 5%;
     right: 5%;
 }
+.alert-head-img{
+height: 30vh;
+width: 100%;
+margin-bottom: 2%;
+}
+.alert-title-card{
+margin: 2%;
+border: 1px solid;
+padding: 10px;
+box-shadow: 5px 10px #888888;
+min-height: 10vh;
+margin-bottom: 3vh;
+display: flex;
+font-size: medium;
+line-height: 6%;
+}
+.alert-info-card{
+margin: 2%;
+border: 1px solid;
+padding: 10px;
+box-shadow: 5px 10px #888888;
+min-height: 30vh;
+}
 .animation-design{
     background-color: lightblue;
     border: 3px dashed royalblue;

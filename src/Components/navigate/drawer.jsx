@@ -17,10 +17,9 @@ const Drawer = () => {
           key={expand}
           bg="light"
           expand={expand}
-          className="mb-3"
           fixed="top"
         >
-          <Container>
+          <Container id="nav-container">
             <Navbar.Brand id="drawer-header">עיריית דימונה</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
             <Navbar.Offcanvas
