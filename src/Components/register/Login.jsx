@@ -7,9 +7,45 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Form from "react-bootstrap/Form";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Login = () => {
-  // const [phone, setPhone] = useState();
+  let [phone, setPhone] = useState("");
+  const [badPhone, setBadPhone] = useState(false);
+  const navigate = useNavigate();
+  const handleSubmit = async () => {
+    if (phone.startsWith("0")) {
+      let arrPhone = phone.split("");
+      arrPhone.shift();
+      phone = arrPhone.join("");
+    }
+  const findUser = await axios.post(
+        `${process.env.REACT_APP_API_URL}/api/user/login`,
+        { phone }
+      ).catch((err)=>{
+        setBadPhone(true)
+      });
+    console.log(findUser);
+    if (phone.length < 9 || !findUser) {
+      setBadPhone(true);
+      return;
+    }
+    const sendMessage = await axios.get(
+      `${process.env.REACT_APP_API_URL}/api/phone/login?phonenumber=+972${phone}`
+    );
+    if (sendMessage) {
+      sessionStorage.setItem(
+        "loginUser",
+        JSON.stringify({
+          messageSent: true,
+          phone,
+        })
+      );
+      navigate("/verify");
+    }
+  };
 
   return (
     <Card style={{ width: "100vw", height: "100vh" }} variant="info">
@@ -25,15 +61,22 @@ const Login = () => {
               <Form.Control
                 type="tel"
                 placeholder="050-0000000"
-                onChange={(e) => console.log(e.target.value)}
+                onChange={(e) => setPhone(e.target.value)}
                 required
               />
+              {badPhone && <p> משתמש לא רשום או מספר פאלפון לא תקין</p>}
               <Form.Control.Feedback type="invalid">
                 חובה להכניס מספר פלאפון
               </Form.Control.Feedback>
             </Col>
           </Form.Group>
-          <Button variant="info" size="lg">
+          <Button
+            variant="info"
+            size="lg"
+            onClick={() => {
+              handleSubmit();
+            }}
+          >
             התחבר
           </Button>
         </Form>

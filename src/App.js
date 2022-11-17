@@ -10,6 +10,7 @@ import HazardType from "./Pages/HazardType/HazardType";
 import HazardSummary from "./Pages/HazardSummary/HazardSummary";
 import Location from "./Pages/Location/Location";
 import Suggestion from "./Pages/Suggestion/Suggestion";
+import VerifyPhoneCode from "./Components/register/VerifyPhoneCode";
 import OneReport from './Pages/Reports/OneReport'
 import User from "./Pages/User/User";
 
@@ -19,6 +20,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/verify" element={<VerifyPhoneCode />} />
         <Route path="/reports" element={<Report/>} />
         <Route path="/onereport" element={<OneReport/>} />
         <Route path="/hazard-image" element={<UploadImage />} />
