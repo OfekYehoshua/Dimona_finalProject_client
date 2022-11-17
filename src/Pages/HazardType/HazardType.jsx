@@ -31,7 +31,7 @@ const HazardType = () => {
           className="nav"
           style={{
             color: "white",
-            padding: "5px 0px",
+            padding: "12px 0px",
           }}
         >
           <h5 style={{ marginBottom: 0, paddingRight: "40vw" }}>

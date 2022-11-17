@@ -106,7 +106,7 @@ const UploadImage = () => {
       <Navtop title="תמונות (אופציונלי)" link="/hazard-type" />
       {allImages.length === 0 ? (
         <>
-          <h1>הוסף תמונה</h1>
+          <h1 style={{paddingTop:20}}>הוסף תמונה</h1>
           <Button variant="ghost" onClick={handleShow}>
             <div className="animation-design">
               <Lottie
@@ -127,7 +127,7 @@ const UploadImage = () => {
             style={{
               fontSize: 15,
               textAlign: "left",
-              padding: "0px 0px 10px 10px",
+              padding: "10px 0px 10px 10px",
             }}
           >
             <BsTrash style={{ fontSize: 35 }} onClick={() => handleRemove()} />

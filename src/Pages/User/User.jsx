@@ -22,7 +22,8 @@ const User = () => {
             textAlign: "right",
             background: "royalblue",
             paddingRight: 20,
-            paddingBottom: 20,
+            paddingBottom: 10,
+            paddingTop: 10,
           }}
         >
           <EditUserModal />
