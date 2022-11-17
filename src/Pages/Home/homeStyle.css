@@ -13,21 +13,27 @@
 
 .home-user-container {
   position: absolute;
-  top: 10vh;
-  left: 27vw;
+  width: 100vw;
+  top: 90px;
+  left: 2px;
   font-weight: 800;
   color: white;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
 }
 
 .home-buttons-container {
   position: absolute;
   height: 70vh;
   width: 100vw;
-  top: 22vh;
-  left: 1vw;
+  top: 200px;
+  left: 3px;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;;
+  justify-content: space-evenly;
   flex-direction: column;
 }
 
@@ -48,12 +54,18 @@
   width: 350px;
   border: 1px solid transparent;
   border-radius: 5px;
-  padding-top:20px;
+  padding-top: 20px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  color:white;
+  color: white;
   background-color: royalblue;
 }
-/*  */
+.home-header {
+  background-color: rgb(255, 78, 78);
+  padding: 15px;
+  color: white;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+}
