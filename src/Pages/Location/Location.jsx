@@ -50,7 +50,7 @@ const Location = () => {
   return (
     <div className="location-container">
       <Navtop title="מיקום דיווח" link="/hazard-image" />
-      <div className="location-div">
+      <div className="location-div" style={{paddingTop:20}}>
         <b>מיקום נוכחי לפי GPS</b>
         <div className="location-wrapper" onClick={getLocation}>
           <Lottie loop animationData={LocationAnimation} play />

@@ -2,6 +2,8 @@ import Video from "./newbackground2.mp4";
 import "./homeStyle.css";
 import AlertModal from "../../Components/Modals/alertModal";
 import Drawer from "../../Components/navigate/Drawer/Drawer";
+import ReportModal from "../../Components/Modals/reportModal";
+
 
 const Home = () => {
   return (
@@ -23,6 +25,7 @@ const Home = () => {
         <p className="report-head">מבזקים</p>
         <AlertModal />
         <p className="report-head">הדיווחים שלי</p>
+        <ReportModal/>
       </div>
     </div>
   );

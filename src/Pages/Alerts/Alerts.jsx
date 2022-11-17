@@ -1,7 +1,7 @@
 import Lottie from "react-lottie-player";
 import ReportAnimation from "../../animations/report animation.json";
 // import axios from "axios";
-import "../../Components/Modals/modalStyles.css";
+import "./alertStyle.css";
 import Card from "react-bootstrap/Card";
 
 const Alerts = () => {
@@ -47,7 +47,7 @@ const Alerts = () => {
           {alerts.map(
             (alert) =>
              (
-                <Card className="alert-container" key={alert._id}>
+                <Card  key={alert._id}>
                   <img className="alert-img" src={alert.img} alt="img" />
                   <div className="card-info">
                     <h1 className="alert-title">{alert.title}</h1>

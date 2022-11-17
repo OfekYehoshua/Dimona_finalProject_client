@@ -1,13 +1,13 @@
 import { Card } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
-import './styles.css'
+import './alertStyle.css'
 
 const OneAlert = () => {
   const location = useLocation();
   const state = location.state;
   console.log(state)
   return (
-    <div>
+    <div> 
       <img className="alert-head-img" src={state.img} alt="img" />
       <Card className="alert-title-card">
         <h1>{state.title}</h1>

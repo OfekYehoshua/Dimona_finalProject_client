@@ -12,6 +12,7 @@ import Navtop from "../../Components/navigate/Navtop";
 import BottomNav from "../../Components/navigate/BottomNav";
 import { BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import './styles.css'
 
 const UploadImage = () => {
   const [allImages, setAllImages] = useState([]);

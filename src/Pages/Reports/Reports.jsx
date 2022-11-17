@@ -1,17 +1,10 @@
-import React from "react";
-// import { useEffect } from "react";
-// import { useState } from "react";
-// import ListGroup from "react-bootstrap/ListGroup";
 import Lottie from "react-lottie-player";
 import ReportAnimation from "../../animations/report animation.json";
 // import axios from "axios";
+// import "./reportStyle.css";
 import Card from "react-bootstrap/Card";
-import "./modalStyles.css";
-import Button from "react-bootstrap/Button";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
-const ReportModal = () => {
+const Report = () => {
   const reports = [
     {
       _id: 1,
@@ -50,39 +43,14 @@ const ReportModal = () => {
       img: "https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg",
     },
   ];
-  // const [report, setReport]= useState()
-
-  // const fetchReports = async ()=>{
-
-  //     try {
-  //         const config = {
-  //             headers: {
-  //               Authorization: `Bearer`,
-  //             }};
-  //         const {data} = await axios.get('', config);
-  //         setReport(data)
-  //     } catch (error) {
-  //         console.log("error");
-  //     }
-  // }
-  // useEffect(()=>{
-  //     fetchReports();
-  // },[])
-
-  const navigate = useNavigate();
-
   return (
     <>
       {reports ? (
         <>
           {reports.map(
-            (report, index) =>
-              index < 4 && (
-                <Card
-                  className="alert-container"
-                  key={report._id}
-                  onClick={() => navigate("/onereport", { state: report })}
-                >
+            (report) =>
+             (
+                <Card className="alert-container" key={report._id}>
                   <img className="alert-img" src={report.img} alt="img" />
                   <div className="card-info">
                     <h1 className="alert-title">{report.profession}</h1>
@@ -94,12 +62,7 @@ const ReportModal = () => {
                   </div>
                 </Card>
               )
-          )}
-          <Card className="alert-button-container">
-            <NavLink to={"/reports"}>
-              <Button variant="secondery">לכל הדיווחים</Button>
-            </NavLink>
-          </Card>
+              )}
         </>
       ) : (
         <>
@@ -115,4 +78,4 @@ const ReportModal = () => {
   );
 };
 
-export default ReportModal;
+export default Report;

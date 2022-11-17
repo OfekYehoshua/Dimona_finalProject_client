@@ -2,14 +2,15 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Register from "./Pages/Register/Register";
-import Report from "./Pages/Others/Reports";
+import Report from "./Pages/Reports/Reports";
 import UploadImage from "./Pages/Others/UploadImage";
-import Alerts from './Pages/Others/Alerts';
-import OneAlert from './Pages/Others/OneAlert';
+import Alerts from './Pages/Alerts/Alerts';
+import OneAlert from './Pages/Alerts/OneAlert';
 import HazardType from "./Pages/HazardType/HazardType";
 import HazardSummary from "./Pages/HazardSummary/HazardSummary";
 import Location from "./Pages/Location/Location";
 import Suggestion from "./Pages/Suggestion/Suggestion";
+import OneReport from './Pages/Reports/OneReport'
 import User from "./Pages/User/User";
 
 function App() {
@@ -18,7 +19,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/reports" element={<Report />} />
+        <Route path="/reports" element={<Report/>} />
+        <Route path="/onereport" element={<OneReport/>} />
         <Route path="/hazard-image" element={<UploadImage />} />
         <Route path="/hazard-location" element={<Location />} />
         <Route path="/alerts" element={<Alerts />} />

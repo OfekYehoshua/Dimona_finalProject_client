@@ -1,0 +1,48 @@
+.alert-head-img{
+    height: 30vh;
+    width: 100%;
+    margin-bottom: 2%;
+    }
+
+.alert-title-card{
+    margin: 2%;
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 10px #888888;
+    min-height: 10vh;
+    margin-bottom: 3vh;
+    display: flex;
+    font-size: medium;
+    line-height: 6%;
+    }
+    .alert-info-card{
+    margin: 2%;
+    border: 1px solid;
+    padding: 10px;
+    box-shadow: 5px 10px #888888;
+    min-height: 30vh;
+    }
+
+    .alert-img{
+        width: 100px;
+        height: 100px;
+        border-radius: 8%
+    }
+    .alert-title{
+    font-size: medium;
+    color:#8d99ae;
+    font-weight: 800;
+    }
+    
+    .alert-date{
+    font-size: x-small;
+    }
+
+
+    .card-info{
+        margin: 2%;
+        display: flex;
+        flex-direction: column;
+        font-size: medium;
+        font-weight: 900;
+    }
