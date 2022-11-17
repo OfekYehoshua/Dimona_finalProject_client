@@ -30,7 +30,7 @@ const HazardSummary = () => {
         <h5 className="summary-header">
           <b>תיאור:</b>
         </h5>
-        {hazardType.title}
+        {hazardType?.title}
       </div>
       <div className="card-summary">
         {hazardImages &&
@@ -43,8 +43,8 @@ const HazardSummary = () => {
         last={true}
         location={hazardLocation}
         img={hazardImages}
-        body={hazardType.title}
-        profession={hazardType.profession}
+        body={hazardType?.title}
+        profession={hazardType?.profession}
       />
     </div>
   );

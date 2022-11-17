@@ -1,62 +1,59 @@
-#background-video{
-    height: auto;
-    width: 100%;
-    z-index: -1;
-    position: fixed;
-    background-size: cover;
+#background-video {
+  height: auto;
+  width: 100%;
+  z-index: -1;
+  position: fixed;
+  background-size: cover;
 }
-.video-container{
-    position: relative;
-    
- }
-    
-#hello{
-    position: absolute;
-    top:10%;
-    left:35%;
-    font-weight: 800 !important;
+.video-container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
 }
 
-
-.button-89 {
-    font-weight: 900;
-    position: absolute;
-    top:45vh;
-    left:25%;
-  --b: 3px;   /* border thickness */
-  --s: .45em; /* size of the corner */
-  --color: #a8dadc;
-  padding: calc(.5em + var(--s)) calc(.9em + var(--s));
-  color: var(--color);
-  --_p: var(--s);
-  background:
-    conic-gradient(from 90deg at var(--b) var(--b),#0000 90deg,var(--color) 0)
-    var(--_p) var(--_p)/calc(100% - var(--b) - 2*var(--_p)) calc(100% - var(--b) - 2*var(--_p));
-  transition: .3s linear, color 0s, background-color 0s;
-  outline: var(--b) solid #0000;
-  outline-offset: .6em;
-  font-size: 16px;
-
-  border: 0;
-
-  user-select: none;
-  -webkit-user-select: none;
-  touch-action: manipulation;
+.home-user-container {
+  position: absolute;
+  top: 10vh;
+  left: 27vw;
+  font-weight: 800;
+  color: white;
 }
 
-.button-89:hover,
-.button-89:focus-visible{
-  --_p: 0px;
-  outline-color: var(--color);
-  outline-offset: .05em;
+.home-buttons-container {
+  position: absolute;
+  height: 70vh;
+  width: 100vw;
+  top: 22vh;
+  left: 1vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;;
+  flex-direction: column;
 }
 
-.button-89:active {
-  background: var(--color);
-  color: #fff;
+.home-button-circle {
+  height: 300px;
+  width: 300px;
+  border-radius: 50%;
+  background-color: antiquewhite;
+  border: 2px dashed gray;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
-.report-head{
-    background-color: #a8dadc;
-    border-radius: 5px;
-    text-align: center;
+
+.home-button-lined {
+  height: 100px;
+  width: 350px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding-top:20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color:white;
+  background-color: royalblue;
 }
+/*  */

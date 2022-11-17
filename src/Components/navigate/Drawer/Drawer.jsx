@@ -11,7 +11,7 @@ const Drawer = () => {
   return (
     <>
       {[false].map((expand) => (
-        <Navbar key={expand} bg="light" expand={expand} fixed="top">
+        <Navbar key={expand} expand={expand} fixed="top" style={{background:"royalblue"}}>
           <Container id="nav-container">
             <Navbar.Brand id="drawer-header">עיריית דימונה</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />

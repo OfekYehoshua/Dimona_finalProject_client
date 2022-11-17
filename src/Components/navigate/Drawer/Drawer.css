@@ -1,6 +1,11 @@
 #nav-container {
   display: flex;
   flex-direction: row;
+  background-color: royalblue;
+  padding:10px;
+}
+.fixed-top{
+  z-index: 4 !important;
 }
 .top-nav-container {
   background-color: royalblue;
@@ -8,7 +13,10 @@
   overflow: scroll;
 }
 #drawer-header {
-  margin-right: 30vw;
+  margin-right: 31vw;
+  color:white;
+  font-size: 23px;
+  font-weight: 600;
 }
 #drawer-inside-header {
   margin-right: 40vw;

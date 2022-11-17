@@ -50,24 +50,6 @@ const ReportModal = () => {
       img: "https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg",
     },
   ];
-  // const [report, setReport]= useState()
-
-  // const fetchReports = async ()=>{
-
-  //     try {
-  //         const config = {
-  //             headers: {
-  //               Authorization: `Bearer`,
-  //             }};
-  //         const {data} = await axios.get('', config);
-  //         setReport(data)
-  //     } catch (error) {
-  //         console.log("error");
-  //     }
-  // }
-  // useEffect(()=>{
-  //     fetchReports();
-  // },[])
 
   const navigate = useNavigate();
 
