@@ -19,7 +19,7 @@ function App() {
         <Route path="/register" element={<Register />} />
         <Route path="/reports" element={<Report />} />
         <Route path="/hazard-image" element={<UploadImage />} />
-        <Route path="/location" element={<Location />} />
+        <Route path="/hazard-location" element={<Location />} />
         <Route path="/alerts" element={<Alerts />} />
         <Route path="/onealert" element={<OneAlert/>} />
         <Route path="/hazard-type" element={<HazardType />} />

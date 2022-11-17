@@ -1,5 +1,4 @@
 import React from "react";
-import { Button } from "react-bootstrap";
 import axios from "axios";
 import "./Location.css";
 import LocationAnimation from "./animation/LocationAnimation.json";
@@ -8,25 +7,37 @@ import Navtop from "../../Components/navigate/Navtop";
 import BottomNav from "../../Components/navigate/BottomNav";
 import Lottie from "react-lottie-player";
 import { useEffect } from "react";
+import { Button } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
+
 const Location = () => {
   const [location, setLocation] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [inputLocation, setInputLocation] = useState("");
+  const navigate = useNavigate();
+
   useEffect(() => {
-    sessionStorage.setItem("location", location);
+    location && sessionStorage.setItem("hazard-location", location);
   }, [location]);
 
-  const getAdress = async (a, b) => {
+  useEffect(() => {
+    !sessionStorage.getItem("hazard") && navigate("/hazard-type");
+  }, [navigate]);
+  const getAddress = async (a, b) => {
+    setLoading(true);
     const nearLocation = await axios.get(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${a},${b}&key=${process.env.REACT_APP_GOOGLE}&language=iw`
     );
-    console.log(nearLocation.data.results[0].formatted_address);
+    setLoading(false);
     setLocation(nearLocation.data.results[0].formatted_address);
     sessionStorage.setItem(
-      "location",
-      nearLocation.data.results[0].formatted_address
+      "hazard-location",
+      JSON.stringify(nearLocation.data.results[0].formatted_address)
     );
   };
 
   function getLocation() {
+    setLoading(true);
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     } else {
@@ -40,40 +51,38 @@ const Location = () => {
         "Longitude: " +
         position.coords.longitude
     );
-    getAdress(position.coords.latitude, position.coords.longitude);
+    getAddress(position.coords.latitude, position.coords.longitude);
   }
   return (
-    // className='location-div' style={{width:"100vw",height:"100vh"}}
-    <div>
-      <Navtop></Navtop>
-
+    <div className="location-container">
+      <Navtop title="מיקום דיווח" link="/hazard-image" />
       <div className="location-div">
-        <div>
-          <Button
-            onClick={() => {
-              getLocation();
-            }}
-          >
-            מיקום נוכחי לפי gps
-          </Button>
-          <Lottie
-            loop
-            animationData={LocationAnimation}
-            play
-            style={{ width: 100, height: 100, marginRight: "6vw" }}
-          />
-          <br />
-          <br />
+        <b>מיקום נוכחי לפי GPS</b>
+        <div className="location-wrapper" onClick={getLocation}>
+          <Lottie loop animationData={LocationAnimation} play />
         </div>
-        <input
-          type="text"
-          placeholder=" הכנס ידנית רחוב ומספר"
-          onChange={(e) => setLocation(e.target.value)}
-        />
-        {location && <h1>{location}</h1>}
+        <div className="input-box">
+          <input
+            className="location-input"
+            type="text"
+            placeholder=" הכנס ידנית רחוב ומספר"
+            onChange={(e) => setInputLocation(e.target.value)}
+          />
+          <Button
+            variant="primary"
+            onClick={() => setLocation(inputLocation)}
+            style={{ marginRight: 10 }}
+          >
+            בצע
+          </Button>
+        </div>
+        {location.length > 40 && (
+          <b style={{ color: "red", fontWeight: 700 }}>כתובת עד 40 תווים!</b>
+        )}
+        {loading && <h1 className="location-text">בטעינה..</h1>}
+        {!loading && location && <h1 className="location-text">{location}</h1>}
       </div>
-
-      <BottomNav></BottomNav>
+      {(sessionStorage.getItem("hazard-location") ||  location) && <BottomNav link="/hazard-summary"></BottomNav>}
     </div>
   );
 };

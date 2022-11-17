@@ -1,4 +1,3 @@
-
 // import ReportModal from "../../Components/Modals/reportModal";
 import './styles.css'
 import Drawer from '../../Components/navigate/drawer';
