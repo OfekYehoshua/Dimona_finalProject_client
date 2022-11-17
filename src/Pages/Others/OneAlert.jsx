@@ -15,7 +15,7 @@ const OneAlert = () => {
         <p style={{fontWeight:'600', fontSize:'small', textAlign:'end'}}>{state.createdAt.split("T")[0]}</p>
       </Card>
       <Card className="alert-info-card">
-        <a>{state.body}</a>
+        <p>{state.body}</p>
       </Card>
     </div>
   );
