@@ -1,0 +1,28 @@
+.user-page-container{
+    overflow: hidden;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  background: royalblue;
+  height: 25vh;
+  width: 100vw;
+}
+.user-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+}
+.bottom {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  height: 61.3vh;
+  width: 100vw;
+}

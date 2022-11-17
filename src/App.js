@@ -10,6 +10,7 @@ import HazardType from "./Pages/HazardType/HazardType";
 import HazardSummary from "./Pages/HazardSummary/HazardSummary";
 import Location from "./Pages/Location/Location";
 import Suggestion from "./Pages/Suggestion/Suggestion";
+import User from "./Pages/User/User";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
         <Route path="/hazard-type" element={<HazardType />} />
         <Route path="/hazard-summary" element={<HazardSummary />} />
         <Route path="/suggestion" element={<Suggestion />} />
+        <Route path="/user" element={<User />} />
       </Routes>
     </Router>
   );

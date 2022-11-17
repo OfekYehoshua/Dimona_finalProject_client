@@ -1,10 +1,10 @@
 .summary-top {
-    padding-bottom: 1vh;
     text-align: center;
     color: white;
     font-size: large;
     z-index: 10;
     position: relative;
+    margin-bottom: 0px;
   }
   .nav {
     width: 100vw;
