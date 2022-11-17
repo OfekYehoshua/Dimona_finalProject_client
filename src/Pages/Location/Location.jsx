@@ -50,7 +50,7 @@ const Location = () => {
   return (
     <div className="location-container">
       <Navtop title="מיקום דיווח" link="/hazard-image" />
-      <div className="location-div" style={{paddingTop:20}}>
+      <div className="location-div" style={{ paddingTop: 20 }}>
         <b>מיקום נוכחי לפי GPS</b>
         <div className="location-wrapper" onClick={getLocation}>
           <Lottie loop animationData={LocationAnimation} play />
@@ -76,7 +76,9 @@ const Location = () => {
         {loading && <h1 className="location-text">בטעינה..</h1>}
         {!loading && location && <h1 className="location-text">{location}</h1>}
       </div>
-      {(sessionStorage.getItem("hazard-location") ||  location) && <BottomNav link="/hazard-summary"></BottomNav>}
+      {(sessionStorage.getItem("hazard-location") || location) && (
+        <BottomNav link="/hazard-summary"></BottomNav>
+      )}
     </div>
   );
 };
