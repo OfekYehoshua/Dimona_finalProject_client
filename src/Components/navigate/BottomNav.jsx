@@ -3,6 +3,8 @@ import { Button } from "react-bootstrap";
 import "./BottomNav.css";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const BottomNav = ({
   link,
@@ -14,6 +16,13 @@ const BottomNav = ({
   img,
 }) => {
   const navigate = useNavigate();
+  const toastOptions = {
+    position: "bottom-left",
+    autoClose: 2000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
+  };
   const handleNext = async () => {
     if (!last) {
       navigate(link);
@@ -34,7 +43,13 @@ const BottomNav = ({
         await axios
           .post("https://dimona-api.cyclic.app/api/hazards", newHazard)
           .then((res) => console.log(res.data));
-        // navigate("/");
+        sessionStorage.removeItem("hazard");
+        sessionStorage.removeItem("hazard-location");
+        sessionStorage.removeItem("hazard-images");
+        toast.success("דיווח נשלח בהצלחה!", toastOptions);
+        setTimeout(() => {
+          navigate("/");
+        }, 2500);
       } else navigate("/register");
     }
   };
@@ -44,6 +59,7 @@ const BottomNav = ({
       <Button onClick={handleNext} size="lg" variant="info" className="btn">
         {last ? "שלח" : "הבא"}
       </Button>
+      <ToastContainer />
     </div>
   );
 };
