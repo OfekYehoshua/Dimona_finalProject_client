@@ -11,4 +11,14 @@
   width: 100vw;
   grid-template-rows: 11% auto;
   display: grid;
+  position: relative;
+}
+.return-btn{
+  position: absolute;
+  top:1rem;
+  right: 1rem;
+  z-index: 11;
+  color:white;
+  font-size: 30px;
+
 }
