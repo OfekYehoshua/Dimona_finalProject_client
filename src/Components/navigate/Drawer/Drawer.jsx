@@ -15,7 +15,7 @@ const Drawer = () => {
           key={expand}
           expand={expand}
           fixed="top"
-          style={{ background: "royalblue" }}
+          style={{ background: "royalblue", marginLeft:"0px" }}
         >
           <Container id="nav-container">
             <Navbar.Brand id="drawer-header">עיריית דימונה</Navbar.Brand>

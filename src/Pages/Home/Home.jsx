@@ -12,32 +12,41 @@ const Home = () => {
 
   return (
     <div>
-      <Drawer />
-      <div className="video-container">
-        <Lottie loop animationData={HomeBackground} play />
-        <div className="home-user-container" onClick={() => navigate("/user")}>
-          <div style={{ textAlign: "center", fontSize: 50, paddingBottom: 10 }}>
-            <FaUserAlt />
-          </div>
-          <h1>ברוך הבא, אורח</h1>
-        </div>
-        <div className="home-buttons-container">
+      <div className="home-container">
+        <Drawer />
+        <div className="video-container">
+          <Lottie loop animationData={HomeBackground} play />
           <div
-            className="home-button-circle"
-            onClick={() => navigate("/hazard-type")}
+            className="home-user-container"
+            onClick={() => navigate("/user")}
           >
-            <h1 style={{ fontWeight: 700, fontSize: 40 }}> דווח </h1>
-            <h1 style={{ fontWeight: 700, fontSize: 40 }}> למוקד </h1>
+            <div
+              style={{ textAlign: "center", fontSize: 50, paddingBottom: 10 }}
+            >
+              <FaUserAlt />
+            </div>
+            <h1>ברוך הבא, אורח</h1>
           </div>
-          <div
-            className="home-button-lined"
-            onClick={() => navigate("/suggestion")}
-          >
-            <h1> הצעה לייעול </h1>
+          <div className="home-buttons-container">
+            <div
+              className="home-button-circle"
+              onClick={() => navigate("/hazard-type")}
+            >
+              <h1 style={{ fontWeight: 700, fontSize: 40 }}> דווח </h1>
+              <h1 style={{ fontWeight: 700, fontSize: 40 }}> למוקד </h1>
+            </div>
+            <div
+              className="home-button-lined"
+              onClick={() => navigate("/suggestion")}
+            >
+              <h1> הצעה לייעול </h1>
+            </div>
           </div>
         </div>
       </div>
-      <h3 className="home-header" style={{marginTop:30}}>מבזקים</h3>
+      <h3 className="home-header">
+        מבזקים
+      </h3>
       <AlertModal />
       <h3 className="home-header">הדיווחים שלי</h3>
       <ReportModal />
