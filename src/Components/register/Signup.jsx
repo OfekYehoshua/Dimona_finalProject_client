@@ -7,8 +7,10 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Toast from "react-bootstrap/Toast";
 import Card from "react-bootstrap/Card";
-
+import ToastContainer from 'react-bootstrap/ToastContainer';
 function Signup() {
+  const [showToast, setToast] = useState(false)
+  const [errorMessage, setErrorMessage] = useState("")
   const [email, setEmail] = useState("");
   let [phone, setPhone] = useState("");
   const [firstName, setfirstName] = useState("");
@@ -17,59 +19,57 @@ function Signup() {
   // const [validated, setValidated] = useState(false);
 
   const handleSubmit = async () => {
-    console.log(phone.startsWith("0"));
     if (!email || !phone || !firstName || !lastName) {
-      <Toast>
-        <Toast.Header>
-          <strong className="me-auto">בבקשה למלא הכל</strong>
-        </Toast.Header>
-        <Toast.Body>פרטים חסרים</Toast.Body>
-      </Toast>;
+      setErrorMessage("בבקשה למלא את כל הפרטים")
+      setToast(true)
       return;
     }
-    try {
       if (phone.startsWith("0")) {
         let arrPhone = phone.split("");
         arrPhone.shift();
         phone = arrPhone.join("");
-        console.log(phone);
       }
-      const sendMessage = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/phone/login?phonenumber=+972${phone}`
-      );
-      if (sendMessage) {
-        sessionStorage.setItem(
-          "registerUser",
-          JSON.stringify({
-            messageSent: true,
-            email,
-            phone,
-            firstName,
-            lastName,
-          })
+      const findUser = await axios
+        .post(`${process.env.REACT_APP_API_URL}/api/user/login`, { phone })
+        .catch((err) => {
+          console.log(err);
+        });
+      if (!findUser) {
+        const sendMessage = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/phone/login?phonenumber=+972${phone}`
         );
-        navigate("/verify");
+        if (sendMessage) {
+          sessionStorage.setItem(
+            "registerUser",
+            JSON.stringify({
+              messageSent: true,
+              email,
+              phone,
+              firstName,
+              lastName,
+            })
+          );
+          navigate("/verify");
+        }
+      }else{
+        setErrorMessage("המספר כבר רשום תעברו להתחברות")
+        setToast(true)
       }
-
-      // const data = await axios.post(`${process.env.REACT_APP_API_URL}/api/user`, {
-      //   email,
-      //   phone,
-      //   firstName,
-      //   lastName
-      // });
-    } catch (error) {
-      <Toast>
-        <Toast.Header>
-          <strong className="me-auto">Error signing up</strong>
-          <small>try again later</small>
-        </Toast.Header>
-        <Toast.Body>Hello, world! This is a toast message.</Toast.Body>
-      </Toast>;
-    }
   };
 
   return (
     <Card style={{ width: "100vw", height: "100vh" }} variant="info">
+      <ToastContainer position="top-end" className="p-3">
+        <Toast onClose={() => setToast(false)}
+      autohide
+      show={showToast}
+      delay={2200}
+             >
+        <Toast.Header>
+        </Toast.Header>
+        <Toast.Body> {errorMessage}  </Toast.Body>
+      </Toast>
+      </ToastContainer>
       <Card.Body>
         <Card.Title>רישום זריז</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
@@ -151,6 +151,7 @@ function Signup() {
           </Button>
         </Form>
       </Card.Body>
+    
     </Card>
   );
 }

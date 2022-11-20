@@ -27,14 +27,13 @@ const Login = () => {
       ).catch((err)=>{
         setBadPhone(true)
       });
-    console.log(findUser);
-    if (phone.length < 9 || !findUser) {
+    console.log(findUser.data);
+    console.log(phone.length);
+    if (phone.length < 9 || !findUser.data) {
       setBadPhone(true);
       return;
-    }
-    const sendMessage = await axios.get(
-      `${process.env.REACT_APP_API_URL}/api/phone/login?phonenumber=+972${phone}`
-    );
+    }else{
+    const sendMessage = await axios.get(`${process.env.REACT_APP_API_URL}/api/phone/login?phonenumber=+972${phone}`)
     if (sendMessage) {
       sessionStorage.setItem(
         "loginUser",
@@ -44,7 +43,7 @@ const Login = () => {
         })
       );
       navigate("/verify");
-    }
+    }}
   };
 
   return (
