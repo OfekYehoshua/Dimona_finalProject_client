@@ -1,0 +1,25 @@
+.details-btn {
+  background: none;
+  border: none;
+  margin-right: 3vw;
+  margin-top: 2vh;
+}
+.reports-details {
+  margin-right: 5vw;
+  margin-top: 2vh;
+}
+
+.report-icon {
+  margin-left: 2vw;
+}
+
+.report-status {
+  margin-top: 5vh;
+  text-align: center;
+}
+.reports-details-value {
+  margin: 1rem 0px;
+}
+.reports-details-title {
+  font-size: 1.5rem;
+}

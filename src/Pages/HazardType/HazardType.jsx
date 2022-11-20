@@ -34,10 +34,7 @@ const HazardType = () => {
             padding: "12px 0px",
           }}
         >
-          <h5 style={{ marginBottom: 0, paddingRight: "40vw" }}>
-          
-             סוג הדיווח
-          </h5>
+          <h5 style={{ marginBottom: 0, paddingRight: "40vw" }}>סוג הדיווח</h5>
           <CloseForm />
         </div>
 
