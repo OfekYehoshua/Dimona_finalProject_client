@@ -11,7 +11,12 @@ const Drawer = () => {
   return (
     <>
       {[false].map((expand) => (
-        <Navbar key={expand} expand={expand} fixed="top" style={{background:"royalblue"}}>
+        <Navbar
+          key={expand}
+          expand={expand}
+          fixed="top"
+          style={{ background: "royalblue" }}
+        >
           <Container id="nav-container">
             <Navbar.Brand id="drawer-header">עיריית דימונה</Navbar.Brand>
             <Navbar.Toggle aria-controls={`offcanvasNavbar-expand-${expand}`} />
@@ -27,7 +32,10 @@ const Drawer = () => {
                   ></Offcanvas.Title>
                 </Offcanvas.Header>
                 <div className="header-container">
-                  <div className="user-container" onClick={() => navigate('/user')}>
+                  <div
+                    className="user-container"
+                    onClick={() => navigate("/user")}
+                  >
                     <img
                       src="https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png"
                       alt="profile"
@@ -83,6 +91,20 @@ const Drawer = () => {
                       </h1>
                     </div>
                     <hr className="underline" />
+                    <div onClick={() => navigate("/suggestion")}>
+                      <h1
+                        style={{
+                          fontWeight: 300,
+                          color: "white",
+                          paddingRight: 20,
+                          paddingTop: 10,
+                        }}
+                      >
+                        {" "}
+                        הצעות לייעול{" "}
+                      </h1>
+                    </div>
+                    <hr className="underline" />
                     <div onClick={() => navigate("/accessibility")}>
                       <h1
                         style={{
@@ -121,7 +143,10 @@ const Drawer = () => {
                   </ListGroup>
                 </Offcanvas.Body>
               </div>
-              <div className="bottom-nav-container" onClick={() => navigate('/hazard-type')}>
+              <div
+                className="bottom-nav-container"
+                onClick={() => navigate("/hazard-type")}
+              >
                 <div
                   style={{
                     paddingLeft: 20,

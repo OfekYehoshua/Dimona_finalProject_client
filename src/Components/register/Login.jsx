@@ -1,7 +1,3 @@
-// import axios from "axios";
-// import { useNavigate } from "react-router-dom";
-// import { useState } from "react";
-// import Toast from "react-bootstrap/Toast";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
@@ -10,10 +6,20 @@ import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   let [phone, setPhone] = useState("");
-  const [badPhone, setBadPhone] = useState(false);
+
+  const toastOptions = {
+    position: "bottom-left",
+    autoClose: 2000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
+  };
+
   const navigate = useNavigate();
   const handleSubmit = async () => {
     if (phone.startsWith("0")) {
@@ -21,33 +27,35 @@ const Login = () => {
       arrPhone.shift();
       phone = arrPhone.join("");
     }
-  const findUser = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/user/login`,
-        { phone }
-      ).catch((err)=>{
-        setBadPhone(true)
+    const findUser = await axios
+      .post(`${process.env.REACT_APP_API_URL}/api/user/login`, { phone })
+      .catch((err) => {
+        toast.error("משתמש לא רשום או מספר פלאפון לא תקין", toastOptions);
       });
     console.log(findUser.data);
     console.log(phone.length);
     if (phone.length < 9 || !findUser.data) {
-      setBadPhone(true);
+      toast.error("משתמש לא רשום או מספר פלאפון לא תקין", toastOptions);
       return;
-    }else{
-    const sendMessage = await axios.get(`${process.env.REACT_APP_API_URL}/api/phone/login?phonenumber=+972${phone}`)
-    if (sendMessage) {
-      sessionStorage.setItem(
-        "loginUser",
-        JSON.stringify({
-          messageSent: true,
-          phone,
-        })
+    } else {
+      const sendMessage = await axios.get(
+        `${process.env.REACT_APP_API_URL}/api/phone/login?phonenumber=+972${phone}`
       );
-      navigate("/verify");
-    }}
+      if (sendMessage) {
+        sessionStorage.setItem(
+          "loginUser",
+          JSON.stringify({
+            messageSent: true,
+            phone,
+          })
+        );
+        navigate("/verify");
+      }
+    }
   };
 
   return (
-    <Card style={{ width: "100vw", height: "100vh" }} variant="info">
+    <Card style={{ width: "90%", height: "100%" }} variant="info">
       <Card.Body>
         <Card.Title>היכנס</Card.Title>
         <Card.Subtitle className="mb-2 text-muted">
@@ -63,7 +71,6 @@ const Login = () => {
                 onChange={(e) => setPhone(e.target.value)}
                 required
               />
-              {badPhone && <p> משתמש לא רשום או מספר פאלפון לא תקין</p>}
               <Form.Control.Feedback type="invalid">
                 חובה להכניס מספר פלאפון
               </Form.Control.Feedback>
@@ -80,6 +87,7 @@ const Login = () => {
           </Button>
         </Form>
       </Card.Body>
+      <ToastContainer />
     </Card>
   );
 };

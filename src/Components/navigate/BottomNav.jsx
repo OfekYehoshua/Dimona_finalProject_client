@@ -20,15 +20,16 @@ const BottomNav = ({
       allImages &&
         sessionStorage.setItem("hazard-images", JSON.stringify({ allImages }));
     } else {
-      if (!localStorage.getItem("user")) {
+      if (localStorage.getItem("UserLogged")) {
+        const user = JSON.parse(localStorage.getItem("UserLogged"));
         const newHazard = {
           location,
           body,
           profession,
           img,
           status: "לא בוצע",
-          phone: "1234567891",
-          _uid: "12345",
+          phone: user.phone,
+          _uid: user._id,
         };
         await axios
           .post("https://dimona-api.cyclic.app/api/hazards", newHazard)

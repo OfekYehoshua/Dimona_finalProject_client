@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify" element={<VerifyPhoneCode />} />
-        <Route path="/reports" element={<Report/>} />
+        <Route path="/my-reports" element={<Report/>} />
         <Route path="/onereport" element={<OneReport/>} />
         <Route path="/hazard-image" element={<UploadImage />} />
         <Route path="/hazard-location" element={<Location />} />

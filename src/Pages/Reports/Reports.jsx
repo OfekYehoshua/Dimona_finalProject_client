@@ -3,8 +3,10 @@ import ReportAnimation from "../../animations/report animation.json";
 // import axios from "axios";
 // import "./reportStyle.css";
 import Card from "react-bootstrap/Card";
+import { useNavigate } from "react-router-dom";
 
 const Report = () => {
+  const navigate = useNavigate();
   const reports = [
     {
       _id: 1,
@@ -47,22 +49,23 @@ const Report = () => {
     <>
       {reports ? (
         <>
-          {reports.map(
-            (report) =>
-             (
-                <Card className="alert-container" key={report._id}>
-                  <img className="alert-img" src={report.img} alt="img" />
-                  <div className="card-info">
-                    <h1 className="alert-title">{report.profession}</h1>
-                    <h1 className="alert-title">{report.status}</h1>
-                    <h1 className="alert-title">{report.location}</h1>
-                    <span className="alert-date">
-                      {report.createdAt.split("T")[0]}
-                    </span>
-                  </div>
-                </Card>
-              )
-              )}
+          {reports.map((report) => (
+            <Card
+              className="alert-container"
+              key={report._id}
+              onClick={() => navigate("/onereport", { state: report })}
+            >
+              <img className="alert-img" src={report.img} alt="img" />
+              <div className="card-info">
+                <h1 className="alert-title">{report.profession}</h1>
+                <h1 className="alert-title">{report.status}</h1>
+                <h1 className="alert-title">{report.location}</h1>
+                <span className="alert-date">
+                  {report.createdAt.split("T")[0]}
+                </span>
+              </div>
+            </Card>
+          ))}
         </>
       ) : (
         <>
