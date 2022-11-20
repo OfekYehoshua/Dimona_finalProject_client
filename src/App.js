@@ -2,7 +2,7 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Pages/Home/Home";
 import Register from "./Pages/Register/Register";
-import Report from "./Pages/Reports/Reports";
+import Reports from "./Pages/Reports/Reports";
 import UploadImage from "./Pages/Others/UploadImage";
 import Alerts from "./Pages/Alerts/Alerts";
 import OneAlert from "./Pages/Alerts/OneAlert";
@@ -21,7 +21,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/verify" element={<VerifyPhoneCode />} />
-        <Route path="/my-reports" element={<Report/>} />
+        <Route path="/my-reports" element={<Reports/>} />
         <Route path="/onereport" element={<OneReport/>} />
         <Route path="/hazard-image" element={<UploadImage />} />
         <Route path="/hazard-location" element={<Location />} />

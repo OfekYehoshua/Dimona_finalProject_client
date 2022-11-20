@@ -1,52 +1,41 @@
 import Lottie from "react-lottie-player";
 import ReportAnimation from "../../animations/report animation.json";
-// import axios from "axios";
 // import "./reportStyle.css";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import NavtopNoClose from "../../Components/navigate/NavtopNoClose";
 
-const Report = () => {
+const Reports = () => {
+  const userLogged = JSON.parse(localStorage.getItem("UserLogged"));
+  const [reports, setReports] = useState([]);
   const navigate = useNavigate();
-  const reports = [
-    {
-      _id: 1,
-      createdAt: "2022-02-26T16:37:48.244Z",
-      profession: "testss",
-      status: "test2",
-      location: "location",
-      body: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui cumque fugiat ratione dolorem laudantium reiciendis ad ex recusandae nesciunt dolore alias, tempora numquam labore consequatur odit laborum earum. Necessitatibus, quae",
-      img: "https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg",
-    },
-    {
-      _id: 2,
-      createdAt: "2022-02-26T16:37:48.244Z",
-      profession: "testss",
-      status: "test2",
-      location: "location",
-      body: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui cumque fugiat ratione dolorem laudantium reiciendis ad ex recusandae nesciunt dolore alias, tempora numquam labore consequatur odit laborum earum. Necessitatibus, quae",
-      img: "https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg",
-    },
-    {
-      _id: 3,
-      createdAt: "2022-02-26T16:37:48.244Z",
-      profession: "testss",
-      status: "test2",
-      location: "location",
-      body: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui cumque fugiat ratione dolorem laudantium reiciendis ad ex recusandae nesciunt dolore alias, tempora numquam labore consequatur odit laborum earum. Necessitatibus, quae",
-      img: "https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg",
-    },
-    {
-      _id: 4,
-      createdAt: "2022-02-26T16:37:48.244Z",
-      profession: "testss",
-      status: "test2",
-      location: "location",
-      body: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui cumque fugiat ratione dolorem laudantium reiciendis ad ex recusandae nesciunt dolore alias, tempora numquam labore consequatur odit laborum earum. Necessitatibus, quae",
-      img: "https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg",
-    },
-  ];
+
+  
+  useEffect(() => {
+    if (!userLogged) {
+      navigate("/");
+    }
+    const fetchReports = async () => {
+      const config = {
+        headers: {
+          token: `Bearer ${userLogged.token}`,
+        },
+      };
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_URL_WORK}/${userLogged._id}`,
+        config
+      );
+      console.log(data);
+      setReports(data);
+    };
+    fetchReports();
+  }, [navigate, userLogged]);
+
   return (
-    <>
+    <div>
+      <NavtopNoClose link={"/"} title={"הדיווחים שלי"}></NavtopNoClose>
       {reports ? (
         <>
           {reports.map((report) => (
@@ -55,7 +44,15 @@ const Report = () => {
               key={report._id}
               onClick={() => navigate("/onereport", { state: report })}
             >
-              <img className="alert-img" src={report.img} alt="img" />
+              <img
+                className="alert-img"
+                src={
+                  report.img
+                    ? report.img[0]
+                    : "https://st4.depositphotos.com/14953852/24787/v/600/depositphotos_247872612-stock-illustration-no-image-available-icon-vector.jpg"
+                }
+                alt="img"
+              />
               <div className="card-info">
                 <h1 className="alert-title">{report.profession}</h1>
                 <h1 className="alert-title">{report.status}</h1>
@@ -77,8 +74,8 @@ const Report = () => {
           />
         </>
       )}
-    </>
+    </div>
   );
 };
 
-export default Report;
+export default Reports;

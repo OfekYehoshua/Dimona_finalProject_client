@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 
 const Drawer = () => {
   const navigate = useNavigate();
+  const UserLogged = JSON.parse(localStorage.getItem("UserLogged"));
   return (
     <>
       {[false].map((expand) => (
@@ -64,8 +65,9 @@ const Drawer = () => {
                         עמוד הבית{" "}
                       </h1>
                     </div>
-                    <hr className="underline" />
+                    {UserLogged&&
                     <div onClick={() => navigate("/my-reports")}>
+                      <hr className="underline" />
                       <h1
                         style={{
                           fontWeight: 300,
@@ -76,7 +78,7 @@ const Drawer = () => {
                       >
                         הדיווחים שלי
                       </h1>
-                    </div>
+                    </div>}
                     <hr className="underline" />
                     <div onClick={() => navigate("/alerts")}>
                       <h1

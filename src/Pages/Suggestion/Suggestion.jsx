@@ -7,6 +7,7 @@ import axios from "axios";
 import Toast from "react-bootstrap/Toast";
 import ToastContainer from "react-bootstrap/ToastContainer";
 import { useNavigate } from "react-router-dom";
+import NavtopNoClose from "../../Components/navigate/NavtopNoClose";
 
 const Suggestion = () => {
   const navigate = useNavigate();
@@ -78,9 +79,7 @@ const Suggestion = () => {
 
   return (
     <div>
-      <div className="suggestion-top">
-        <h2 className="suggestion-header">הצעת ייעול:</h2>{" "}
-      </div>
+     <NavtopNoClose title={'הצעה לייעול'} link={'/'} ></NavtopNoClose>
       <ToastContainer position="top-end" className="p-3">
         <Toast
           onClose={() => setToast(false)}

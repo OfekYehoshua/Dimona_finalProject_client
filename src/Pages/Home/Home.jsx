@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
-
+  const userLogged = JSON.parse(localStorage.getItem("UserLogged"))
   return (
     <div>
       <div className="home-container">
@@ -49,7 +49,8 @@ const Home = () => {
       </h3>
       <AlertModal />
       <h3 className="home-header">הדיווחים שלי</h3>
-      <ReportModal />
+      {userLogged&& <ReportModal userLogged={userLogged} />}
+     
     </div>
   );
 };

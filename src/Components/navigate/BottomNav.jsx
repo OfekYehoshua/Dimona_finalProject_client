@@ -42,7 +42,7 @@ const BottomNav = ({
   return (
     <div className="next">
       <Button onClick={handleNext} size="lg" variant="info" className="btn">
-        הבא
+        {last ? "שלח" : "הבא"}
       </Button>
     </div>
   );

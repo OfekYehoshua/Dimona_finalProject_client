@@ -42,7 +42,7 @@ const HazardSummary = () => {
         link="/"
         last={true}
         location={hazardLocation}
-        img={hazardImages}
+        img={hazardImages && hazardImages}
         body={hazardType?.title}
         profession={hazardType?.profession}
       />
