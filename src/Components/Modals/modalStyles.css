@@ -1,20 +1,26 @@
-#animation{
-    display: flex;
-    flex-direction: column;
+#animation {
+  display: flex;
+  flex-direction: column;
 }
-#line{
-text-align: center;
+#line {
+  text-align: center;
 }
-.alert-container{
-    margin: 1%;
-    border: 1px solid;
-    padding: 10px;
-    box-shadow: 2px 2px #a8dadc;
-    display: flex;
-    flex-direction: row !important;
-    height: 8vh;
+.alert-container {
+  margin: 1%;
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 2px 2px #a8dadc;
+  display: flex;
+  flex-direction: row !important;
+  height: 8vh;
 }
 
-.alert-button-container{
-    text-align: end;
+.alert-button-container {
+  text-align: end;
+}
+
+.button-close {
+  color: white !important;
+  background-color: royalblue !important;
+  border: none !important;
 }

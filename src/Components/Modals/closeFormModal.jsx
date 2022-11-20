@@ -3,6 +3,7 @@ import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { AiOutlineClose } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import "./modalStyles.css";
 
 export default function CloseForm() {
   const navigate = useNavigate();
@@ -30,10 +31,14 @@ export default function CloseForm() {
       <Modal style={{ marginTop: "30vh" }} show={show} onHide={handleClose}>
         <Modal.Body>האם לבטל דיווח נוכחי?</Modal.Body>
         <Modal.Footer>
-          <Button variant="info" onClick={handleClose}>
+          <Button className="button-close" variant="info" onClick={handleClose}>
             לא
           </Button>
-          <Button variant="info" onClick={handleCloseForm}>
+          <Button
+            className="button-close"
+            variant="info"
+            onClick={handleCloseForm}
+          >
             כן
           </Button>
         </Modal.Footer>

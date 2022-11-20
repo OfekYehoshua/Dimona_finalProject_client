@@ -29,6 +29,8 @@ function App() {
         <Route path="/onealert" element={<OneAlert />} />
         <Route path="/hazard-type" element={<HazardType />} />
         <Route path="/hazard-summary" element={<HazardSummary />} />
+        <Route path="/suggestion" element={<Suggestion />} />
+        <Route path="/user" element={<User />} />
       </Routes>
     </Router>
   );

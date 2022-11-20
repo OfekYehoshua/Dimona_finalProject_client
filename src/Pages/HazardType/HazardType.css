@@ -43,7 +43,7 @@
 .input-and-svg {
   width: 290px;
   border-bottom: 1px solid white;
-  padding-top:30px
+  padding-top: 30px;
 }
 .input-and-svg input {
   border-top-style: hidden;
@@ -109,4 +109,6 @@ hr {
 }
 .modal-btn .btn {
   color: white !important;
+  background-color: royalblue !important;
+  border: none;
 }

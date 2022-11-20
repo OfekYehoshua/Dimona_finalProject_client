@@ -77,6 +77,7 @@ const Login = () => {
             </Col>
           </Form.Group>
           <Button
+            className="custom-btn"
             variant="info"
             size="lg"
             onClick={() => {

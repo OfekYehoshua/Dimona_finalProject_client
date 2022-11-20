@@ -12,7 +12,7 @@ import Navtop from "../../Components/navigate/Navtop";
 import BottomNav from "../../Components/navigate/BottomNav";
 import { BsTrash } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import './styles.css'
+import "./styles.css";
 
 const UploadImage = () => {
   const [allImages, setAllImages] = useState([]);
@@ -88,14 +88,21 @@ const UploadImage = () => {
               accept="application/pdf, image/png"
               onChange={(e) => setSelectedImg(e.target.files[0])}
             />
-            <label htmlFor="add-pic" className="upload-file">העלה תמונה</label>
+            <label htmlFor="add-pic" className="upload-file">
+              העלה תמונה
+            </label>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button
+            className="btn-uploadImage"
+            variant="secondary"
+            onClick={handleClose}
+          >
             סגור
           </Button>
           <Button
+            className="btn-uploadImage"
             variant="info"
             disabled={loading || uploadedImg.length === 0}
             onClick={handleSubmit}
@@ -107,7 +114,7 @@ const UploadImage = () => {
       <Navtop title="תמונות (אופציונלי)" link="/hazard-type" />
       {allImages.length === 0 ? (
         <>
-          <h1 style={{paddingTop:20}}>הוסף תמונה</h1>
+          <h1 style={{ paddingTop: 20 }}>הוסף תמונה</h1>
           <Button variant="ghost" onClick={handleShow}>
             <div className="animation-design">
               <Lottie

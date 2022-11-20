@@ -4,12 +4,13 @@ import Modal from "react-bootstrap/Modal";
 import { BsFillPencilFill } from "react-icons/bs";
 import SelectComp from "../Select";
 import { useNavigate } from "react-router-dom";
+import "./modalStyles.css";
 
 export default function InputModal() {
   const [show, setShow] = useState(false);
   const [title, setTitle] = useState("");
   const [profession, setProfession] = useState("default");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleClose = () => setShow(false);
   const handleShow = () => {
@@ -20,7 +21,7 @@ export default function InputModal() {
   const handleSubmit = () => {
     sessionStorage.setItem("hazard", JSON.stringify({ title, profession }));
     handleClose();
-    navigate('/hazard-image')
+    navigate("/hazard-image");
   };
 
   console.log();
