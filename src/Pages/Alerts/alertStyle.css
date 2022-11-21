@@ -119,3 +119,10 @@
   padding:10px;
   text-align: left;
 }
+.alerts-hr{
+  color: inherit;
+  border-top: 1px solid gray !important;
+  opacity: 1;
+  width: 90vw;
+  margin:5px 0
+}

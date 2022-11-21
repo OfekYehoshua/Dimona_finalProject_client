@@ -17,7 +17,7 @@ const Navtop = ({ title, link, notForm }) => {
         <button className="back-button" onClick={() => handleClick(link)}>
           <AiOutlineRight className="icon" />
         </button>
-        {!notForm ? title : <span style={{paddingLeft:"37vw"}}>{title}</span >}
+        {!notForm ? title : <span>{title}</span >}
         {!notForm && <CloseForm />}
       </div>
     </h5>

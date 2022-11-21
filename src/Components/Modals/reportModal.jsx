@@ -57,7 +57,6 @@ const ReportModal = ({ userLogged }) => {
                     alt="img"
                   />
                   <div className="card-info">
-                    <h1 className="alert-title">{report.profession}</h1>
                     <h1
                       className={
                         report.status === "לא בוצע"

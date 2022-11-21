@@ -15,7 +15,6 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Alerts = () => {
-  const user_isAdmin = true;
   const [alerts, setAlerts] = useState([]);
   const [title, setTitle] = useState();
   const [subTitle, setSubTitle] = useState();
@@ -126,7 +125,7 @@ const Alerts = () => {
   }, [selectedImg]);
 
   return (
-    <>
+    <div style={{backgroundColor:"whitesmoke"}}>
       <>
         <div className="nav-all-alerts">
           <AiOutlineRight
@@ -134,7 +133,7 @@ const Alerts = () => {
             onClick={() => navigate("/")}
           />
           <h1 className="nav-alerts-header">כל המבזקים</h1>
-          {user_isAdmin && (
+          {user.isAdmin && (
             <div onClick={handleShow} className="nav-alerts-edit-btn">
               <FaEdit />
               הוסף מבזק
@@ -148,7 +147,7 @@ const Alerts = () => {
               <Form
                 style={{
                   display: "flex",
-                  flexDirection: "column",
+                  flexDirection: "column"
                 }}
               >
                 <Form.Group className="mb-3">
@@ -204,35 +203,48 @@ const Alerts = () => {
       {alerts ? (
         <>
           {alerts?.map((alert) => (
-            <div style={{ display: "flex", alignItems: "center" }} key={alert._id}>
-              <Card
+            <div key={alert._id}>
+              <div
+                style={{ display: "flex", alignItems: "center" }}
+              >
+                <Card
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    margin: "10px 5px",
+                    justifyContent: "space-around",
+                    width: "100%",
+                    alignItems: "center",
+                    boxShadow: "-5px 5px 15px 0px rgba(0, 0, 0, 0.603)",
+                  }}
+                  onClick={() => navigate("/onealert", { state: alert })}
+                >
+                  <img className="alert-img" src={alert.img} alt="img" />
+                  <div className="card-info" style={{ width: "60%" }}>
+                    <h1 className="alert-title">{alert.title}</h1>
+                    <span className="alert-date">
+                      {alert.createdAt.split("T")[0]}
+                    </span>
+                  </div>
+                </Card>
+                {user.isAdmin && (
+                  <div
+                    className="remove-btn-alerts"
+                    onClick={() => deleteAlert(alert)}
+                  >
+                    <AiOutlineDelete style={{ fontSize: 30 }} />
+                  </div>
+                )}
+              </div>
+              <div
                 style={{
                   display: "flex",
-                  flexDirection: "row",
-                  margin: "10px 5px",
-                  justifyContent: "space-around",
-                  width: "100%",
                   alignItems: "center",
-                  boxShadow: "-5px 5px 15px 0px rgba(0, 0, 0, 0.603)",
+                  justifyContent: "center",
                 }}
-                onClick={() => navigate("/onealert", { state: alert })}
               >
-                <img className="alert-img" src={alert.img} alt="img" />
-                <div className="card-info" style={{ width: "60%" }}>
-                  <h1 className="alert-title">{alert.title}</h1>
-                  <span className="alert-date">
-                    {alert.createdAt.split("T")[0]}
-                  </span>
-                </div>
-              </Card>
-              {user_isAdmin && (
-                <div
-                  className="remove-btn-alerts"
-                  onClick={() => deleteAlert(alert)}
-                >
-                  <AiOutlineDelete style={{ fontSize: 30 }} />
-                </div>
-              )}
+                <hr className="alerts-hr" />
+              </div>
             </div>
           ))}
         </>
@@ -247,7 +259,7 @@ const Alerts = () => {
         </>
       )}
       <ToastContainer />
-    </>
+    </div>
   );
 };
 
