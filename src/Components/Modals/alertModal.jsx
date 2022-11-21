@@ -11,12 +11,12 @@ import { useNavigate } from "react-router-dom";
 const AlertModal = () => {
   const navigate = useNavigate();
   const [alerts, setAlerts] = useState([]);
-  
+
   useEffect(() => {
     const fetchAlerts = async () => {
       try {
-        const { data } = await axios.get("/api/alerts/");
-        setAlerts(...alerts, data);
+        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/api/alerts/`);
+        setAlerts(data);
       } catch (error) {
         console.log("error fetching the alerts");
       }

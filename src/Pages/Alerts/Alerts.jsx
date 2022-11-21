@@ -105,11 +105,79 @@ const Alerts = () => {
 
   return (
     <>
+        {user_isAdmin ? (
+          <>
+        <div className="nav">
+         <h1 className="alerts-header">כל המבזקים</h1>        
+            <Button variant="dark" onClick={handleShow} >
+              הוסף מבזק
+            </Button>
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header>
+                <Modal.Title>העלאת מבזק</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <Form
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                  }}
+                >
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      size="lg"
+                      type="text"
+                      placeholder="הכנס את הכותרת"
+                      onChange={(e) => setTitle(e.target.value)}
+                    />
+                  </Form.Group>
+  
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      size="md"
+                      type="text"
+                      placeholder="הכנס את הכותרת משנה"
+                      onChange={(e) => setSubTitle(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      size="lg"
+                      as="textarea"
+                      placeholder="הכנס את גוף הכתבה"
+                      onChange={(e) => setBody(e.target.value)}
+                    />
+                  </Form.Group>
+                  <Form.Group className="mb-3">
+                    <Form.Control
+                      type="file"
+                      accept="application/pdf, image/png"
+                      onChange={(e) => setSelectedImg(e.target.files[0])}
+                    />
+                  </Form.Group>
+                </Form>
+              </Modal.Body>
+              <Modal.Footer>
+                <Button variant="secondary" onClick={handleClose}>
+                  סגור
+                </Button>
+                <Button
+                  variant="primary"
+                  type="button"
+                  disabled={loading}
+                  onClick={postAlert}
+                >
+                  העלה
+                </Button>
+              </Modal.Footer>
+            </Modal>
+          </div>
+          </>
+        ) : (
+          "none"
+        )}
       {alerts ? (
         <>
-        <div className="nav">
-         כל המבזקים
-        </div>
           {alerts?.map((alert) => (
             <Card
               key={alert._id}
@@ -149,74 +217,6 @@ const Alerts = () => {
             style={{ width: 400, height: 600 }}
           />
         </>
-      )}
-      {user_isAdmin ? (
-        <>
-          <Button variant="primary" onClick={handleShow}>
-            הוסף מבזק
-          </Button>
-          <Modal show={show} onHide={handleClose}>
-            <Modal.Header>
-              <Modal.Title>העלאת מבזק</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Form
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                }}
-              >
-                <Form.Group className="mb-3">
-                  <Form.Control
-                    size="lg"
-                    type="text"
-                    placeholder="הכנס את הכותרת"
-                    onChange={(e) => setTitle(e.target.value)}
-                  />
-                </Form.Group>
-
-                <Form.Group className="mb-3">
-                  <Form.Control
-                    size="md"
-                    type="text"
-                    placeholder="הכנס את הכותרת משנה"
-                    onChange={(e) => setSubTitle(e.target.value)}
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Control
-                    size="lg"
-                    as="textarea"
-                    placeholder="הכנס את גוף הכתבה"
-                    onChange={(e) => setBody(e.target.value)}
-                  />
-                </Form.Group>
-                <Form.Group className="mb-3">
-                  <Form.Control
-                    type="file"
-                    accept="application/pdf, image/png"
-                    onChange={(e) => setSelectedImg(e.target.files[0])}
-                  />
-                </Form.Group>
-              </Form>
-            </Modal.Body>
-            <Modal.Footer>
-              <Button variant="secondary" onClick={handleClose}>
-                סגור
-              </Button>
-              <Button
-                variant="primary"
-                type="button"
-                disabled={loading}
-                onClick={postAlert}
-              >
-                העלה
-              </Button>
-            </Modal.Footer>
-          </Modal>
-        </>
-      ) : (
-        "none"
       )}
     </>
   );
