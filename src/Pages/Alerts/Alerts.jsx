@@ -107,6 +107,9 @@ const Alerts = () => {
     <>
       {alerts ? (
         <>
+        <div className="nav">
+         כל המבזקים
+        </div>
           {alerts?.map((alert) => (
             <Card
               key={alert._id}

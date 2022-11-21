@@ -9,55 +9,21 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 const AlertModal = () => {
-  const [alerts] = useState([
-    {
-      _id: 1,
-      createdAt: "2022-02-26T16:37:48.244Z",
-      title: "testss",
-      subTitle: "test2",
-      body: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui cumque fugiat ratione dolorem laudantium reiciendis ad ex recusandae nesciunt dolore alias, tempora numquam labore consequatur odit laborum earum. Necessitatibus, quae",
-      img: "https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg",
-    },
-    {
-      _id: 2,
-      title: "test",
-      createdAt: "2022-02-26T16:37:48.244Z",
-      subTitle: "test2",
-      img: "https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg",
-      body: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui cumque fugiat ratione dolorem laudantium reiciendis ad ex recusandae nesciunt dolore alias, tempora numquam labore consequatur odit laborum earum. Necessitatibus, quae",
-    },
-    {
-      _id: 3,
-      title: "test",
-      createdAt: "2022-02-26T16:37:48.244Z",
-      subTitle: "test2",
-      img: "https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg",
-      body: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui cumque fugiat ratione dolorem laudantium reiciendis ad ex recusandae nesciunt dolore alias, tempora numquam labore consequatur odit laborum earum. Necessitatibus, quae",
-    },
-    {
-      _id: 4,
-      title: "test",
-      subTitle: "test2",
-      createdAt: "2022-02-26T16:37:48.244Z",
-      img: "https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg",
-      body: "Lorem ipsum dolor sit, amet consectetur adipisicing elit. Qui cumque fugiat ratione dolorem laudantium reiciendis ad ex recusandae nesciunt dolore alias, tempora numquam labore consequatur odit laborum earum. Necessitatibus, quae",
-    },
-  ]);
-
   const navigate = useNavigate();
-  // const [alerts, setAlerts] = useState([]);
-  // // const [fetchUser, setFetchUser] = useState();
-  // useEffect(() => {
-  //   fetchAlerts();
-  // }, []);
-  // const fetchAlerts = async () => {
-  //   try {
-  //     const { data } = await axios.get("/api/alerts/");
-  //     setAlerts(...alerts, data);
-  //   } catch (error) {
-  //     console.log("error fetching the alerts");
-  //   }
-  // };
+  const [alerts, setAlerts] = useState([]);
+  
+  useEffect(() => {
+    const fetchAlerts = async () => {
+      try {
+        const { data } = await axios.get("/api/alerts/");
+        setAlerts(...alerts, data);
+      } catch (error) {
+        console.log("error fetching the alerts");
+      }
+    };
+    fetchAlerts();
+  }, [alerts]);
+
   return (
     <>
       {alerts ? (
