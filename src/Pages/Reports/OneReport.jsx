@@ -4,8 +4,33 @@ import {
   AiOutlineMinusCircle,
   AiOutlinePlusCircle,
 } from "react-icons/ai";
+import { HiOutlineX } from "react-icons/hi";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./OneReport.css";
+import StepProgressBar from "react-step-progress";
+import "react-step-progress/dist/index.css";
+
+export const ProgressB = () => {
+  return (
+    <StepProgressBar
+      startingStep={0}
+      steps={[
+        {
+          label: "הגיע למערכת",
+          name: "step 3",
+        },
+        {
+          label: "דיווח בביצוע",
+          name: "step 2",
+        },
+        {
+          label: "דיווח טופל",
+          name: "step 1",
+        },
+      ]}
+    />
+  );
+};
 
 const OneReport = () => {
   const location = useLocation();
@@ -39,11 +64,16 @@ const OneReport = () => {
         <div className="navtop-alerts">
           <AiOutlineRight
             className="navtop-alerts-btn-back"
-            onClick={() => navigate("/")}
+            onClick={() => navigate("/my-reports")}
           />
           <h4 style={{ fontSize: "larger" }} className="alert-header">
             דיווח מתאריך {state?.createdAt.split("T")[0]}
           </h4>
+
+          <HiOutlineX
+            className="navtop-alerts-btn-out"
+            onClick={() => navigate("/")}
+          />
         </div>
       </div>
       <div>
@@ -58,6 +88,7 @@ const OneReport = () => {
         />
       </div>
       <div>
+        <ProgressB />
         <button onClick={() => isOpen(!open)} className="details-btn">
           <h4>
             {open ? (
@@ -73,7 +104,18 @@ const OneReport = () => {
       <div className="report-status">
         <h4>
           <b>
-            סטטוס: <b>לא בוצע</b>
+            סטטוס:{" "}
+            <b
+              className={
+                state?.status === "לא בוצע"
+                  ? "not-done"
+                  : state?.status === "בביצוע"
+                  ? "ongoing"
+                  : "done"
+              }
+            >
+              {state?.status}
+            </b>
           </b>
         </h4>
       </div>
