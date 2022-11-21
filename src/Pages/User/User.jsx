@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const User = () => {
   const userLogged = JSON.parse(localStorage.getItem("UserLogged"));
   const navigate = useNavigate();
+
   return (
     <div className="user-page-container">
       <div className="user-navtop">
@@ -21,10 +22,10 @@ const User = () => {
             </h1>
             <p style={{ color: "white", fontWeight: "600" }}>
               {" "}
-              {userLogged && userLogged.email}
+              {userLogged ? userLogged.email : "אימייל"}
             </p>
             <p style={{ color: "white", fontWeight: "600" }}>
-              0{userLogged && userLogged.phone}
+            {userLogged ? userLogged.phone: "פלאפון"}
             </p>
           </div>
         </div>

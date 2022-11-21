@@ -43,8 +43,12 @@ const BottomNav = ({
         };
         await axios
           .post("https://dimona-api.cyclic.app/api/hazards", newHazard)
-          .then((res) => {console.log(res.data)
-           axios.post(`${process.env.REACT_APP_API_URL}/api/phone/hazzardin`,{phone:"+972"+userLogged.phone,location,_uid:userLogged._id})
+          .then((res) => {
+            axios.post(`${process.env.REACT_APP_API_URL}/api/phone/hazzardin`, {
+              phone: "+972" + userLogged.phone,
+              location,
+              _uid: userLogged._id,
+            });
           });
         sessionStorage.removeItem("hazard");
         sessionStorage.removeItem("hazard-location");

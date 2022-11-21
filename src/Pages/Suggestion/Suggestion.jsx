@@ -4,15 +4,20 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useEffect } from "react";
 import axios from "axios";
-import Toast from "react-bootstrap/Toast";
-import ToastContainer from "react-bootstrap/ToastContainer";
 import { useNavigate } from "react-router-dom";
-import NavtopNoClose from "../../Components/navigate/NavtopNoClose";
+import { AiOutlineRight } from "react-icons/ai";
+import { toast } from "react-toastify";
+
+const toastOptions = {
+  position: "top-left",
+  autoClose: 2000,
+  pauseOnHover: true,
+  draggable: true,
+  theme: "dark",
+};
 
 const Suggestion = () => {
   const navigate = useNavigate();
-  const [showToast, setToast] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
   const [pic, setPic] = useState("");
   const [picture, setPicture] = useState("");
   const [title, setTitle] = useState("");
@@ -40,16 +45,14 @@ const Suggestion = () => {
           console.log(err);
         });
     } else if (pic) {
-      setErrorMessage("  התמונה לא תקינה");
-      setToast(true);
+      toast.error("התמונה לא קיימת", toastOptions);
     }
   }, [pic]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!title || !body) {
-      setErrorMessage(" חייב נושא וטקסט");
-      setToast(true);
+      toast.error("חייב נושא וטקסט", toastOptions);
       return;
     }
     try {
@@ -64,33 +67,26 @@ const Suggestion = () => {
         config
       );
       if (suggestion) {
-        axios.post(`${process.env.REACT_APP_API_URL}/api/phone/suggestion`,{phone:"+972"+userLogged.phone,_uid:userLogged._id})
-        setErrorMessage(" ההצעה נשלחה");
-        setToast(true);
+        axios.post(`${process.env.REACT_APP_API_URL}/api/phone/suggestion`, {
+          phone: "+972" + userLogged.phone,
+          _uid: userLogged._id,
+        });
+        toast.success("ההצעה נשלחה", toastOptions);
         setTimeout(() => {
           navigate("/");
         }, 2000);
       }
     } catch (error) {
-      setErrorMessage("  בעיה תנסו מאוחר יותר");
-      setToast(true);
+      toast.error("בעיה, נסו שוב", toastOptions);
     }
   };
 
   return (
     <div>
-     <NavtopNoClose title={'הצעה לייעול'} link={'/'} ></NavtopNoClose>
-      <ToastContainer position="top-end" className="p-3">
-        <Toast
-          onClose={() => setToast(false)}
-          autohide
-          show={showToast}
-          delay={2200}
-        >
-          <Toast.Header></Toast.Header>
-          <Toast.Body> {errorMessage} </Toast.Body>
-        </Toast>
-      </ToastContainer>
+      <div className="suggestion-navtop">
+        <AiOutlineRight onClick={() => navigate("/")} />
+        <h2>הצעת ייעול לעיר</h2>
+      </div>
       <Form>
         <Form.Group className="mb-5 mt-3 ">
           <Form.Label></Form.Label>

@@ -133,7 +133,7 @@ const Alerts = () => {
             onClick={() => navigate("/")}
           />
           <h1 className="nav-alerts-header">כל המבזקים</h1>
-          {user.isAdmin && (
+          {user?.isAdmin && (
             <div onClick={handleShow} className="nav-alerts-edit-btn">
               <FaEdit />
               הוסף מבזק
@@ -227,7 +227,7 @@ const Alerts = () => {
                     </span>
                   </div>
                 </Card>
-                {user.isAdmin && (
+                {user?.isAdmin && (
                   <div
                     className="remove-btn-alerts"
                     onClick={() => deleteAlert(alert)}
