@@ -2,7 +2,7 @@ import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import Signup from "../../Components/register/Signup";
 import Login from "../../Components/register/Login";
-import "./Register.css";
+import './Register.css'
 import { AiOutlineRight } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 

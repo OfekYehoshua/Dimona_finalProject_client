@@ -9,6 +9,7 @@ import "./modalStyles.css";
 import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 
 const ReportModal = ({ userLogged }) => {
   const navigate = useNavigate();
@@ -57,7 +58,17 @@ const ReportModal = ({ userLogged }) => {
                   />
                   <div className="card-info">
                     <h1 className="alert-title">{report.profession}</h1>
-                    <h1 className="alert-title">{report.status}</h1>
+                    <h1
+                      className={
+                        report.status === "לא בוצע"
+                          ? "alert-title not-done"
+                          : report.status === "בביצוע"
+                          ? "alert-title ongoing"
+                          : "alert-title done"
+                      }
+                    >
+                      {report.status}
+                    </h1>
                     <h1 className="alert-title">{report.location}</h1>
                     <span className="alert-date">
                       {report.createdAt.split("T")[0]}
@@ -66,11 +77,16 @@ const ReportModal = ({ userLogged }) => {
                 </Card>
               )
           )}
-          <Card className="alert-button-container">
-            <NavLink to={"/my-reports"}>
-              <Button variant="secondery">לכל הדיווחים</Button>
-            </NavLink>
-          </Card>
+          <div className="alert-button-container">
+            <Card className="alert-button">
+              <NavLink to={"/my-reports"}>
+                <Button variant="secondary" className="alert-btn-text">
+                  לכל הדיווחים
+                  <FaArrowLeft style={{ marginRight: "10px" }} />
+                </Button>
+              </NavLink>
+            </Card>
+          </div>
           {/* {user.isAdmin ? (
             <NavLink to={"/reports"}>
               <Button variant="secondery">לאזור העריכה</Button>

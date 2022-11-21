@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const navigate = useNavigate();
-  const userLogged = JSON.parse(localStorage.getItem("UserLogged"))
+  const userLogged = JSON.parse(localStorage.getItem("UserLogged"));
   return (
     <div>
       <div className="home-container">
@@ -44,13 +44,16 @@ const Home = () => {
           </div>
         </div>
       </div>
-      <h3 className="home-header">
-        מבזקים
-      </h3>
+      <div className="home-lists-container">
+        <h3 className="home-header">מבזקים</h3>
       <AlertModal />
-      <h3 className="home-header">הדיווחים שלי</h3>
-      {userLogged&& <ReportModal userLogged={userLogged} />}
-     
+      </div>
+      {userLogged && (
+        <div className="home-lists-container">
+          <h3 className="home-header">הדיווחים שלי</h3>
+          <ReportModal userLogged={userLogged} />
+        </div>
+      )}
     </div>
   );
 };

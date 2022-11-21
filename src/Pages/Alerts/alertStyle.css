@@ -45,12 +45,13 @@
 }
 .alert-title {
   font-size: medium;
-  color: #8d99ae;
+  color: black;
   font-weight: 800;
 }
 
 .alert-date {
   font-size: x-small;
+  text-align: left;
 }
 
 .card-info {
@@ -59,6 +60,7 @@
   flex-direction: column;
   font-size: medium;
   font-weight: 900;
+  width: 100%;
 }
 .alert-top {
   text-align: center;

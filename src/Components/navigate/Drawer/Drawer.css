@@ -2,11 +2,17 @@
   display: flex;
   flex-direction: row;
   background-color: royalblue;
-  padding:10px;
-  margin-left: 0px;
+  padding: 10px;
+  margin: 0px;
+  justify-content: center;
 }
-.fixed-top{
+.fixed-top {
   z-index: 4 !important;
+  display: flex !important;
+  justify-content: center !important;
+}
+.navbar-brand {
+  margin-right: 0px !important;
 }
 .top-nav-container {
   background-color: royalblue;
@@ -14,8 +20,7 @@
   overflow: scroll;
 }
 #drawer-header {
-  margin-right: 31vw;
-  color:white;
+  color: white;
   font-size: 23px;
   font-weight: 600;
 }
@@ -73,4 +78,8 @@
   color: #00a0c6;
   text-decoration: none;
   cursor: pointer;
+}
+.navbar-toggler {
+  position: absolute;
+  left: 1rem;
 }
