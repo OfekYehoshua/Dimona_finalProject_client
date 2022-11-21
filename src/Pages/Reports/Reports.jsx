@@ -27,7 +27,6 @@ const Reports = () => {
         `${process.env.REACT_APP_API_URL_WORK}/${userLogged._id}`,
         config
       );
-      console.log(data);
       setReports(data);
     };
     fetchReports();
