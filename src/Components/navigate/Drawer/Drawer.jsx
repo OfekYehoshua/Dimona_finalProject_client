@@ -5,6 +5,7 @@ import ListGroup from "react-bootstrap/ListGroup";
 import "./Drawer.css";
 import { AiOutlineLeft, AiOutlinePlus } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
+import { FaUserAlt } from "react-icons/fa";
 
 const Drawer = () => {
   const navigate = useNavigate();
@@ -37,12 +38,7 @@ const Drawer = () => {
                     className="user-container"
                     onClick={() => navigate("/user")}
                   >
-                    <img
-                      src="https://assets.stickpng.com/images/585e4bf3cb11b227491c339a.png"
-                      alt="profile"
-                      width={60}
-                      height={60}
-                    />
+                    <FaUserAlt style={{color:"white", fontSize:50}} />
                     <div>
                       <h2 style={{ color: "white", fontWeight: 600 }}>אורח</h2>
                       <h5 style={{ letterSpacing: 1 }}>אין דיווחים</h5>

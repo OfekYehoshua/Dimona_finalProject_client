@@ -77,16 +77,17 @@ const ReportModal = ({ userLogged }) => {
                 </Card>
               )
           )}
-          <div className="alert-button-container">
-            <Card className="alert-button">
-              <NavLink to={"/my-reports"}>
-                <Button variant="secondary" className="alert-btn-text">
-                  לכל הדיווחים
-                  <FaArrowLeft style={{ marginRight: "10px" }} />
-                </Button>
-              </NavLink>
-            </Card>
-          </div>
+          <Card
+            className="alert-container"
+            style={{ display: "flex", justifyContent: "flex-end" }}
+          >
+            <NavLink to={"/my-reports"}>
+              <Button variant="secondary" className="alert-btn-text">
+                לכל הדיווחים
+                <FaArrowLeft style={{ marginRight: "10px" }} />
+              </Button>
+            </NavLink>
+          </Card>
           {/* {user.isAdmin ? (
             <NavLink to={"/reports"}>
               <Button variant="secondery">לאזור העריכה</Button>

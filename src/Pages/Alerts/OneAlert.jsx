@@ -8,7 +8,6 @@ import "./alertStyle.css";
 const OneAlert = () => {
   const location = useLocation();
   const state = location.state;
-  console.log(state);
   const navigate = useNavigate();
   return (
     <div>
@@ -20,7 +19,7 @@ const OneAlert = () => {
           />
           <h4 style={{ fontSize: "larger" }} className="alert-header">
             {" "}
-            מבזק מתאריך 17/11/2022
+            מבזק מתאריך {state.createdAt.split("T")[0]}
           </h4>{" "}
         </div>
       </div>
@@ -28,9 +27,6 @@ const OneAlert = () => {
       <Card className="alert-title-card">
         <h1>{state.title}</h1>
         <p style={{ fontWeight: "500" }}>{state.subTitle}</p>
-        <p style={{ fontWeight: "600", fontSize: "small", textAlign: "end" }}>
-          {state.createdAt.split("T")[0]}
-        </p>
       </Card>
       <Card className="alert-info-card">
         <p style={{ fontWeight: "500" }}>{state.body}</p>

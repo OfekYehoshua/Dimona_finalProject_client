@@ -7,6 +7,7 @@ import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 
 const AlertModal = () => {
   const navigate = useNavigate();
@@ -46,10 +47,13 @@ const AlertModal = () => {
                 </Card>
               )
           )}
-          <Card className="alert-button-container">
-            <NavLink to={"/alerts"}>
-              <Button variant="secondery">לכל המבזקים</Button>
-            </NavLink>
+          <Card className="alert-container" style={{display:"flex", justifyContent:"flex-end"}}>
+          <NavLink to={"/alerts"}>
+                <Button variant="secondary" className="alert-btn-text">
+                  לכל המבזקים
+                  <FaArrowLeft style={{ marginRight: "10px" }} />
+                </Button>
+              </NavLink>
           </Card>
         </>
       ) : (
