@@ -204,9 +204,8 @@ const Alerts = () => {
       {alerts ? (
         <>
           {alerts?.map((alert) => (
-            <div style={{ display: "flex", alignItems: "center" }}>
+            <div style={{ display: "flex", alignItems: "center" }} key={alert._id}>
               <Card
-                key={alert._id}
                 style={{
                   display: "flex",
                   flexDirection: "row",
@@ -214,7 +213,7 @@ const Alerts = () => {
                   justifyContent: "space-around",
                   width: "100%",
                   alignItems: "center",
-                  boxShadow: "-5px 5px 15px 0px rgba(0, 0, 0, 0.603)!important",
+                  boxShadow: "-5px 5px 15px 0px rgba(0, 0, 0, 0.603)",
                 }}
                 onClick={() => navigate("/onealert", { state: alert })}
               >
