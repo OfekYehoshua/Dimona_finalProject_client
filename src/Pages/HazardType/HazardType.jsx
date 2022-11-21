@@ -15,6 +15,7 @@ import sewerage from "./HazardImages/sewerage.png";
 import { useNavigate } from "react-router-dom";
 import InputModal from "../../Components/Modals/inputModal";
 import CloseForm from "../../Components/Modals/closeFormModal";
+import { motion } from "framer-motion";
 
 const HazardType = () => {
   const navigate = useNavigate();
@@ -25,6 +26,8 @@ const HazardType = () => {
   };
 
   return (
+    
+    
     <div className="container">
       <div className="top">
         <div
@@ -45,6 +48,14 @@ const HazardType = () => {
         <h5>
           <b>או לבחור מהרשימה</b>
         </h5>
+      <motion.div
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{
+        duration: 0.8,
+        delay: 0.5,
+        ease: [0, 0.71, 0.2, 1.01]
+      }}>
         <div className="list-group">
           <button
             onClick={() => handleClicked("פינוי ערימת גזם", "clean")}
@@ -152,6 +163,7 @@ const HazardType = () => {
           <hr />
           <br />
         </div>
+    </motion.div>
       </div>
     </div>
   );

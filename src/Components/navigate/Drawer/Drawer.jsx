@@ -9,6 +9,8 @@ import { useNavigate } from "react-router-dom";
 const Drawer = () => {
   const navigate = useNavigate();
   const UserLogged = JSON.parse(localStorage.getItem("UserLogged"));
+
+
   return (
     <>
       {[false].map((expand) => (
@@ -16,7 +18,8 @@ const Drawer = () => {
           key={expand}
           expand={expand}
           fixed="top"
-          style={{ background: "royalblue", marginLeft:"0px" }}
+          style={{ background: "royalblue", marginLeft: "0px" }}
+
         >
           <Container id="nav-container">
             <Navbar.Brand id="drawer-header">עיריית דימונה</Navbar.Brand>
@@ -65,20 +68,21 @@ const Drawer = () => {
                         עמוד הבית{" "}
                       </h1>
                     </div>
-                    {UserLogged&&
-                    <div onClick={() => navigate("/my-reports")}>
-                      <hr className="underline" />
-                      <h1
-                        style={{
-                          fontWeight: 300,
-                          color: "white",
-                          paddingRight: 20,
-                          paddingTop: 10,
-                        }}
-                      >
-                        הדיווחים שלי
-                      </h1>
-                    </div>}
+                    {UserLogged && (
+                      <div onClick={() => navigate("/my-reports")}>
+                        <hr className="underline" />
+                        <h1
+                          style={{
+                            fontWeight: 300,
+                            color: "white",
+                            paddingRight: 20,
+                            paddingTop: 10,
+                          }}
+                        >
+                          הדיווחים שלי
+                        </h1>
+                      </div>
+                    )}
                     <hr className="underline" />
                     <div onClick={() => navigate("/alerts")}>
                       <h1

@@ -6,6 +6,7 @@ import Lottie from "react-lottie-player";
 import HomeBackground from "../../animations/70532-background.json";
 import { FaUserAlt } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -28,25 +29,37 @@ const Home = () => {
             <h1>ברוך הבא, אורח</h1>
           </div>
           <div className="home-buttons-container">
-            <div
+            <motion.div
+              animate={{
+                scale: [1, 2, 2, 1, 1],
+                rotate: [0, 0, 270, 270, 0],
+                borderRadius: ["20%", "20%", "50%", "50%", "20%"],
+              }}
+            ></motion.div>
+            <motion.div
               className="home-button-circle"
               onClick={() => navigate("/hazard-type")}
+              animate={{
+                scale: [1, 2, 2, 1, 1],
+                rotate: [0, 0, 270, 270, 0],
+                borderRadius: ["20%", "20%", "50%", "20%", "50%"],
+              }}
             >
               <h1 style={{ fontWeight: 700, fontSize: 40 }}> דווח </h1>
               <h1 style={{ fontWeight: 700, fontSize: 40 }}> למוקד </h1>
-            </div>
-            <div
+            </motion.div>
+            <motion.div
               className="home-button-lined"
               onClick={() => navigate("/suggestion")}
             >
               <h1> הצעה לייעול </h1>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
       <div className="home-lists-container">
         <h3 className="home-header">מבזקים</h3>
-      <AlertModal />
+        <AlertModal />
       </div>
       {userLogged && (
         <div className="home-lists-container">
