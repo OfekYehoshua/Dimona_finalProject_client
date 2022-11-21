@@ -3,6 +3,7 @@ import EditUserModal from "../../Components/Modals/editUserModal";
 import Navtop from "../../Components/navigate/Navtop";
 import "./User.css";
 const User = () => {
+  const userLogged = JSON.parse(localStorage.getItem("UserLogged"));
   return (
     <div className="user-page-container">
       <Navtop notForm={true} title="האיזור האישי" link="/" />
@@ -10,10 +11,10 @@ const User = () => {
         <div className="top">
           <div className="user-info">
             <h1 style={{ color: "white", fontWeight: "600", marginBottom: 30 }}>
-              אורח
+              {userLogged?userLogged.firstName:"אורח"}
             </h1>
-            <p style={{ color: "white", fontWeight: "600" }}>אימייל:</p>
-            <p style={{ color: "white", fontWeight: "600" }}>טלפון:</p>
+            <p style={{ color: "white", fontWeight: "600" }}> {userLogged&&userLogged.email}</p>
+            <p style={{ color: "white", fontWeight: "600" }}>0{userLogged&&userLogged.phone}</p>
           </div>
         </div>
         <div

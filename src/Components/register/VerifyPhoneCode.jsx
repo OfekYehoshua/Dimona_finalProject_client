@@ -31,7 +31,7 @@ const VerifyPhoneCode = () => {
   };
 
   const verifyCode = async () => {
-    if (userRegister) {
+    if (userRegister&&!userLogin) {
       try {
         const codeTrue = await axios.get(
           `${process.env.REACT_APP_API_URL}/api/phone/verify?phonenumber=+972${userRegister.phone}&code=${phoneCode}`

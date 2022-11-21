@@ -64,7 +64,7 @@ const Suggestion = () => {
         config
       );
       if (suggestion) {
-        console.log(suggestion.data);
+        axios.post(`${process.env.REACT_APP_API_URL}/api/phone/suggestion`,{phone:"+972"+userLogged.phone,_uid:userLogged._id})
         setErrorMessage(" ההצעה נשלחה");
         setToast(true);
         setTimeout(() => {
