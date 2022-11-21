@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { useNavigate } from "react-router-dom";
 import { MdModeEditOutline } from "react-icons/md";
 import "./editUserModal.css";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
 
 export default function EditUserModal() {
   const userLogged = JSON.parse(localStorage.getItem("UserLogged"));
@@ -14,7 +14,6 @@ export default function EditUserModal() {
   const [email, setEmail] = useState(userLogged.email);
   const [phone, setPhone] = useState("");
   const [error, setError] = useState({});
-  const navigate = useNavigate();
 
   const handleClose = () => setShow(false);
 
@@ -26,6 +25,14 @@ export default function EditUserModal() {
     setShow(true);
   };
 
+  const toastOptions = {
+    position: "top-left",
+    autoClose: 2000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
+  };
+
   const handleSubmit = async () => {
     if (firstName.length > 15) {
       setError({ msg: "שם פרטי עד 15 תווים!", status: false });
@@ -34,10 +41,6 @@ export default function EditUserModal() {
     } else if (phone.length !== 0 && phone.length !== 10) {
       setError({ msg: "הכנס מספר פלאפון תקין!", status: false });
     } 
-    // if (phone.length > 0) {
-    //   navigate("/verify");
-    //   handleClose();
-    // } 
     else  {
       setError({ msg: "", status: true });
       const config = {
@@ -71,7 +74,10 @@ export default function EditUserModal() {
       updatedUser.data.token =userLogged.token
       localStorage.setItem("UserLogged", JSON.stringify(updatedUser.data))
         handleClose()
-        window.location.reload();
+        toast.success("הפרטים עודכנו בהצלחה!", toastOptions)
+        setTimeout(() => {
+          window.location.reload();
+        }, 2500);
     }}
   };
 
@@ -142,6 +148,7 @@ export default function EditUserModal() {
             </div>
           )}
       </Modal>
+      <ToastContainer />
     </>
   );
 }
