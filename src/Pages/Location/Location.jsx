@@ -71,7 +71,7 @@ const Location = () => {
             בצע
           </Button>
         </div>
-        {location.length > 40 && (
+        {inputLocation.length > 40 && (
           <b style={{ color: "red", fontWeight: 700 }}>כתובת עד 40 תווים!</b>
         )}
         {loading && <h1 className="location-text">בטעינה..</h1>}
