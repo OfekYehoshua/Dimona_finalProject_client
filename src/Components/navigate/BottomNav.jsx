@@ -41,7 +41,7 @@ const BottomNav = ({
           phone: user.phone,
           _uid: user._id,
         };
-        await axios
+        const sent = await axios
           .post("https://dimona-api.cyclic.app/api/hazards", newHazard)
           .then((res) => {
             axios.post(`${process.env.REACT_APP_API_URL}/api/phone/hazzardin`, {
@@ -50,13 +50,15 @@ const BottomNav = ({
               _uid: userLogged._id,
             });
           });
-        sessionStorage.removeItem("hazard");
-        sessionStorage.removeItem("hazard-location");
-        sessionStorage.removeItem("hazard-images");
-        toast.success("דיווח נשלח בהצלחה!", toastOptions);
-        setTimeout(() => {
-          navigate("/");
-        }, 2500);
+        if (sent) {
+          sessionStorage.removeItem("hazard");
+          sessionStorage.removeItem("hazard-location");
+          sessionStorage.removeItem("hazard-images");
+          toast.success("דיווח נשלח בהצלחה!", toastOptions);
+          setTimeout(() => {
+            navigate("/");
+          }, 2500);
+        } else console.log("object");
       } else navigate("/register");
     }
   };

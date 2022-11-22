@@ -15,7 +15,11 @@ import { useNavigate } from "react-router-dom";
 import "./styles.css";
 
 const UploadImage = () => {
-  const [allImages, setAllImages] = useState([]);
+  const [allImages, setAllImages] = useState(
+    sessionStorage.getItem("hazard-images")
+      ? JSON.parse(sessionStorage.getItem("hazard-images")).allImages
+      : []
+  );
   const [selectedBig, setSelectedBig] = useState(0);
   const [selectedImg, setSelectedImg] = useState("");
   const [uploadedImg, setUploadedImg] = useState("");
@@ -71,8 +75,10 @@ const UploadImage = () => {
     selectedBig !== 0 && setSelectedBig(selectedBig - 1);
     console.log(selectedBig);
     setAllImages(new_arr);
+    new_arr.length === 0 && sessionStorage.removeItem("hazard-images")
   };
 
+  console.log(allImages.length)
   return (
     <div id="image-container">
       <Modal show={show} onHide={handleClose} centered>

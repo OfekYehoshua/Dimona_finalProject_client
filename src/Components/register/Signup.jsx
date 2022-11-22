@@ -17,7 +17,7 @@ function Signup() {
   const navigate = useNavigate();
 
   const toastOptions = {
-    position: "bottom-left",
+    position: "top-left",
     autoClose: 2000,
     pauseOnHover: true,
     draggable: true,

@@ -80,7 +80,7 @@ export default function EditUserModal() {
 
   return (
     <>
-      <i onClick={() => (userLogged ? handleShow : navigate("/register"))}>
+      <i onClick={() => (userLogged ? handleShow() : navigate("/register"))}>
         <MdModeEditOutline style={{ fontSize: 40, color: "white" }} />
       </i>
 

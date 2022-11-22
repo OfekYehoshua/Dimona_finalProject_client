@@ -74,7 +74,6 @@ const VerifyPhoneCode = () => {
             }
           );
           if (newUser) {
-            console.log(newUser);
             localStorage.setItem("UserLogged", JSON.stringify(newUser.data));
             sessionStorage.removeItem("loginUser");
             navigate("/hazard-summary");
