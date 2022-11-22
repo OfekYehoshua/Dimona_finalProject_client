@@ -1,8 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import Lottie from "react-lottie-player";
-import ReportAnimation from "../../animations/report animation.json";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import axios from "axios";
 import Card from "react-bootstrap/Card";
 import "./modalStyles.css";
@@ -37,7 +37,7 @@ const ReportModal = ({ userLogged }) => {
 
   return (
     <>
-      {reports ? (
+      {reports.length > 0 ? (
         <>
           {reports.map(
             (report, index) =>
@@ -94,14 +94,9 @@ const ReportModal = ({ userLogged }) => {
           ) : null} */}
         </>
       ) : (
-        <>
-          <Lottie
-            loop
-            animationData={ReportAnimation}
-            play
-            style={{ width: 400, height: 600 }}
-          />
-        </>
+        <SkeletonTheme baseColor="#20202014" highlightColor="#444">
+          <Skeleton count={8} />
+        </SkeletonTheme>
       )}
     </>
   );
