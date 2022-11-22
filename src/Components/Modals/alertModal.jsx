@@ -12,23 +12,19 @@ import { FaArrowLeft } from "react-icons/fa";
 const AlertModal = () => {
   const navigate = useNavigate();
   const [alerts, setAlerts] = useState([]);
-  const user = JSON.parse(localStorage.getItem("UserLogged"));
   useEffect(() => {
     const fetchAlerts = async () => {
       try {
-        const config = {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        };
-        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/api/alerts/`,config);
+        const { data } = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/alerts/`
+        );
         setAlerts(data);
       } catch (error) {
         console.log("error fetching the alerts");
       }
     };
     fetchAlerts();
-  }, [user.token]);
+  }, []);
 
   return (
     <>
@@ -52,13 +48,16 @@ const AlertModal = () => {
                 </Card>
               )
           )}
-          <Card className="alert-container" style={{display:"flex", justifyContent:"flex-end"}}>
-          <NavLink to={"/alerts"}>
-                <Button variant="secondary" className="alert-btn-text">
-                  לכל המבזקים
-                  <FaArrowLeft style={{ marginRight: "10px" }} />
-                </Button>
-              </NavLink>
+          <Card
+            className="alert-container"
+            style={{ display: "flex", justifyContent: "flex-end" }}
+          >
+            <NavLink to={"/alerts"}>
+              <Button variant="secondary" className="alert-btn-text">
+                לכל המבזקים
+                <FaArrowLeft style={{ marginRight: "10px" }} />
+              </Button>
+            </NavLink>
           </Card>
         </>
       ) : (
