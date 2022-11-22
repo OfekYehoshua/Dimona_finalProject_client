@@ -25,7 +25,7 @@ const User = () => {
               {userLogged ? userLogged.email : "אימייל"}
             </p>
             <p style={{ color: "white", fontWeight: "600" }}>
-            {userLogged ? userLogged.phone: "פלאפון"}
+              {userLogged ? 0 + userLogged.phone : "פלאפון"}
             </p>
           </div>
         </div>

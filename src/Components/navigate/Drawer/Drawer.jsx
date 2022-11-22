@@ -10,6 +10,11 @@ import { FaUserAlt } from "react-icons/fa";
 const Drawer = () => {
   const navigate = useNavigate();
   const UserLogged = JSON.parse(localStorage.getItem("UserLogged"));
+
+  const disconnect = () => {
+    localStorage.removeItem("UserLogged");
+    window.location.reload();
+  };
   return (
     <>
       {[false].map((expand) => (
@@ -17,7 +22,7 @@ const Drawer = () => {
           key={expand}
           expand={expand}
           fixed="top"
-          style={{ background: "royalblue", marginLeft:"0px" }}
+          style={{ background: "royalblue", marginLeft: "0px" }}
         >
           <Container id="nav-container">
             <Navbar.Brand id="drawer-header">עיריית דימונה</Navbar.Brand>
@@ -38,44 +43,37 @@ const Drawer = () => {
                     className="user-container"
                     onClick={() => navigate("/user")}
                   >
-                    <FaUserAlt style={{color:"white", fontSize:50}} />
+                    <FaUserAlt style={{ color: "white", fontSize: 50 }} />
                     <div>
-                      <h2 style={{ color: "white", fontWeight: 600 }}>אורח</h2>
+                      <h2 style={{ color: "white", fontWeight: 600 }}>
+                        {UserLogged ? UserLogged.firstName : "אורח"}
+                      </h2>
                       <h5 style={{ letterSpacing: 1 }}>אין דיווחים</h5>
                     </div>
+
                     <AiOutlineLeft style={{ fontSize: 30, color: "white" }} />
                   </div>
                 </div>
                 <Offcanvas.Body>
                   <ListGroup variant="flush">
-                    <div onClick={() => navigate("/")}>
-                      <h1
-                        style={{
-                          fontWeight: 300,
-                          color: "white",
-                          paddingRight: 20,
-                          paddingTop: 10,
-                        }}
-                      >
-                        {" "}
-                        עמוד הבית{" "}
-                      </h1>
-                    </div>
-                    {UserLogged&&
-                    <div onClick={() => navigate("/my-reports")}>
-                      <hr className="underline" />
-                      <h1
-                        style={{
-                          fontWeight: 300,
-                          color: "white",
-                          paddingRight: 20,
-                          paddingTop: 10,
-                        }}
-                      >
-                        הדיווחים שלי
-                      </h1>
-                    </div>}
-                    <hr className="underline" />
+                    {UserLogged && (
+                      <>
+                        <div onClick={() => navigate("/my-reports")}>
+                          <hr className="underline" />
+                          <h1
+                            style={{
+                              fontWeight: 300,
+                              color: "white",
+                              paddingRight: 20,
+                              paddingTop: 10,
+                            }}
+                          >
+                            הדיווחים שלי
+                          </h1>
+                        </div>
+                        <hr className="underline" />
+                      </>
+                    )}
                     <div onClick={() => navigate("/alerts")}>
                       <h1
                         style={{
@@ -89,7 +87,13 @@ const Drawer = () => {
                       </h1>
                     </div>
                     <hr className="underline" />
-                    <div onClick={() => navigate("/suggestion")}>
+                    <div
+                      onClick={() =>
+                        UserLogged
+                          ? navigate("/suggestion")
+                          : navigate("/register")
+                      }
+                    >
                       <h1
                         style={{
                           fontWeight: 300,
@@ -100,20 +104,6 @@ const Drawer = () => {
                       >
                         {" "}
                         הצעות לייעול{" "}
-                      </h1>
-                    </div>
-                    <hr className="underline" />
-                    <div onClick={() => navigate("/accessibility")}>
-                      <h1
-                        style={{
-                          fontWeight: 300,
-                          color: "white",
-                          paddingRight: 20,
-                          paddingTop: 10,
-                        }}
-                      >
-                        {" "}
-                        נגישות
                       </h1>
                     </div>
                     <hr className="underline" />
@@ -138,6 +128,20 @@ const Drawer = () => {
                       </div>{" "}
                     </a>
                     <hr className="underline" />
+                    {UserLogged && (
+                      <div onClick={disconnect}>
+                        <h1
+                          style={{
+                            fontWeight: 300,
+                            color: "white",
+                            paddingRight: 20,
+                            paddingTop: 10,
+                          }}
+                        >
+                          התנתק
+                        </h1>
+                      </div>
+                    )}
                   </ListGroup>
                 </Offcanvas.Body>
               </div>

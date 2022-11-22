@@ -25,7 +25,7 @@ const Home = () => {
             >
               <FaUserAlt />
             </div>
-            <h1>ברוך הבא, אורח</h1>
+            <h1>ברוך הבא, {userLogged ? userLogged.firstName : "אורח"}</h1>
           </div>
           <div className="home-buttons-container">
             <div
@@ -37,7 +37,9 @@ const Home = () => {
             </div>
             <div
               className="home-button-lined"
-              onClick={() => navigate("/suggestion")}
+              onClick={() =>
+                userLogged ? navigate("/suggestion") : navigate("/register")
+              }
             >
               <h1> הצעה לייעול </h1>
             </div>
@@ -46,7 +48,7 @@ const Home = () => {
       </div>
       <div className="home-lists-container">
         <h3 className="home-header">מבזקים</h3>
-      <AlertModal />
+        <AlertModal />
       </div>
       {userLogged && (
         <div className="home-lists-container">
