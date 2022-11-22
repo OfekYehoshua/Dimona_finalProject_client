@@ -59,7 +59,6 @@ const Drawer = () => {
                     {UserLogged && (
                       <>
                         <div onClick={() => navigate("/my-reports")}>
-                          <hr className="underline" />
                           <h1
                             style={{
                               fontWeight: 300,
