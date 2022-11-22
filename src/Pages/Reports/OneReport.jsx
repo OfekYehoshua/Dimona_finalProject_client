@@ -11,9 +11,13 @@ import StepProgressBar from "react-step-progress";
 import "react-step-progress/dist/index.css";
 
 export const ProgressB = () => {
+  const location = useLocation()
+  const state = location.state
   return (
     <StepProgressBar
-      startingStep={0}
+      startingStep={
+        state?.status === "לא בוצע" ? 0 : state?.status === "בביצוע" ? 1 : 2
+      }
       steps={[
         {
           label: "הגיע למערכת",

@@ -83,7 +83,6 @@ export default function EditUserModal() {
       <i onClick={() => (userLogged ? handleShow() : navigate("/register"))}>
         <MdModeEditOutline style={{ fontSize: 40, color: "white" }} />
       </i>
-
       <Modal style={{ marginTop: "30vh" }} show={show} onHide={handleClose}>
         <Modal.Body>עדכון המשתמש</Modal.Body>
         <input

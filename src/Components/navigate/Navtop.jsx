@@ -6,7 +6,7 @@ import "./Navtop.css";
 
 const Navtop = ({ title, link, notForm }) => {
   const navigate = useNavigate();
-
+  // const user = JSON.parse(localStorage.getItem("UserLogged"));
   const handleClick = (link) => {
     navigate(link);
   };

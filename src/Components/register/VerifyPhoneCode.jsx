@@ -31,6 +31,9 @@ const VerifyPhoneCode = () => {
   };
 
   const verifyCode = async () => {
+    if(userRegister&&userLogin){
+      sessionStorage.removeItem("registerUser")
+    }
     if (userRegister&&!userLogin) {
       try {
         const codeTrue = await axios.get(
@@ -61,7 +64,7 @@ const VerifyPhoneCode = () => {
         setPhoneCode("");
         toast.error("המספר שהזנת שגוי, נסה שוב", toastOptions);
       }
-    } else if (userLogin) {
+    } else if (userLogin&&!userRegister) {
       try {
         const codeTrue = await axios.get(
           `${process.env.REACT_APP_API_URL}/api/phone/verify?phonenumber=+972${userLogin.phone}&code=${phoneCode}`

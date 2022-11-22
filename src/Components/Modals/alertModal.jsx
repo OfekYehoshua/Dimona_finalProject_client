@@ -12,18 +12,23 @@ import { FaArrowLeft } from "react-icons/fa";
 const AlertModal = () => {
   const navigate = useNavigate();
   const [alerts, setAlerts] = useState([]);
-
+  const user = JSON.parse(localStorage.getItem("UserLogged"));
   useEffect(() => {
     const fetchAlerts = async () => {
       try {
-        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/api/alerts/`);
+        const config = {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        };
+        const { data } = await axios.get(`${process.env.REACT_APP_API_URL}/api/alerts/`,config);
         setAlerts(data);
       } catch (error) {
         console.log("error fetching the alerts");
       }
     };
     fetchAlerts();
-  }, [alerts]);
+  }, [user.token]);
 
   return (
     <>

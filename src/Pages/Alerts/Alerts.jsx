@@ -36,27 +36,31 @@ const Alerts = () => {
   };
 
   useEffect(() => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    };
     const fetchAlerts = async () => {
       try {
         await axios
-          .get(`${process.env.REACT_APP_API_URL}/api/alerts`)
+          .get(`${process.env.REACT_APP_API_URL}/api/alerts`,config)
           .then((res) => res.data && setAlerts(res.data));
       } catch (error) {
         console.log(error);
       }
     };
     fetchAlerts();
-  }, []);
+  }, [user.token]);
   const postAlert = async () => {
     try {
       const config = {
         headers: {
-          "Content-Type": "application/json",
-          token: `Bearer ${user.token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       };
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/alerts/`,
+        `${process.env.REACT_APP_API_URL}/api/alerts`,
         {
           title,
           subTitle,
@@ -79,8 +83,7 @@ const Alerts = () => {
     try {
       const config = {
         headers: {
-          "Content-Type": "application/json",
-          token: `Bearer ${user.token}`,
+          Authorization: `Bearer ${user.token}`,
         },
       };
       await axios.delete(
@@ -133,7 +136,7 @@ const Alerts = () => {
             onClick={() => navigate("/")}
           />
           <h1 className="nav-alerts-header">כל המבזקים</h1>
-          {user?.isAdmin && (
+          {user.isAdmin && (
             <div onClick={handleShow} className="nav-alerts-edit-btn">
               <FaEdit />
               הוסף מבזק
@@ -227,7 +230,7 @@ const Alerts = () => {
                     </span>
                   </div>
                 </Card>
-                {user?.isAdmin && (
+                {user.isAdmin && (
                   <div
                     className="remove-btn-alerts"
                     onClick={() => deleteAlert(alert)}

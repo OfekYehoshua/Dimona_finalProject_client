@@ -41,7 +41,11 @@ const BottomNav = ({
           phone: user.phone,
           _uid: user._id,
         };
-        const config = { headers: { token: `Bearer ${user.token}` } };
+        const config = {
+          headers: {
+            token: `Bearer ${user.token}`,
+          },
+        };
         await axios
           .post(
             `https://dimona-api.cyclic.app/api/hazards/${user._id}`,
