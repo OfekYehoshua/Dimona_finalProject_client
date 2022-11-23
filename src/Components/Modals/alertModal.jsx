@@ -8,9 +8,10 @@ import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-
+import Placeholder from 'react-bootstrap/Placeholder';
 const AlertModal = () => {
   const navigate = useNavigate();
+  const [placeHolder, setPlaceHolder] = useState(false);
   const [alerts, setAlerts] = useState([]);
   useEffect(() => {
     const fetchAlerts = async () => {
@@ -19,8 +20,10 @@ const AlertModal = () => {
           `${process.env.REACT_APP_API_URL}/api/alerts`
         );
         setAlerts(data);
+        setPlaceHolder(true)
       } catch (error) {
-        console.log("error fetching the alerts");
+        setAlerts([])
+        setPlaceHolder(true)
       }
     };
     fetchAlerts();
@@ -28,7 +31,23 @@ const AlertModal = () => {
 
   return (
     <>
-      {alerts ? (
+      {!placeHolder?
+            <> 
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+          </>
+          :
+      alerts.length ? (
         <>
           {alerts.map(
             (alert, index) =>

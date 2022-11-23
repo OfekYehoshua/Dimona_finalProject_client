@@ -60,7 +60,7 @@ const UploadImage = () => {
             )
             .then((res) => setUploadedImg(res.data.secure_url))
             .catch((err) => {
-              console.log(err);
+              
             });
           setLoading(false);
         }
@@ -73,12 +73,9 @@ const UploadImage = () => {
     const new_arr = [...allImages];
     new_arr.splice(selectedBig, 1);
     selectedBig !== 0 && setSelectedBig(selectedBig - 1);
-    console.log(selectedBig);
     setAllImages(new_arr);
     new_arr.length === 0 && sessionStorage.removeItem("hazard-images")
   };
-
-  console.log(allImages.length)
   return (
     <div id="image-container">
       <Modal show={show} onHide={handleClose} centered>

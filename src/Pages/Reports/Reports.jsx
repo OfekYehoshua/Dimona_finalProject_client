@@ -6,9 +6,10 @@ import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { AiOutlineRight } from "react-icons/ai";
-
+import Placeholder from 'react-bootstrap/Placeholder';
 const Reports = () => {
   const userLogged = JSON.parse(localStorage.getItem("UserLogged"));
+  const [placeHolder, setPlaceHolder] = useState(false);
   const [reports, setReports] = useState([]);
   const navigate = useNavigate();
 
@@ -27,6 +28,7 @@ const Reports = () => {
         config
       );
       setReports(data);
+      setPlaceHolder(true)
     };
     fetchReports();
   }, [navigate, userLogged]);
@@ -37,7 +39,60 @@ const Reports = () => {
         <AiOutlineRight onClick={() => navigate("/")} />
         <h3>הדיווחים שלך</h3>
       </div>
-      {reports ? (
+      {!placeHolder?
+            <> 
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+          
+          </>
+          :
+      reports.length >0 ? (
         <>
           {reports.map((report) => (
             <div key={report._id}>
@@ -60,7 +115,7 @@ const Reports = () => {
                   <h1 className="alert-title">{report.status}</h1>
                   <h1 className="alert-title">{report.location}</h1>
                   <span className="alert-date">
-                    {report.createdAt.split("T")[0]}
+                    {report.createdAt&&report.createdAt.split("T")[0]}
                   </span>
                 </div>
               </Card>
@@ -76,7 +131,7 @@ const Reports = () => {
             </div>
           ))}
         </>
-      ) : (
+      ) : reports.length === 0&&(
         <>
           <Lottie
             loop

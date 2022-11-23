@@ -13,9 +13,10 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
+import Placeholder from 'react-bootstrap/Placeholder';
 const Alerts = () => {
-  const [alerts, setAlerts] = useState([]);
+  const [alerts, setAlerts] = useState([])
+  const [placeHolder, setPlaceHolder] = useState(false);
   const [title, setTitle] = useState();
   const [subTitle, setSubTitle] = useState();
   const [body, setBody] = useState();
@@ -34,7 +35,6 @@ const Alerts = () => {
     draggable: true,
     theme: "dark",
   };
-
   useEffect(() => {
     const config = {
       headers: {
@@ -45,9 +45,10 @@ const Alerts = () => {
       try {
         await axios
           .get(`${process.env.REACT_APP_API_URL}/api/alerts`,config)
-          .then((res) => res.data && setAlerts(res.data));
+          .then((res) => {res.data && setAlerts(res.data)
+            setPlaceHolder(true)});
       } catch (error) {
-        console.log(error);
+        toast.error(error.message, toastOptions)
       }
     };
     fetchAlerts();
@@ -119,7 +120,7 @@ const Alerts = () => {
               .then((res) => setSelectedImg(res.data.secure_url));
             setLoading(false);
           } catch (err) {
-            console.log(err);
+            toast.error(err.message, toastOptions);
           }
         }
       }
@@ -203,7 +204,59 @@ const Alerts = () => {
           </Modal>
         </div>
       </>
-      {alerts ? (
+       { !placeHolder?
+            <> 
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+          
+          </>:
+      alerts.length > 0 ? (
         <>
           {alerts?.map((alert) => (
             <div key={alert._id}>
@@ -226,7 +279,7 @@ const Alerts = () => {
                   <div className="card-info" style={{ width: "60%" }}>
                     <h1 className="alert-title">{alert.title}</h1>
                     <span className="alert-date">
-                      {alert.createdAt.split("T")[0]}
+                      {alert.createdAt&&alert.createdAt.split("T")[0]}
                     </span>
                   </div>
                 </Card>
@@ -251,7 +304,7 @@ const Alerts = () => {
             </div>
           ))}
         </>
-      ) : (
+      ) : alerts.length === 0&&(
         <>
           <Lottie
             loop

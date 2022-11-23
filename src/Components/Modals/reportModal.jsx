@@ -10,11 +10,11 @@ import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-
+import Placeholder from 'react-bootstrap/Placeholder';
 const ReportModal = ({ userLogged }) => {
   const navigate = useNavigate();
   const [reports, setReports] = useState([]);
-
+  const [placeHolder, setPlaceHolder] = useState(false);
   useEffect(() => {
     const fetchReports = async () => {
       try {
@@ -28,8 +28,10 @@ const ReportModal = ({ userLogged }) => {
           config
         );
         setReports(data);
+        setPlaceHolder(true)
       } catch (error) {
-        console.log("error fetching the reports");
+        setReports([]);
+        setPlaceHolder(true)
       }
     };
     fetchReports();
@@ -37,7 +39,20 @@ const ReportModal = ({ userLogged }) => {
 
   return (
     <>
-      {reports ? (
+      {!placeHolder?
+            <> 
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+                  <Placeholder as="p" animation="glow">
+                     <Placeholder xs={12} size="lg" />
+                  </Placeholder>
+          </>
+          :
+      reports.length ? (
         <>
           {reports.map(
             (report, index) =>
@@ -99,7 +114,7 @@ const ReportModal = ({ userLogged }) => {
             loop
             animationData={ReportAnimation}
             play
-            style={{ width: 400, height: 600 }}
+            style={{ width: 100, height: 150 }}
           />
         </>
       )}

@@ -42,7 +42,7 @@ const Suggestion = () => {
           setLoading(false);
         })
         .catch((err) => {
-          console.log(err);
+          toast.error(err.message, toastOptions)
         });
     } else if (pic) {
       toast.error("התמונה לא קיימת", toastOptions);
@@ -70,7 +70,6 @@ const Suggestion = () => {
             fullName:userLogged.firstName+" "+userLogged.lastName },
         config
       );
-      console.log(suggestion);
       if (suggestion) {
         axios.post(`${process.env.REACT_APP_API_URL}/api/phone/suggestion`, {
           phone: "+972" + userLogged.phone,

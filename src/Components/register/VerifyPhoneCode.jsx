@@ -39,7 +39,6 @@ const VerifyPhoneCode = () => {
         const codeTrue = await axios.get(
           `${process.env.REACT_APP_API_URL}/api/phone/verify?phonenumber=+972${userRegister.phone}&code=${phoneCode}`
         );
-        console.log(codeTrue);
         if (codeTrue.data.data.valid) {
           const newUser = await axios.post(
             `${process.env.REACT_APP_API_URL}/api/user`,
@@ -51,7 +50,6 @@ const VerifyPhoneCode = () => {
             }
           );
           if (newUser) {
-            console.log(newUser);
             localStorage.setItem("UserLogged", JSON.stringify(newUser.data));
             sessionStorage.removeItem("registerUser");
             navigate("/hazard-summary");

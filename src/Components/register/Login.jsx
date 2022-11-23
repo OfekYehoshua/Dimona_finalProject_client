@@ -32,8 +32,6 @@ const Login = () => {
       .catch((err) => {
         toast.error("משתמש לא רשום או מספר פלאפון לא תקין", toastOptions);
       });
-    console.log(findUser.data);
-    console.log(phone.length);
     if (phone.length < 9 || !findUser.data) {
       toast.error("משתמש לא רשום או מספר פלאפון לא תקין", toastOptions);
       return;

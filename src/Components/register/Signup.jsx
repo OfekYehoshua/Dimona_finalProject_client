@@ -37,7 +37,7 @@ function Signup() {
     const findUser = await axios
       .post(`${process.env.REACT_APP_API_URL}/api/user/login`, { phone })
       .catch((err) => {
-        console.log(err);
+        toast.error(err, toastOptions);
       });
     if (!findUser) {
       const sendMessage = await axios.get(
