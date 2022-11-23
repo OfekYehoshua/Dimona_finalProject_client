@@ -32,12 +32,12 @@ This site made for Dimona municipal, for the residents of the city.
 
 ### Homepage
 
-<p align="center"><img src="" width="300" /></p>
+<p align="center"><img src="./public/image.2.jpg" width="300" /></p>
 
 
 ### Upload report images
 
-<p align="center"><img src="" width="300" /></p>
+<p align="center"><img src="./public/image.1.jpg" width="300" /></p>
 
 ## Technologies:
 
