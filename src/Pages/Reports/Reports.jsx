@@ -1,5 +1,5 @@
-import Lottie from "react-lottie-player";
-import ReportAnimation from "../../animations/report animation.json";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import "./reportStyle.css";
 import Card from "react-bootstrap/Card";
 import { useNavigate } from "react-router-dom";
@@ -37,13 +37,12 @@ const Reports = () => {
         <AiOutlineRight onClick={() => navigate("/")} />
         <h3>הדיווחים שלך</h3>
       </div>
-      {reports ? (
+      {reports.length > 0 ? (
         <>
           {reports.map((report) => (
             <div key={report._id}>
               <Card
                 className="alert-container"
-                
                 onClick={() => navigate("/onereport", { state: report })}
               >
                 <img
@@ -72,19 +71,14 @@ const Reports = () => {
                 }}
               >
                 <hr className="alerts-hr" />
-              </div>  
+              </div>
             </div>
           ))}
         </>
       ) : (
-        <>
-          <Lottie
-            loop
-            animationData={ReportAnimation}
-            play
-            style={{ width: 400, height: 600 }}
-          />
-        </>
+        <SkeletonTheme baseColor="#20202014" highlightColor="#444">
+          <Skeleton count={8} />
+        </SkeletonTheme>
       )}
     </div>
   );

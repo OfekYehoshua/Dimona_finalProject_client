@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-import Lottie from "react-lottie-player";
-import ReportAnimation from "../../animations/report animation.json";
+
 import axios from "axios";
 import "./modalStyles.css";
 import Card from "react-bootstrap/Card";
@@ -8,6 +7,8 @@ import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const AlertModal = () => {
   const navigate = useNavigate();
@@ -28,7 +29,7 @@ const AlertModal = () => {
 
   return (
     <>
-      {alerts ? (
+      {alerts.length > 0 ? (
         <>
           {alerts.map(
             (alert, index) =>
@@ -61,14 +62,9 @@ const AlertModal = () => {
           </Card>
         </>
       ) : (
-        <>
-          <Lottie
-            loop
-            animationData={ReportAnimation}
-            play
-            style={{ width: 400, height: 600 }}
-          />
-        </>
+        <SkeletonTheme baseColor="#20202014" highlightColor="#444">
+          <Skeleton count={8} />
+        </SkeletonTheme>
       )}
     </>
   );

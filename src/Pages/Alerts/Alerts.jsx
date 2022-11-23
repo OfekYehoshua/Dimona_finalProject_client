@@ -1,5 +1,3 @@
-import Lottie from "react-lottie-player";
-import ReportAnimation from "../../animations/report animation.json";
 import axios from "axios";
 import "./alertStyle.css";
 import Card from "react-bootstrap/Card";
@@ -13,6 +11,8 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const Alerts = () => {
   const [alerts, setAlerts] = useState([]);
@@ -36,31 +36,27 @@ const Alerts = () => {
   };
 
   useEffect(() => {
-    const config = {
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    };
     const fetchAlerts = async () => {
       try {
         await axios
-          .get(`${process.env.REACT_APP_API_URL}/api/alerts`,config)
+          .get(`${process.env.REACT_APP_API_URL}/api/alerts`)
           .then((res) => res.data && setAlerts(res.data));
       } catch (error) {
         console.log(error);
       }
     };
     fetchAlerts();
-  }, [user.token]);
+  }, []);
   const postAlert = async () => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${user.token}`,
+          "Content-Type": "application/json",
+          token: `Bearer ${user.token}`,
         },
       };
       await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/alerts`,
+        `${process.env.REACT_APP_API_URL}/api/alerts/`,
         {
           title,
           subTitle,
@@ -83,7 +79,8 @@ const Alerts = () => {
     try {
       const config = {
         headers: {
-          Authorization: `Bearer ${user.token}`,
+          "Content-Type": "application/json",
+          token: `Bearer ${user.token}`,
         },
       };
       await axios.delete(
@@ -128,7 +125,7 @@ const Alerts = () => {
   }, [selectedImg]);
 
   return (
-    <div style={{backgroundColor:"whitesmoke"}}>
+    <div style={{ backgroundColor: "whitesmoke" }}>
       <>
         <div className="nav-all-alerts">
           <AiOutlineRight
@@ -136,7 +133,7 @@ const Alerts = () => {
             onClick={() => navigate("/")}
           />
           <h1 className="nav-alerts-header">כל המבזקים</h1>
-          {user.isAdmin && (
+          {user?.isAdmin && (
             <div onClick={handleShow} className="nav-alerts-edit-btn">
               <FaEdit />
               הוסף מבזק
@@ -150,7 +147,7 @@ const Alerts = () => {
               <Form
                 style={{
                   display: "flex",
-                  flexDirection: "column"
+                  flexDirection: "column",
                 }}
               >
                 <Form.Group className="mb-3">
@@ -203,13 +200,11 @@ const Alerts = () => {
           </Modal>
         </div>
       </>
-      {alerts ? (
+      {alerts.length > 0 ? (
         <>
           {alerts?.map((alert) => (
             <div key={alert._id}>
-              <div
-                style={{ display: "flex", alignItems: "center" }}
-              >
+              <div style={{ display: "flex", alignItems: "center" }}>
                 <Card
                   style={{
                     display: "flex",
@@ -230,7 +225,7 @@ const Alerts = () => {
                     </span>
                   </div>
                 </Card>
-                {user.isAdmin && (
+                {user?.isAdmin && (
                   <div
                     className="remove-btn-alerts"
                     onClick={() => deleteAlert(alert)}
@@ -253,12 +248,10 @@ const Alerts = () => {
         </>
       ) : (
         <>
-          <Lottie
-            loop
-            animationData={ReportAnimation}
-            play
-            style={{ width: 400, height: 600 }}
-          />
+          {" "}
+          <SkeletonTheme baseColor="#20202014" highlightColor="#444">
+            <Skeleton count={8} />
+          </SkeletonTheme>
         </>
       )}
       <ToastContainer />
