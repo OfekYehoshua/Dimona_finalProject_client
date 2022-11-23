@@ -27,10 +27,10 @@ This site made for Dimona municipal, for the residents of the city.
 
 * First, you can report on hazard- this is the main function of the app.
   The report contain multy-step reporting:
-  1.Type of the hazard.
-  2.Upload pictures of the hazard (optional)
-  3.Location of the hazard (via phone location or manualy)
-  4.Summarize of the report.
+    1.Type of the hazard.
+    2.Upload pictures of the hazard (optional)
+    3.Location of the hazard (via phone location or manualy)
+    4.Summarize of the report.
 * The second upload option is for suggestions, things you want to say for 
    the municipaly to make the city a better place.
 * The app has alerts page that the municipaly uploads about new thing in the 
@@ -79,6 +79,6 @@ This site made for Dimona municipal, for the residents of the city.
 
 © [Skandalev ](https://github.com/Skandalev)
   [OfekYehoshua ](https://github.com/OfekYehoshua)
-  [OrReuben]()
-
+  [OrReuben](https://github.com/OrReuben)
+  [Natali597](https://github.com/natali597)
 
