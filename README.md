@@ -4,6 +4,7 @@ This site made for Dimona municipal, for the residents of the city.
 ## Table Of Contents
 - [Hazards reporting app](#hazards-reporting-app)
   * [Why did we made it?](#why-did-we-made-it)
+  * [App Tools and using](#app-Tools-and-using)
   * [Running the project](#running-the-project)
   * [Screenshots](#screenshots)
     + [Homepage](#homepage)
@@ -20,6 +21,20 @@ This site made for Dimona municipal, for the residents of the city.
    offered us continue with it,as it can really be an app for them.
 3. Our bootcamp course has come to end, and we decide to continue this project
    as our final project of the course!
+   
+## App Tools and using
+
+* First, you can report on hazard- this is the main function of the app.
+  The report contain multy-step reporting:
+  1.Type of the hazard.
+  2.Upload pictures of the hazard (optional)
+  3.Location of the hazard (via phone location or manualy)
+  4.Summarize of the report.
+* The second upload option is for suggestions, things you want to say for 
+   the municipaly to make the city a better place.
+* The app has alerts page that the municipaly uploads about new thing in the 
+  city, that maybe will be helpful for the citizens.
+* There is Admin editor option for adding and deleting alerts.
    
 ## Running the project
 
