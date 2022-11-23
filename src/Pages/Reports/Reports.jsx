@@ -111,7 +111,6 @@ const Reports = () => {
                   alt="img"
                 />
                 <div className="card-info">
-                  <h1 className="alert-title">{report.profession}</h1>
                   <h1 className="alert-title">{report.status}</h1>
                   <h1 className="alert-title">{report.location}</h1>
                   <span className="alert-date">
