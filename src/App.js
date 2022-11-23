@@ -13,6 +13,7 @@ import Suggestion from "./Pages/Suggestion/Suggestion";
 import VerifyPhoneCode from "./Components/register/VerifyPhoneCode";
 import OneReport from "./Pages/Reports/OneReport";
 import User from "./Pages/User/User";
+import PageNotFound from "./Pages/PageNotFound";
 
 function App() {
   return (
@@ -31,6 +32,7 @@ function App() {
         <Route path="/hazard-summary" element={<HazardSummary />} />
         <Route path="/suggestion" element={<Suggestion />} />
         <Route path="/user" element={<User />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </Router>
   );
