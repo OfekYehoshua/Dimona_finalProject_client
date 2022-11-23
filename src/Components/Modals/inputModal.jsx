@@ -54,6 +54,16 @@ export default function InputModal() {
           className="modal-input"
           onChange={(e) => setTitle(e.target.value)}
         />
+             <div
+              style={{
+                textAlign: "center",
+                color: "orange",
+                paddingBottom: 5,
+                fontWeight: 600,
+              }}
+            >
+             חייב לבחור את סוג הדיווח ולהכניס הסבר
+            </div>
         <Modal.Footer className="modal-btn">
           <Button variant="info" onClick={handleClose}>
             בטל

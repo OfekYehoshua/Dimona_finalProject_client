@@ -63,9 +63,14 @@ const Suggestion = () => {
       };
       const suggestion = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/suggestions/${userLogged._id}`,
-        { title, phone: userLogged.phone, body, picture },
+        { title,
+           phone: userLogged.phone,
+            body, picture,
+            email:userLogged.email,
+            fullName:userLogged.firstName+" "+userLogged.lastName },
         config
       );
+      console.log(suggestion);
       if (suggestion) {
         axios.post(`${process.env.REACT_APP_API_URL}/api/phone/suggestion`, {
           phone: "+972" + userLogged.phone,

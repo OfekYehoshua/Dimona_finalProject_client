@@ -16,7 +16,7 @@ const AlertModal = () => {
     const fetchAlerts = async () => {
       try {
         const { data } = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/alerts/`
+          `${process.env.REACT_APP_API_URL}/api/alerts`
         );
         setAlerts(data);
       } catch (error) {

@@ -9,8 +9,16 @@ import Lottie from "react-lottie-player";
 import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const Location = () => {
+  const toastOptions = {
+    position: "top-left",
+    autoClose: 2000,
+    pauseOnHover: true,
+    draggable: true,
+    theme: "dark",
+  };
   const [location, setLocation] = useState("");
   const [loading, setLoading] = useState(false);
   const [inputLocation, setInputLocation] = useState("");
@@ -28,6 +36,12 @@ const Location = () => {
     const nearLocation = await axios.get(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${a},${b}&key=${process.env.REACT_APP_GOOGLE}&language=iw`
     );
+    var english =/[a-zA-Z\s]/
+    if(english.test(nearLocation.data.results[0].formatted_address)){
+      toast.error("יש בעיה עם הקליטה בבקשה הכניסו ידנית", toastOptions);
+      setLoading(false);
+      return
+    }
     setLoading(false);
     setLocation(nearLocation.data.results[0].formatted_address);
     sessionStorage.setItem(
@@ -41,7 +55,8 @@ const Location = () => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(showPosition);
     } else {
-      console.log("Geolocation is not supported by this browser.");
+      toast.error("GPS במכשיר זה אין ", toastOptions);
+      return;
     }
   }
   function showPosition(position) {
@@ -80,6 +95,7 @@ const Location = () => {
       {(sessionStorage.getItem("hazard-location") || location) && (
         <BottomNav link="/hazard-summary"></BottomNav>
       )}
+        <ToastContainer />
     </div>
   );
 };
