@@ -12,6 +12,7 @@ This site made for Dimona municipal, for the residents of the city.
   * [Technologies](#technologies)
     + [Client-Side](#client-side)
     + [Server-Side](#server-side)
+  * [Author](#Author)
   
 ## Why did we made it?
 
@@ -74,5 +75,10 @@ This site made for Dimona municipal, for the residents of the city.
 * Twilio
 * bcryptjs
 
+## Author  <a name="Author"></a>
+
+© [Skandalev ](https://github.com/Skandalev)
+  [OfekYehoshua ](https://github.com/OfekYehoshua)
+  
 
 
