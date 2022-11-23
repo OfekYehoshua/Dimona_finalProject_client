@@ -25,12 +25,11 @@ This site made for Dimona municipal, for the residents of the city.
    
 ## App Tools and using
 
-1. First, you can report on hazard- this is the main function of the app.  
- *  The report contain multy-step reporting:
-    1.Type of the hazard.
-    2.Upload pictures of the hazard (optional)
-    3.Location of the hazard (via phone location or manualy)
-    4.Summarize of the report.
+1. First, you can report on hazard- this is the main function of the app. The report contain multy-step reporting:
+    *Type of the hazard.
+    *Upload pictures of the hazard (optional)
+    *Location of the hazard (via phone location or manualy)
+    *Summarize of the report.
     
 2. The second upload option is for suggestions, things you want to say for 
    the municipaly to make the city a better place.
