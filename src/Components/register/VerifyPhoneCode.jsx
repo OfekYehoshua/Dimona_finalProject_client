@@ -15,7 +15,7 @@ const VerifyPhoneCode = () => {
   const [phoneCode, setPhoneCode] = useState("");
   const userRegister = JSON.parse(sessionStorage.getItem("registerUser"));
   const userLogin = JSON.parse(sessionStorage.getItem("loginUser"));
-
+  const [loading, setLoading] = useState(false);
   useEffect(() => {
     if (!userLogin && !userRegister) {
       navigate("/register");
@@ -31,71 +31,102 @@ const VerifyPhoneCode = () => {
   };
 
   const verifyCode = async () => {
-    if(userRegister&&userLogin){
-      sessionStorage.removeItem("registerUser")
+    if (userRegister && userLogin) {
+      sessionStorage.removeItem("registerUser");
     }
-    if (userRegister&&!userLogin) {
-      try {
-        const codeTrue = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/phone/verify?phonenumber=+972${userRegister.phone}&code=${phoneCode}`
-        );
-        if (codeTrue.data.data.valid) {
-          const newUser = await axios.post(
-            `${process.env.REACT_APP_API_URL}/api/user`,
-            {
-              email: userRegister.email,
-              firstName: userRegister.firstName,
-              lastName: userRegister.lastName,
-              phone: userRegister.phone,
-            }
+    try {
+      setLoading(true);
+      if (userRegister && !userLogin) {
+        try {
+          const codeTrue = await axios.get(
+            `${process.env.REACT_APP_API_URL}/api/phone/verify?phonenumber=+972${userRegister.phone}&code=${phoneCode}`
           );
-          if (newUser) {
-            localStorage.setItem("UserLogged", JSON.stringify(newUser.data));
-            sessionStorage.removeItem("registerUser");
-            navigate("/hazard-summary");
-          } else {
-            setPhoneCode("");
-            toast.error("שגיאה, נסו שוב מאוחר יותר", toastOptions);
-          }
-        }
-      } catch (error) {
-        setPhoneCode("");
-        toast.error("המספר שהזנת שגוי, נסה שוב", toastOptions);
-      }
-    } else if (userLogin&&!userRegister) {
-      try {
-        const codeTrue = await axios.get(
-          `${process.env.REACT_APP_API_URL}/api/phone/verify?phonenumber=+972${userLogin.phone}&code=${phoneCode}`
-        );
-        if (codeTrue.data.data.valid) {
-          const newUser = await axios.post(
-            `${process.env.REACT_APP_API_URL}/api/user/login`,
-            {
-              phone: userLogin.phone,
+          setLoading(false);
+          if (codeTrue.data.data.valid) {
+            const newUser = await axios.post(
+              `${process.env.REACT_APP_API_URL}/api/user`,
+              {
+                email: userRegister.email,
+                firstName: userRegister.firstName,
+                lastName: userRegister.lastName,
+                phone: userRegister.phone,
+              }
+            );
+            setLoading(false);
+            if (newUser) {
+              localStorage.setItem("UserLogged", JSON.stringify(newUser.data));
+              sessionStorage.removeItem("registerUser");
+              navigate("/hazard-summary");
+            } else {
+              setPhoneCode("");
+              toast.error("שגיאה, נסו שוב מאוחר יותר", toastOptions);
+              setLoading(false);
             }
-          );
-          if (newUser) {
-            localStorage.setItem("UserLogged", JSON.stringify(newUser.data));
-            sessionStorage.removeItem("loginUser");
-            navigate("/hazard-summary");
-          } else {
-            setPhoneCode("");
-            toast.error("שגיאה, נסה שוב מאוחר יותר", toastOptions);
           }
+        } catch (error) {
+          setPhoneCode("");
+          setLoading(false);
+          toast.error("המספר שהזנת שגוי, נסה שוב", toastOptions);
         }
-      } catch (error) {
-        setPhoneCode("");
-        toast.error("המספר שהזנת שגוי, נסה שוב", toastOptions);
+      } else if (userLogin && !userRegister) {
+        try {
+          const codeTrue = await axios.get(
+            `${process.env.REACT_APP_API_URL}/api/phone/verify?phonenumber=+972${userLogin.phone}&code=${phoneCode}`
+          );
+          setLoading(false);
+          if (codeTrue.data.data.valid) {
+            const newUser = await axios.post(
+              `${process.env.REACT_APP_API_URL}/api/user/login`,
+              {
+                phone: userLogin.phone,
+              }
+            );
+            setLoading(false);
+            if (newUser) {
+              localStorage.setItem("UserLogged", JSON.stringify(newUser.data));
+              sessionStorage.removeItem("loginUser");
+              navigate("/hazard-summary");
+            } else {
+              setPhoneCode("");
+              toast.error("שגיאה, נסה שוב מאוחר יותר", toastOptions);
+              setLoading(false);
+            }
+          }
+        } catch (error) {
+          setPhoneCode("");
+          setLoading(false);
+          toast.error("המספר שהזנת שגוי, נסה שוב", toastOptions);
+        }
       }
+    } catch {
+      setLoading(false);
+      toast.error("משהו השתבש", toastOptions);
     }
   };
 
   const sendAgain = async () => {
-    const sendMessage = await axios.get(
-      `${process.env.REACT_APP_API_URL}/api/phone/login?phonenumber=+972${userRegister.phone}`
-    );
-    if (!sendMessage) {
-      toast.error("שגיאה, נסה שוב מאוחר יותר", toastOptions);
+    try {
+      setLoading(true);
+      let sendMessage = {};
+      if (userLogin) {
+        sendMessage = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/phone/login?phonenumber=+972${userLogin.phone}`
+        );
+      } else if (userRegister) {
+        sendMessage = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/phone/login?phonenumber=+972${userRegister.phone}`
+        );
+      }
+      setLoading(false);
+      if (!sendMessage) {
+        toast.error("שגיאה, נסה שוב מאוחר יותר", toastOptions);
+      } else {
+        toast.success("נשלח קוד חדש בהצלחה", toastOptions);
+        setLoading(false);
+      }
+    } catch {
+      toast.error("משהו השתבש", toastOptions);
+      setLoading(false);
     }
   };
 
@@ -114,8 +145,9 @@ const VerifyPhoneCode = () => {
           <Form.Group as={Row} className="mb-3">
             <Col sm="6">
               <Form.Control
-                type="tel"
+                type="number"
                 placeholder="******"
+                value={phoneCode}
                 onChange={(e) => {
                   setPhoneCode(e.target.value);
                 }}
@@ -132,10 +164,16 @@ const VerifyPhoneCode = () => {
             }}
             variant="info"
             size="lg"
+            disabled={loading || phoneCode.length === 0}
           >
             התחבר
           </Button>
-          <Button onClick={() => sendAgain()} variant="danger" size="lg">
+          <Button
+            disabled={loading}
+            onClick={() => sendAgain()}
+            variant="danger"
+            size="lg"
+          >
             לא קיבלתי את הקוד
           </Button>
         </Form>

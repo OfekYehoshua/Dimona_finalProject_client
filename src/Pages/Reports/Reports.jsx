@@ -132,14 +132,15 @@ const Reports = () => {
           ))}
         </>
       ) : reports.length === 0&&(
-        <>
+        <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+         <h2 style={{paddingRight:"1rem"}}> אין דיווחים קיימים </h2>
           <Lottie
             loop
             animationData={ReportAnimation}
             play
             style={{ width: 400, height: 600 }}
           />
-        </>
+        </div>
       )}
     </div>
   );

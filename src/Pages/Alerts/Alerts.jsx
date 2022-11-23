@@ -14,6 +14,15 @@ import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Placeholder from 'react-bootstrap/Placeholder';
+
+const toastOptions = {
+  position: "top-left",
+  autoClose: 2000,
+  pauseOnHover: true,
+  draggable: true,
+  theme: "dark",
+};
+
 const Alerts = () => {
   const [alerts, setAlerts] = useState([])
   const [placeHolder, setPlaceHolder] = useState(false);
@@ -28,17 +37,11 @@ const Alerts = () => {
   const handleShow = () => setShow(true);
   const navigate = useNavigate();
 
-  const toastOptions = {
-    position: "top-left",
-    autoClose: 2000,
-    pauseOnHover: true,
-    draggable: true,
-    theme: "dark",
-  };
+ 
   useEffect(() => {
     const config = {
       headers: {
-        Authorization: `Bearer ${user.token}`,
+        Authorization: `Bearer ${user?.token}`,
       },
     };
     const fetchAlerts = async () => {
@@ -52,7 +55,7 @@ const Alerts = () => {
       }
     };
     fetchAlerts();
-  }, [user.token]);
+  }, [user?.token]);
   const postAlert = async () => {
     try {
       const config = {
@@ -137,7 +140,7 @@ const Alerts = () => {
             onClick={() => navigate("/")}
           />
           <h1 className="nav-alerts-header">כל המבזקים</h1>
-          {user.isAdmin && (
+          {user?.isAdmin && (
             <div onClick={handleShow} className="nav-alerts-edit-btn">
               <FaEdit />
               הוסף מבזק
@@ -283,7 +286,7 @@ const Alerts = () => {
                     </span>
                   </div>
                 </Card>
-                {user.isAdmin && (
+                {user?.isAdmin && (
                   <div
                     className="remove-btn-alerts"
                     onClick={() => deleteAlert(alert)}

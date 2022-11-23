@@ -36,11 +36,11 @@ const Location = () => {
     const nearLocation = await axios.get(
       `https://maps.googleapis.com/maps/api/geocode/json?latlng=${a},${b}&key=${process.env.REACT_APP_GOOGLE}&language=iw`
     );
-    var english =/[a-zA-Z\s]/
-    if(english.test(nearLocation.data.results[0].formatted_address)){
+    var english = /([a-zA-Z])\w+/g;
+    if (english.test(nearLocation.data.results[0].formatted_address)) {
       toast.error("יש בעיה עם הקליטה בבקשה הכניסו ידנית", toastOptions);
       setLoading(false);
-      return
+      return;
     }
     setLoading(false);
     setLocation(nearLocation.data.results[0].formatted_address);
@@ -62,6 +62,13 @@ const Location = () => {
   function showPosition(position) {
     getAddress(position.coords.latitude, position.coords.longitude);
   }
+
+  const validateLocation = () => {
+    const validate = /([a-zA-Z])\w+/g;
+    if (validate.test(inputLocation)) {
+      toast.error("המיקום שהוזן שגוי, יש להזין בעברית", toastOptions);
+    } else setLocation(inputLocation);
+  };
   return (
     <div className="location-container">
       <Navtop title="מיקום דיווח" link="/hazard-image" />
@@ -80,7 +87,7 @@ const Location = () => {
           <Button
             className="location-btn"
             variant="primary"
-            onClick={() => setLocation(inputLocation)}
+            onClick={validateLocation}
             style={{ marginRight: 10 }}
           >
             בצע
@@ -95,7 +102,7 @@ const Location = () => {
       {(sessionStorage.getItem("hazard-location") || location) && (
         <BottomNav link="/hazard-summary"></BottomNav>
       )}
-        <ToastContainer />
+      <ToastContainer />
     </div>
   );
 };

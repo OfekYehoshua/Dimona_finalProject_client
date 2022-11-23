@@ -14,6 +14,7 @@ function Signup() {
   let [phone, setPhone] = useState("");
   const [firstName, setfirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const toastOptions = {
@@ -34,30 +35,38 @@ function Signup() {
       arrPhone.shift();
       phone = arrPhone.join("");
     }
-    const findUser = await axios
-      .post(`${process.env.REACT_APP_API_URL}/api/user/login`, { phone })
-      .catch((err) => {
-        toast.error(err, toastOptions);
-      });
-    if (!findUser) {
-      const sendMessage = await axios.get(
-        `${process.env.REACT_APP_API_URL}/api/phone/login?phonenumber=+972${phone}`
-      );
-      if (sendMessage) {
-        sessionStorage.setItem(
-          "registerUser",
-          JSON.stringify({
-            messageSent: true,
-            email,
-            phone,
-            firstName,
-            lastName,
-          })
+    setLoading(true);
+    try {
+      const findUser = await axios
+        .post(`${process.env.REACT_APP_API_URL}/api/user/login`, { phone })
+        .catch((err) => {
+          toast.error(err.message, toastOptions);
+        });
+      setLoading(false);
+      if (!findUser) {
+        const sendMessage = await axios.get(
+          `${process.env.REACT_APP_API_URL}/api/phone/login?phonenumber=+972${phone}`
         );
-        navigate("/verify");
+        setLoading(false);
+        if (sendMessage) {
+          sessionStorage.setItem(
+            "registerUser",
+            JSON.stringify({
+              messageSent: true,
+              email,
+              phone,
+              firstName,
+              lastName,
+            })
+          );
+          navigate("/verify");
+        }
+      } else {
+        toast.error(" המספר כבר רשום תעברו להתחברות ", toastOptions);
+        setLoading(false);
       }
-    } else {
-      toast.error(" המספר כבר רשום תעברו להתחברות ", toastOptions);
+    } catch {
+      setLoading(false);
     }
   };
 
@@ -124,7 +133,7 @@ function Signup() {
               <Form.Label>מספר פלאפון נייד</Form.Label>
               <Col sm="6">
                 <Form.Control
-                  type="tel"
+                  type="number"
                   placeholder="050-0000000"
                   onChange={(e) => setPhone(e.target.value)}
                   required
@@ -140,6 +149,7 @@ function Signup() {
               onClick={() => {
                 handleSubmit();
               }}
+              disabled={loading || !email || !phone || !firstName || !lastName}
             >
               שלח
             </Button>

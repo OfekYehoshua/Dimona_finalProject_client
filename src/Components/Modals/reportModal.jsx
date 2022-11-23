@@ -52,7 +52,7 @@ const ReportModal = ({ userLogged }) => {
                   </Placeholder>
           </>
           :
-      reports.length ? (
+      reports.length > 0 ? (
         <>
           {reports.map(
             (report, index) =>
@@ -102,21 +102,17 @@ const ReportModal = ({ userLogged }) => {
               </Button>
             </NavLink>
           </Card>
-          {/* {user.isAdmin ? (
-            <NavLink to={"/reports"}>
-              <Button variant="secondery">לאזור העריכה</Button>
-            </NavLink>
-          ) : null} */}
         </>
       ) : (
-        <>
+        <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+          <h2>אין דיווחים קיימים</h2>
           <Lottie
             loop
             animationData={ReportAnimation}
             play
-            style={{ width: 100, height: 150 }}
+            style={{ width: 150, height: 250 }}
           />
-        </>
+        </div>
       )}
     </>
   );

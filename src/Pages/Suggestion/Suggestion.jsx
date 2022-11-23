@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { AiOutlineRight } from "react-icons/ai";
-import { toast } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 
 const toastOptions = {
   position: "top-left",
@@ -42,7 +42,7 @@ const Suggestion = () => {
           setLoading(false);
         })
         .catch((err) => {
-          toast.error(err.message, toastOptions)
+          toast.error(err.message, toastOptions);
         });
     } else if (pic) {
       toast.error("התמונה לא קיימת", toastOptions);
@@ -61,13 +61,17 @@ const Suggestion = () => {
           Authorization: `Bearer ${userLogged.token}`,
         },
       };
+      setLoading(true);
       const suggestion = await axios.post(
         `${process.env.REACT_APP_API_URL}/api/suggestions/${userLogged._id}`,
-        { title,
-           phone: userLogged.phone,
-            body, picture,
-            email:userLogged.email,
-            fullName:userLogged.firstName+" "+userLogged.lastName },
+        {
+          title,
+          phone: userLogged.phone,
+          body,
+          picture,
+          email: userLogged.email,
+          fullName: userLogged.firstName + " " + userLogged.lastName,
+        },
         config
       );
       if (suggestion) {
@@ -79,8 +83,9 @@ const Suggestion = () => {
         setTimeout(() => {
           navigate("/");
         }, 2000);
-      }
+      } else setLoading(false);
     } catch (error) {
+      setLoading(false);
       toast.error("בעיה, נסו שוב", toastOptions);
     }
   };
@@ -135,11 +140,22 @@ const Suggestion = () => {
           variant={!loading ? "primary" : "secondary"}
           type="submit"
           className="custom-btn"
-          disabled={loading}
+          disabled={
+            loading ||
+            title.length === 0 ||
+            body.length === 0 ||
+            title.length > 40
+          }
         >
           שלח
         </Button>
       </Form>
+      {title.length > 40 && (
+        <div style={{ color: "red", textAlign: "center" }}>
+          נושא לא יכול להיות מעל 40 תווים!
+        </div>
+      )}
+      <ToastContainer />
     </div>
   );
 };
