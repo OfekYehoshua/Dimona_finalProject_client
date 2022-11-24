@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import "./BottomNav.css";
 import { useNavigate } from "react-router-dom";
@@ -17,8 +17,9 @@ const BottomNav = ({
 }) => {
   const userLogged = JSON.parse(localStorage.getItem("UserLogged"));
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const toastOptions = {
-    position: "bottom-left",
+    position: "top-left",
     autoClose: 2000,
     pauseOnHover: true,
     draggable: true,
@@ -46,6 +47,7 @@ const BottomNav = ({
             token: `Bearer ${user.token}`,
           },
         };
+        setLoading(true);
         await axios
           .post(
             `https://dimona-api.cyclic.app/api/hazards/${user._id}`,
@@ -67,13 +69,23 @@ const BottomNav = ({
         setTimeout(() => {
           navigate("/");
         }, 2500);
-      } else navigate("/register");
+        setLoading(false);
+      } else {
+        navigate("/register");
+        setLoading(false);
+      }
     }
   };
 
   return (
     <div className="next">
-      <Button onClick={handleNext} size="lg" variant="info" className="btn">
+      <Button
+        disabled={loading}
+        onClick={handleNext}
+        size="lg"
+        variant="info"
+        className="btn"
+      >
         {last ? "שלח" : "הבא"}
       </Button>
       <ToastContainer />

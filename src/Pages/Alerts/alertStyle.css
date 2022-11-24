@@ -1,7 +1,8 @@
 .alert-head-img {
-  height: 27vh;
-  width: 100%;
+  width: 100vw;
+  max-height: 80vh;
   margin-bottom: 2%;
+  object-fit: contain;
 }
 .navtop-alerts {
   display: flex;
@@ -41,7 +42,7 @@
 
 .alert-img {
   width: 100px;
-  height: 100px;
+  max-height: 120px;
   border-radius: 8%;
 }
 .alert-title {

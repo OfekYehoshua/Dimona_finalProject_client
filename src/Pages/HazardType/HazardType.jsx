@@ -15,6 +15,7 @@ import sewerage from "./HazardImages/sewerage.png";
 import { useNavigate } from "react-router-dom";
 import InputModal from "../../Components/Modals/inputModal";
 import CloseForm from "../../Components/Modals/closeFormModal";
+import { useEffect } from "react";
 
 const HazardType = () => {
   const navigate = useNavigate();
@@ -24,6 +25,9 @@ const HazardType = () => {
     navigate("/hazard-image");
   };
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div className="container">
       <div className="top">

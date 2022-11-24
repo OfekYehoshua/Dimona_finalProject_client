@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { AiOutlineRight } from "react-icons/ai";
 import Placeholder from "react-bootstrap/Placeholder";
+
+
 const Reports = () => {
   const userLogged = JSON.parse(localStorage.getItem("UserLogged"));
   const [placeHolder, setPlaceHolder] = useState(false);
@@ -130,7 +132,17 @@ const Reports = () => {
                   alt="img"
                 />
                 <div className="card-info">
-                  <h1 className="alert-title">{report.status}</h1>
+                  <h1
+                    className={
+                      report.status === "לא בוצע"
+                        ? "alert-title not-done"
+                        : report.status === "בביצוע"
+                        ? "alert-title ongoing"
+                        : "alert-title done"
+                    }
+                  >
+                    {report.status}
+                  </h1>
                   <h1 className="alert-title">{report.location}</h1>
                   <span className="alert-date">
                     {report.createdAt && report.createdAt.split("T")[0]}

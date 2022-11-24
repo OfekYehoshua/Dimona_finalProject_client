@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Card } from "react-bootstrap";
 import { AiOutlineRight } from "react-icons/ai";
 import { useLocation } from "react-router-dom";
@@ -9,6 +10,10 @@ const OneAlert = () => {
   const location = useLocation();
   const state = location.state;
   const navigate = useNavigate();
+  
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <div>
       <div className="alert-top">

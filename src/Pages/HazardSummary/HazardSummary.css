@@ -1,5 +1,9 @@
 .summary-body {
   text-align: right;
+  width: 100vw;
+  height: 100vh;
+  background-color: white;
+  z-index: 9;
 }
 
 
