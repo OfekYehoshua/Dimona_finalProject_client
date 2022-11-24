@@ -8,7 +8,7 @@ import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import Placeholder from 'react-bootstrap/Placeholder';
+import PlaceHolderImg from "../../animations/63494-file-loading-data.json";
 const AlertModal = () => {
   const navigate = useNavigate();
   const [placeHolder, setPlaceHolder] = useState(false);
@@ -16,14 +16,15 @@ const AlertModal = () => {
   useEffect(() => {
     const fetchAlerts = async () => {
       try {
+        setPlaceHolder(false);
         const { data } = await axios.get(
           `${process.env.REACT_APP_API_URL}/api/alerts`
         );
         setAlerts(data);
-        setPlaceHolder(true)
+        setPlaceHolder(true);
       } catch (error) {
-        setAlerts([])
-        setPlaceHolder(true)
+        setAlerts([]);
+        setPlaceHolder(true);
       }
     };
     fetchAlerts();
@@ -31,23 +32,29 @@ const AlertModal = () => {
 
   return (
     <>
-      {!placeHolder?
-            <> 
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-          </>
-          :
-      alerts.length ? (
+      {!placeHolder ? (
+        <>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            <h2 style={{ marginTop: 10 }}>
+              {" "}
+              <b> מחפשים לך מידע.. </b>
+            </h2>
+            <Lottie
+              loop
+              animationData={PlaceHolderImg}
+              play
+              style={{ width: 300, height: 400 }}
+            />
+          </div>
+        </>
+      ) : alerts.length ? (
         <>
           {alerts.map(
             (alert, index) =>

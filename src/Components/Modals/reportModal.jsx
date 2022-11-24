@@ -10,7 +10,8 @@ import Button from "react-bootstrap/Button";
 import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeft } from "react-icons/fa";
-import Placeholder from 'react-bootstrap/Placeholder';
+import PlaceHolderImg from "../../animations/117775-searching-data.json";
+
 const ReportModal = ({ userLogged }) => {
   const navigate = useNavigate();
   const [reports, setReports] = useState([]);
@@ -23,15 +24,16 @@ const ReportModal = ({ userLogged }) => {
             token: `Bearer ${userLogged.token}`,
           },
         };
+        setPlaceHolder(false);
         const { data } = await axios.get(
           `${process.env.REACT_APP_API_URL_WORK}/${userLogged._id}`,
           config
         );
         setReports(data);
-        setPlaceHolder(true)
+        setPlaceHolder(true);
       } catch (error) {
         setReports([]);
-        setPlaceHolder(true)
+        setPlaceHolder(true);
       }
     };
     fetchReports();
@@ -39,20 +41,26 @@ const ReportModal = ({ userLogged }) => {
 
   return (
     <>
-      {!placeHolder?
-            <> 
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-          </>
-          :
-      reports.length > 0 ? (
+      {!placeHolder ? (
+        <>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              flexDirection: "column",
+            }}
+          >
+            <h2 style={{marginTop:10}}> <b> מחפשים לך מידע.. </b></h2>
+            <Lottie
+              loop
+              animationData={PlaceHolderImg}
+              play
+              style={{ width: 300, height: 400 }}
+            />
+          </div>
+        </>
+      ) : reports.length > 0 ? (
         <>
           {reports.map(
             (report, index) =>
@@ -104,7 +112,13 @@ const ReportModal = ({ userLogged }) => {
           </Card>
         </>
       ) : (
-        <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <h2>אין דיווחים קיימים</h2>
           <Lottie
             loop

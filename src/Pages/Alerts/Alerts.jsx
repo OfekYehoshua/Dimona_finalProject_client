@@ -13,7 +13,7 @@ import { AiOutlineDelete } from "react-icons/ai";
 import { useNavigate } from "react-router-dom";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Placeholder from 'react-bootstrap/Placeholder';
+import Placeholder from "react-bootstrap/Placeholder";
 
 const toastOptions = {
   position: "top-left",
@@ -24,7 +24,7 @@ const toastOptions = {
 };
 
 const Alerts = () => {
-  const [alerts, setAlerts] = useState([])
+  const [alerts, setAlerts] = useState([]);
   const [placeHolder, setPlaceHolder] = useState(false);
   const [title, setTitle] = useState();
   const [subTitle, setSubTitle] = useState();
@@ -37,7 +37,6 @@ const Alerts = () => {
   const handleShow = () => setShow(true);
   const navigate = useNavigate();
 
- 
   useEffect(() => {
     const config = {
       headers: {
@@ -47,11 +46,13 @@ const Alerts = () => {
     const fetchAlerts = async () => {
       try {
         await axios
-          .get(`${process.env.REACT_APP_API_URL}/api/alerts`,config)
-          .then((res) => {res.data && setAlerts(res.data)
-            setPlaceHolder(true)});
+          .get(`${process.env.REACT_APP_API_URL}/api/alerts`, config)
+          .then((res) => {
+            res.data && setAlerts(res.data);
+            setPlaceHolder(true);
+          });
       } catch (error) {
-        toast.error(error.message, toastOptions)
+        toast.error(error.message, toastOptions);
       }
     };
     fetchAlerts();
@@ -132,7 +133,7 @@ const Alerts = () => {
   }, [selectedImg]);
 
   return (
-    <div style={{backgroundColor:"whitesmoke"}}>
+    <div style={{ backgroundColor: "whitesmoke" }}>
       <>
         <div className="nav-all-alerts">
           <AiOutlineRight
@@ -154,7 +155,7 @@ const Alerts = () => {
               <Form
                 style={{
                   display: "flex",
-                  flexDirection: "column"
+                  flexDirection: "column",
                 }}
               >
                 <Form.Group className="mb-3">
@@ -207,65 +208,84 @@ const Alerts = () => {
           </Modal>
         </div>
       </>
-       { !placeHolder?
-            <> 
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-                  <Placeholder as="p" animation="glow">
-                     <Placeholder xs={12} size="lg" />
-                  </Placeholder>
-          
-          </>:
-      alerts.length > 0 ? (
+      {!placeHolder ? (
+        <>
+          <div style={{ textAlign: "center" }}>
+            <Placeholder as="p" animation="glow">
+              <Placeholder
+                xs={12}
+                size="lg"
+                style={{
+                  width: "95vw",
+                  height: "15vh",
+                  margin: "10px 0px",
+                  borderRadius: "20px",
+                }}
+              />
+            </Placeholder>
+          </div>
+          <div style={{ textAlign: "center" }}>
+            <Placeholder as="p" animation="glow">
+              <Placeholder
+                xs={12}
+                size="lg"
+                style={{
+                  width: "95vw",
+                  height: "15vh",
+                  margin: "10px 0px",
+                  borderRadius: "20px",
+                }}
+              />
+            </Placeholder>
+          </div>
+          <div style={{ textAlign: "center" }}>
+            <Placeholder as="p" animation="glow">
+              <Placeholder
+                xs={12}
+                size="lg"
+                style={{
+                  width: "95vw",
+                  height: "15vh",
+                  margin: "10px 0px",
+                  borderRadius: "20px",
+                }}
+              />
+            </Placeholder>
+          </div>
+          <div style={{ textAlign: "center" }}>
+            <Placeholder as="p" animation="glow">
+              <Placeholder
+                xs={12}
+                size="lg"
+                style={{
+                  width: "95vw",
+                  height: "15vh",
+                  margin: "5px 0px",
+                  borderRadius: "20px",
+                }}
+              />
+            </Placeholder>
+          </div>
+          <div style={{ textAlign: "center" }}>
+            <Placeholder as="p" animation="glow">
+              <Placeholder
+                xs={12}
+                size="lg"
+                style={{
+                  width: "95vw",
+                  height: "15vh",
+                  margin: "10px 0px",
+                  borderRadius: "20px",
+                }}
+              />
+            </Placeholder>
+          </div>
+        </>
+      ) : alerts.length > 0 ? (
         <>
           {alerts?.map((alert) => (
             <div key={alert._id}>
-              <div
-                style={{ display: "flex", alignItems: "center" }}
-              >
+              <div style={{ display: "flex", alignItems: "center" }}>
                 <Card
                   style={{
                     display: "flex",
@@ -282,7 +302,7 @@ const Alerts = () => {
                   <div className="card-info" style={{ width: "60%" }}>
                     <h1 className="alert-title">{alert.title}</h1>
                     <span className="alert-date">
-                      {alert.createdAt&&alert.createdAt.split("T")[0]}
+                      {alert.createdAt && alert.createdAt.split("T")[0]}
                     </span>
                   </div>
                 </Card>
@@ -307,15 +327,17 @@ const Alerts = () => {
             </div>
           ))}
         </>
-      ) : alerts.length === 0&&(
-        <>
-          <Lottie
-            loop
-            animationData={ReportAnimation}
-            play
-            style={{ width: 400, height: 600 }}
-          />
-        </>
+      ) : (
+        alerts.length === 0 && (
+          <>
+            <Lottie
+              loop
+              animationData={ReportAnimation}
+              play
+              style={{ width: 400, height: 600 }}
+            />
+          </>
+        )
       )}
       <ToastContainer />
     </div>
